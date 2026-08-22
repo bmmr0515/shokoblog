@@ -1,0 +1,14 @@
+export function getBaseUrl(): string {
+  if (process.env.NEXT_PUBLIC_SITE_URL) {
+    return process.env.NEXT_PUBLIC_SITE_URL.replace(/\/$/, "");
+  }
+  if (process.env.VERCEL_URL) {
+    return `https://${process.env.VERCEL_URL.replace(/\/$/, "")}`;
+  }
+  return "https://shokora-room.vercel.app";
+}
+
+export const SITE_NAME = "しょこらの部屋";
+export const DEFAULT_TITLE = "しょこらの部屋｜瀧脇笙古さん非公式ファンサイト";
+export const DEFAULT_DESCRIPTION = "瀧脇笙古さんのニュース、記事、動画をまとめた非公式ファンサイト「しょこらの部屋」です。";
+export const OGP_IMAGE_PATH = "/images/logo.png";
