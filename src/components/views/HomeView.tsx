@@ -276,7 +276,7 @@ export function HomeView() {
         </div>
 
         <div className="space-y-6">
-          <Sidebar items={items} />
+          <Sidebar />
         </div>
 
       </div>

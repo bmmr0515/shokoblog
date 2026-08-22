@@ -75,7 +75,7 @@ export function YouTubeView() {
         </div>
 
         <div>
-          <Sidebar items={items} />
+          <Sidebar />
         </div>
       </div>
     </div>

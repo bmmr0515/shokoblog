@@ -1,19 +1,30 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  images: {
-    domains: ['images.unsplash.com', 'img.youtube.com', 'i.ytimg.com', 'equal-love.jp'],
-    remotePatterns: [
+  async headers() {
+    return [
       {
-        protocol: 'https',
-        hostname: 'i.ytimg.com',
+        source: '/:path*',
+        headers: [
+          {
+            key: 'X-Content-Type-Options',
+            value: 'nosniff',
+          },
+          {
+            key: 'X-Frame-Options',
+            value: 'SAMEORIGIN',
+          },
+          {
+            key: 'X-XSS-Protection',
+            value: '1; mode=block',
+          },
+          {
+            key: 'Referrer-Policy',
+            value: 'strict-origin-when-cross-origin',
+          },
+        ],
       },
-      {
-        protocol: 'https',
-        hostname: 'img.youtube.com',
-      },
-    ],
-    unoptimized: true,
+    ];
   },
 };
 

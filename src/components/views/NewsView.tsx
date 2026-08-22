@@ -40,7 +40,7 @@ export function NewsView() {
         </div>
 
         <div>
-          <Sidebar items={items} />
+          <Sidebar />
         </div>
       </div>
     </div>

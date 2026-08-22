@@ -50,7 +50,7 @@ export function CategoryView({ rawCategory }: CategoryViewProps) {
         </div>
 
         <div>
-          <Sidebar items={items} />
+          <Sidebar />
         </div>
       </div>
     </div>

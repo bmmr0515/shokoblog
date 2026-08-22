@@ -37,7 +37,7 @@ export function ArticlesView() {
         </div>
 
         <div>
-          <Sidebar items={items} />
+          <Sidebar />
         </div>
       </div>
     </div>
