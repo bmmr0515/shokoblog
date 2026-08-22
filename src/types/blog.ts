@@ -83,3 +83,22 @@ export interface DraftCandidate {
   summary: string;
   category: Category;
 }
+
+export type PendingStatus = "pending" | "approved" | "rejected";
+
+export interface PendingContentItem {
+  id: string;
+  date: string;
+  title: string;
+  source: string;
+  sourceURL: string;
+  contentType: ContentType;
+  categoryCandidate: Category;
+  descriptionCandidate: string;
+  detectedAt: string;
+  status: PendingStatus;
+  thumbnailURL?: string;
+  youtubeURL?: string | null;
+  videoId?: string;
+}
+

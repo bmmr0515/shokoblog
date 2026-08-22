@@ -1,0 +1,39 @@
+name: Daily Content Crawler
+
+on:
+  schedule:
+    # 毎日 日本時間 午前9:00 (UTC 0:00) に自動実行
+    - cron: '0 0 * * *'
+  workflow_dispatch: # GitHub UIから手動実行も可能
+
+jobs:
+  crawl:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Run Content Fetch Script
+        run: npm run content:fetch
+
+      - name: Commit and Push if Pending Content Updated
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add src/data/pending-content.json
+          if git diff --staged --quiet; then
+            echo "新着候補の追加はありませんでした。"
+          else
+            git commit -m "chore(content): auto-collect new content candidates"
+            git push
+            echo "新しい新着候補を pending-content.json に保存し Push しました。"
+          fi
