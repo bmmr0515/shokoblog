@@ -3,6 +3,7 @@ import "./globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { getBaseUrl, DEFAULT_TITLE, DEFAULT_DESCRIPTION } from "@/lib/site";
+import { Analytics } from "@vercel/analytics/react";
 
 export const metadata: Metadata = {
   metadataBase: new URL(getBaseUrl()),
@@ -49,6 +50,7 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
+        <Analytics />
       </body>
     </html>
   );
