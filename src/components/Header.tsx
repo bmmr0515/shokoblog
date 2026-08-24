@@ -26,19 +26,19 @@ export const Header: React.FC = () => {
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-xs border-b border-gray-200/80">
+    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-xs border-b border-gray-200/70">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between h-16 sm:h-18">
           
-          {/* Logo & Subtitle */}
+          {/* Logo & Subtitle: 日本語ロゴを主役に */}
           <Link href="/" className="flex items-center gap-3 group">
             <div className="w-1 h-6 bg-amber-500 rounded-full group-hover:bg-amber-600 transition-colors" />
             <div className="flex flex-col">
-              <span className="text-lg sm:text-xl font-extrabold tracking-tight text-gray-900 leading-tight group-hover:text-amber-900 transition-colors">
+              <span className="text-xl sm:text-2xl font-extrabold tracking-tight text-gray-950 leading-tight group-hover:text-amber-900 transition-colors">
                 しょこらの部屋
               </span>
-              <span className="text-[10px] text-gray-500 font-mono tracking-wider">
-                TAKIKWAKI SHOKO UNOFFICIAL FAN SITE
+              <span className="text-[9px] text-gray-400 font-mono tracking-widest uppercase">
+                Takiwaki Shoko Unofficial Fan Site
               </span>
             </div>
           </Link>
@@ -63,7 +63,7 @@ export const Header: React.FC = () => {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="検索 (例: ベイスターズ)"
-                className="w-48 pl-8 pr-3 py-1.5 text-xs bg-gray-50/80 rounded-md border border-gray-200 focus:outline-none focus:bg-white focus:border-amber-500 transition-colors"
+                className="w-44 pl-8 pr-3 py-1.5 text-xs bg-gray-50/80 rounded border border-gray-200 focus:outline-none focus:bg-white focus:border-amber-500 transition-colors"
               />
               <Search className="w-3.5 h-3.5 text-gray-400 absolute left-2.5 top-1/2 -translate-y-1/2" />
             </form>
@@ -91,7 +91,7 @@ export const Header: React.FC = () => {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="キーワード検索 (例: マラソン)"
-              className="w-full pl-8 pr-3 py-2 text-xs bg-gray-50 rounded-md border border-gray-200 focus:outline-none focus:border-amber-500"
+              className="w-full pl-8 pr-3 py-2 text-xs bg-gray-50 rounded border border-gray-200 focus:outline-none focus:border-amber-500"
             />
             <Search className="w-3.5 h-3.5 text-gray-400 absolute left-2.5 top-1/2 -translate-y-1/2" />
           </form>
@@ -102,7 +102,7 @@ export const Header: React.FC = () => {
                 key={item.label}
                 href={item.href}
                 onClick={() => setIsOpen(false)}
-                className="py-2.5 px-3 bg-gray-50 hover:bg-amber-50 hover:text-amber-900 rounded-md border border-gray-200 text-center tracking-wider"
+                className="py-2.5 px-3 bg-gray-50 hover:bg-amber-50 hover:text-amber-900 rounded border border-gray-200 text-center tracking-wider"
               >
                 {item.label}
               </Link>
