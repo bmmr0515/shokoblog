@@ -123,30 +123,7 @@ export const INITIAL_LINK_ITEMS: LinkItem[] = [
     "verified": true,
     "lastCheckedAt": "2026-08-24T00:57:38.830Z"
   },
-  {
-    "id": "link-yt-1787533058830-0",
-    "title": "사랑, 시작했습니다. - ＝LOVE (이퀄러브) | SBS 260823 방송",
-    "sourceName": "SBSKPOP X INKIGAYO",
-    "channelName": "SBSKPOP X INKIGAYO",
-    "sourceURL": "https://www.youtube.com/watch?v=tF5LJLEf_zo",
-    "youtubeURL": "https://www.youtube.com/watch?v=tF5LJLEf_zo",
-    "videoId": "tF5LJLEf_zo",
-    "publishedDate": "2026-08-23",
-    "year": 2026,
-    "category": "ライブ映像",
-    "tags": [
-      "瀧脇笙古",
-      "=LOVE",
-      "人気歌謡",
-      "韓国",
-      "ライブ映像"
-    ],
-    "description": "＝LOVE（イコラブ）韓国SBS「인기가요(人気歌謡)」初出演パフォーマンス『사랑, 시작했습니다. (恋、はじめました。)』公式ライブ映像。",
-    "thumbnailURL": "https://i.ytimg.com/vi/tF5LJLEf_zo/hqdefault.jpg",
-    "contentType": "youtube",
-    "verified": true,
-    "lastCheckedAt": "2026-08-24T00:57:38.830Z"
-  },
+  
   {
     "id": "link-1787531684079-998",
     "title": "メディア2026.08.23NEW\n\t\t\t【掲載情報】集英社「MYOJO 11月号」※瀧脇笙古",

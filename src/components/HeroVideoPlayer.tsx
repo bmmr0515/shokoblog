@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 
 interface HeroVideoPlayerProps {
   videoId?: string;
@@ -11,9 +11,8 @@ export const HeroVideoPlayer: React.FC<HeroVideoPlayerProps> = ({
   videoId = "T9kq0EVZgzY",
   className = "",
 }) => {
-  const [iframeLoaded, setIframeLoaded] = useState(false);
-  const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&controls=0&playsinline=1&rel=0&loop=1&playlist=${videoId}`;
-  const fallbackThumb = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+  // 指定されたパラメータ付きの公式組み込み URL
+  const embedUrl = `https://www.youtube.com/embed/${videoId}?si=or3llUFGc63K_jhE&controls=0&autoplay=1&mute=1&playsinline=1`;
 
   return (
     <div
@@ -23,31 +22,15 @@ export const HeroVideoPlayer: React.FC<HeroVideoPlayerProps> = ({
         aspectRatio: "16 / 9",
         overflow: "hidden",
       }}
-      className={`bg-black rounded-xl border border-gray-200/80 shadow-xs ${className}`}
+      className={`bg-black rounded-xl border border-gray-200/80 shadow-2xs ${className}`}
     >
-      {/* 2. 空白防止用 フォールバック高画質サムネイル (iframe ロード前/失敗時の全滅回避) */}
-      <img
-        src={fallbackThumb}
-        alt="ヒーロー注目動画サムネイル"
-        style={{
-          position: "absolute",
-          inset: 0,
-          width: "100%",
-          height: "100%",
-          objectFit: "cover",
-          opacity: iframeLoaded ? 0 : 1,
-          transition: "opacity 500ms ease-out",
-        }}
-      />
-
-      {/* 1. 実際の <iframe> 要素 (必ずDOM内に描画) */}
+      {/* 指定された YouTube iframe を JSX 正式記法で直接描画 */}
       <iframe
         src={embedUrl}
-        title="しょこらの部屋 注目映像"
-        allow="autoplay; encrypted-media; picture-in-picture"
+        title="YouTube video player"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         allowFullScreen
         referrerPolicy="strict-origin-when-cross-origin"
-        onLoad={() => setIframeLoaded(true)}
         style={{
           position: "absolute",
           top: 0,

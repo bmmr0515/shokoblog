@@ -77,12 +77,12 @@ export function HomeView() {
     <div className="space-y-16 sm:space-y-20 pb-12">
 
       {/* ======================================================== */}
-      {/* 1. ヒーローセクション (Client Component による確実アニメーション & iframe描画) */}
+      {/* 1. ヒーローセクション (指定 iframe による動画描画) */}
       {/* ======================================================== */}
       <section className="bg-white border border-gray-200/80 rounded-2xl p-6 sm:p-8 lg:p-10 shadow-2xs">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
           
-          {/* 左側 (PC): タイトル・コピー・CTA (ロード順次表示: 0ms, 120ms, 220ms) */}
+          {/* 左側 (PC): タイトル・コピー・CTA */}
           <div className="lg:col-span-5 space-y-4">
             <HeroReveal delay={0}>
               <div className="inline-flex items-center gap-2 px-3 py-1 bg-amber-50 text-amber-900 text-xs font-bold rounded-full border border-amber-200/80">
@@ -115,7 +115,7 @@ export function HomeView() {
             </HeroReveal>
           </div>
 
-          {/* 右側 (PC): 注目動画 (ロード 300ms で発火 / DOM内100% <iframe> 描画) */}
+          {/* 右側 (PC): 指定 iframe による直接描画 */}
           <div className="lg:col-span-7">
             <HeroReveal delay={300}>
               <HeroVideoPlayer videoId={HERO_VIDEO_ID} />
@@ -126,7 +126,7 @@ export function HomeView() {
       </section>
 
       {/* ======================================================== */}
-      {/* 2. 公式SNS (Reveal スクロール連動) */}
+      {/* 2. 公式SNS */}
       {/* ======================================================== */}
       <Reveal id="official-sns" className="pt-1">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-4 bg-gray-50/70 rounded-xl border border-gray-200/80">
@@ -157,11 +157,11 @@ export function HomeView() {
       </Reveal>
 
       {/* ======================================================== */}
-      {/* 3. NEWS (最新情報 - Reveal ＋ 行ごとの stagger フェードイン) */}
+      {/* 3. NEWS (最新情報) */}
       {/* ======================================================== */}
       <Reveal id="news" className="space-y-6">
         
-        {/* 作品サイト風 見出し */}
+        {/* 見出し */}
         <div className="flex items-end justify-between border-b border-gray-200 pb-3">
           <div className="flex items-center gap-3">
             <div className="w-1.5 h-7 bg-amber-500 rounded-full shrink-0" />
@@ -240,7 +240,7 @@ export function HomeView() {
       {/* 4. LATEST MOVIE 「最新動画はこちら」 */}
       {/* ======================================================== */}
       <Reveal id="latest-movie" className="space-y-6 pt-2">
-        {/* 見出し */}
+        {/* 見出し: 「最新動画はこちら」 */}
         <div className="flex items-end justify-between border-b border-gray-200 pb-3">
           <div className="flex items-center gap-3">
             <div className="w-1.5 h-7 bg-amber-500 rounded-full shrink-0" />
@@ -260,7 +260,7 @@ export function HomeView() {
           </Link>
         </div>
 
-        {/* 動画プレイヤー (100% <iframe> 描画コンポーネント) */}
+        {/* 動画プレイヤー (指定 iframe 直接描画 / 装飾・独自ボタン排除) */}
         <div className="bg-white rounded-2xl border border-gray-200 p-5 sm:p-8 shadow-2xs space-y-4">
           <HeroVideoPlayer videoId={HERO_VIDEO_ID} />
 
@@ -281,14 +281,14 @@ export function HomeView() {
               rel="noopener noreferrer"
               className="text-gray-500 hover:text-amber-900 font-bold inline-flex items-center gap-1 shrink-0"
             >
-              <span>YouTubeでフル視聴 ↗</span>
+              <span>YouTubeで見る ↗</span>
             </a>
           </div>
         </div>
       </Reveal>
 
       {/* ======================================================== */}
-      {/* 5. MOVIE PICKUP (Reveal スクロール連動 ＋ カード内表示) */}
+      {/* 5. MOVIE PICKUP (関連動画 4本) */}
       {/* ======================================================== */}
       {moviePickups.length > 0 && (
         <Reveal id="movie-pickup" className="space-y-4 pt-2">
@@ -351,7 +351,7 @@ export function HomeView() {
           {/* ======================================================== */}
           <Reveal id="articles" className="space-y-6">
             
-            {/* 作品サイト風 見出し */}
+            {/* 見出し */}
             <div className="flex items-end justify-between border-b border-gray-200 pb-3">
               <div className="flex items-center gap-3">
                 <div className="w-1.5 h-7 bg-amber-500 rounded-full shrink-0" />
@@ -394,7 +394,7 @@ export function HomeView() {
           </Reveal>
 
           {/* ======================================================== */}
-          {/* 7. PROFILE導線 (Reveal スクロールフェードイン) */}
+          {/* 7. PROFILE導線 */}
           {/* ======================================================== */}
           <Reveal id="profile-teaser" className="bg-white rounded-2xl border border-gray-200 p-6 sm:p-8 shadow-2xs space-y-4">
             
