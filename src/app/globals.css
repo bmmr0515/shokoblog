@@ -34,3 +34,59 @@ body {
 .bg-shoko-gradient {
   background-color: #FFFFFF;
 }
+
+/* ======================================================== */
+/* 静かな映画作品サイト風 アニメーションユーティリティ */
+/* ======================================================== */
+
+/* 初回フェードイン・アップ */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-hero-title {
+  animation: fadeInUp 800ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-fade-in-hero-desc {
+  animation: fadeInUp 800ms cubic-bezier(0.16, 1, 0.3, 1) 200ms forwards;
+  opacity: 0;
+}
+
+.animate-fade-in-hero-video {
+  animation: fadeInUp 900ms cubic-bezier(0.16, 1, 0.3, 1) 350ms forwards;
+  opacity: 0;
+}
+
+/* スクロール連動 フェードイン・アップ (Intersection Observer) */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 700ms cubic-bezier(0.16, 1, 0.3, 1), transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.scroll-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* OS preferences-reduced-motion 対応 */
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in-hero-title,
+  .animate-fade-in-hero-desc,
+  .animate-fade-in-hero-video,
+  .scroll-reveal {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}

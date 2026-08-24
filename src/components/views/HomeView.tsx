@@ -8,27 +8,54 @@ import { ArticleCard } from "@/components/ArticleCard";
 import { Sidebar } from "@/components/Sidebar";
 import { AdBanner } from "@/components/AdBanner";
 import { DiscoverRandomModal } from "@/components/DiscoverRandomModal";
-import { ExternalLink, ArrowRight, Sparkles, Film, User, ArrowUpRight } from "lucide-react";
+import { ExternalLink, ArrowRight, Sparkles, Film, User, ArrowUpRight, Play } from "lucide-react";
 import { extractYouTubeVideoId } from "@/lib/youtube";
+import { useInView } from "@/hooks/useInView";
 
 export function HomeView() {
   const [items, setItems] = useState<LinkItem[]>([]);
+  const [scrollY, setScrollY] = useState(0);
 
+  // 1. スクロール量の監視 (PCのみ微小パララックス用)
   useEffect(() => {
     setItems(getLinkItems());
+
+    const handleScroll = () => {
+      // スマホでない場合のみスクロール量を記録
+      if (window.innerWidth >= 768) {
+        setScrollY(window.scrollY);
+      }
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const latestItems = [...items].sort((a, b) => (a.publishedDate < b.publishedDate ? 1 : -1));
 
-  // 1. YouTube動画アイテムの抽出
+  // 2. YouTube動画アイテムの抽出
   const youtubeItems = latestItems.filter(
     (i) => i.contentType === "youtube" || !!i.youtubeURL || i.category === "YouTube" || i.category === "ライブ映像"
   );
 
-  // ヒーロー動画ID
+  // 最新動画ID
   const HERO_VIDEO_ID = "T9kq0EVZgzY";
 
-  // MOVIE PICKUP 用 (ヒーロー動画 T9kq0EVZgzY を除外した最新 4件)
+  // LATEST MOVIE 用動画オブジェクト (HERO_VIDEO_ID に対応するオブジェクトまたは抽出)
+  const latestMovieObj =
+    youtubeItems.find(
+      (i) =>
+        i.videoId === HERO_VIDEO_ID ||
+        extractYouTubeVideoId(i.youtubeURL || i.sourceURL) === HERO_VIDEO_ID
+    ) || {
+      id: "latest-hero-video",
+      title: "＝LOVE(イコールラブ) 瀧脇笙古 関連最新映像",
+      publishedDate: "2026.08",
+      channelName: "＝LOVE公式",
+      sourceURL: `https://www.youtube.com/watch?v=${HERO_VIDEO_ID}`,
+      youtubeURL: `https://www.youtube.com/watch?v=${HERO_VIDEO_ID}`,
+    };
+
+  // MOVIE PICKUP 用 (HERO_VIDEO_ID を除外した最新 4件)
   const moviePickups = youtubeItems
     .filter(
       (i) =>
@@ -37,12 +64,12 @@ export function HomeView() {
     )
     .slice(0, 4);
 
-  // 2. NEWS (最新情報 4件)
+  // 3. NEWS (最新情報 4件)
   const newsItems = latestItems
     .filter((i) => i.category === "ニュース" || i.category === "公式情報" || i.category === "テレビ・ラジオ")
     .slice(0, 4);
 
-  // 3. ARTICLES (関連記事 / 注目記事 4件)
+  // 4. ARTICLES (関連記事 / 注目記事 4件)
   const articleItems = latestItems
     .filter((i) => i.contentType !== "youtube" && !i.youtubeURL && i.category !== "YouTube")
     .slice(0, 4);
@@ -55,32 +82,46 @@ export function HomeView() {
     { name: "過去記事", category: "過去記事" },
   ];
 
+  // 各セクションの Intersection Observer フック
+  const snsInView = useInView({ threshold: 0.1 });
+  const newsInView = useInView({ threshold: 0.1 });
+  const latestMovieInView = useInView({ threshold: 0.1 });
+  const moviePickupInView = useInView({ threshold: 0.1 });
+  const articlesInView = useInView({ threshold: 0.1 });
+  const profileInView = useInView({ threshold: 0.1 });
+
+  // PC用ごく微小なパララックス (0 ~ 15px 程度に制限)
+  const parallaxOffsetY = Math.min(Math.max(scrollY * 0.04, 0), 16);
+
   return (
-    <div className="space-y-14 sm:space-y-18 pb-12">
+    <div className="space-y-16 sm:space-y-22 pb-12">
 
       {/* ======================================================== */}
-      {/* 1. ヒーローセクション (静かな映像作品サイトスタイル) */}
+      {/* 1. ヒーローセクション (静かな登場アニメーション & 微小視差) */}
       {/* ======================================================== */}
-      <section className="bg-white border border-gray-200/80 rounded-2xl p-6 sm:p-8 lg:p-10 shadow-2xs">
+      <section className="bg-white border border-gray-200/80 rounded-2xl p-6 sm:p-8 lg:p-10 shadow-2xs overflow-hidden">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
           
-          {/* 左側 (PC): タイトル・コピー・CTA 1つ */}
+          {/* 左側 (PC): しょこらの部屋 見出し・説明文・CTA 1つ */}
           <div className="lg:col-span-5 space-y-4">
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-amber-50 text-amber-900 text-xs font-bold rounded-full border border-amber-200/80">
+            <div className="inline-flex items-center gap-2 px-3 py-1 bg-amber-50 text-amber-900 text-xs font-bold rounded-full border border-amber-200/80 animate-fade-in-hero-title">
               <Sparkles className="w-3.5 h-3.5 text-amber-600 shrink-0" />
               <span>＝LOVE 瀧脇笙古 非公式ファンサイト</span>
             </div>
 
-            <div className="space-y-2">
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-gray-950 leading-tight">
+            <div className="space-y-2 animate-fade-in-hero-title">
+              <h1
+                style={{ transform: `translateY(${parallaxOffsetY * 0.3}px)` }}
+                className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-gray-950 leading-tight transition-transform duration-100 ease-out"
+              >
                 しょこらの部屋へようこそ
               </h1>
-              <p className="text-sm sm:text-base font-bold text-gray-700 leading-relaxed">
+              <p className="text-sm sm:text-base font-bold text-gray-700 leading-relaxed animate-fade-in-hero-desc">
                 瀧脇笙古さんのニュース、記事、動画、出演情報をまとめた非公式ファンサイトです。
               </p>
             </div>
 
-            <div className="pt-2">
+            <div className="pt-2 animate-fade-in-hero-desc">
               <a
                 href="#news"
                 className="inline-flex items-center gap-2 px-5 py-2.5 bg-amber-500 hover:bg-amber-600 text-white font-extrabold text-xs sm:text-sm rounded-lg transition-colors shadow-2xs"
@@ -91,9 +132,12 @@ export function HomeView() {
             </div>
           </div>
 
-          {/* 右側 (PC): 注目動画 (画面サイズいっぱいの自動再生 iframe) */}
-          <div className="lg:col-span-7">
-            <div className="relative w-full aspect-16/9 bg-black rounded-xl overflow-hidden shadow-xs border border-gray-200/80">
+          {/* 右側 (PC): 注目動画 (自動再生 iframe / 微小パララックス) */}
+          <div className="lg:col-span-7 animate-fade-in-hero-video">
+            <div
+              style={{ transform: `translateY(${-parallaxOffsetY * 0.4}px)` }}
+              className="relative w-full aspect-16/9 bg-black rounded-xl overflow-hidden shadow-xs border border-gray-200/80 transition-transform duration-100 ease-out"
+            >
               <iframe
                 src={`https://www.youtube.com/embed/${HERO_VIDEO_ID}?autoplay=1&mute=1&controls=0&playsinline=1&rel=0&loop=1&playlist=${HERO_VIDEO_ID}`}
                 title="しょこらの部屋 注目映像"
@@ -108,9 +152,13 @@ export function HomeView() {
       </section>
 
       {/* ======================================================== */}
-      {/* 2. 公式SNS (ヒーロー直下に整然と配置) */}
+      {/* 2. 公式SNS (スクロール連動フェードイン) */}
       {/* ======================================================== */}
-      <section id="official-sns" className="pt-1">
+      <section
+        ref={snsInView.ref}
+        id="official-sns"
+        className={`pt-1 scroll-reveal ${snsInView.isInView ? "is-visible" : ""}`}
+      >
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-4 bg-gray-50/70 rounded-xl border border-gray-200/80">
           <div className="flex items-center gap-2 text-xs font-extrabold text-gray-900">
             <div className="w-1.5 h-4 bg-amber-500 rounded-full" />
@@ -139,10 +187,13 @@ export function HomeView() {
       </section>
 
       {/* ======================================================== */}
-      {/* 3. NEWS (最新情報 - 作品サイト風の洗練されたリスト) */}
+      {/* 3. NEWS (最新情報 - 80msごとのスタッガーフェードイン) */}
       {/* ======================================================== */}
-      <section id="news" className="space-y-6">
-        
+      <section
+        ref={newsInView.ref}
+        id="news"
+        className={`space-y-6 scroll-reveal ${newsInView.isInView ? "is-visible" : ""}`}
+      >
         {/* 作品サイト風 見出し */}
         <div className="flex items-end justify-between border-b border-gray-200 pb-3">
           <div className="flex items-center gap-3">
@@ -164,7 +215,7 @@ export function HomeView() {
         </div>
 
         <div className="bg-white rounded-xl border border-gray-200 divide-y divide-gray-100 shadow-2xs overflow-hidden">
-          {newsItems.map((item) => {
+          {newsItems.map((item, index) => {
             const targetUrl = item.youtubeURL || item.sourceURL;
             const hasValidUrl =
               targetUrl &&
@@ -174,7 +225,13 @@ export function HomeView() {
               (targetUrl.startsWith("http://") || targetUrl.startsWith("https://"));
 
             return (
-              <div key={item.id} className="p-4 sm:p-5 hover:bg-amber-50/20 transition-colors">
+              <div
+                key={item.id}
+                style={{ transitionDelay: `${index * 80}ms` }}
+                className={`p-4 sm:p-5 hover:bg-amber-50/20 transition-all ${
+                  newsInView.isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"
+                }`}
+              >
                 {hasValidUrl ? (
                   <a
                     href={targetUrl}
@@ -217,32 +274,85 @@ export function HomeView() {
       </section>
 
       {/* ======================================================== */}
-      {/* 4. MOVIE PICKUP (動画ピックアップ - 厳選4本・装飾極力排した提示) */}
+      {/* 4. LATEST MOVIE 「最新動画はこちら」 */}
       {/* ======================================================== */}
-      {moviePickups.length > 0 && (
-        <section id="movie-pickup" className="space-y-4 pt-2">
-          
-          <div className="flex items-end justify-between border-b border-gray-200 pb-3">
-            <div className="flex items-center gap-3">
-              <div className="w-1.5 h-7 bg-amber-500 rounded-full shrink-0" />
-              <div className="flex items-baseline gap-3">
-                <h2 className="text-2xl font-extrabold tracking-widest font-mono text-gray-950">
-                  MOVIE PICKUP
-                </h2>
-                <span className="text-xs font-bold text-gray-500">
-                  関連動画ピックアップ
-                </span>
-              </div>
+      <section
+        ref={latestMovieInView.ref}
+        id="latest-movie"
+        className={`space-y-6 pt-2 scroll-reveal ${latestMovieInView.isInView ? "is-visible" : ""}`}
+      >
+        {/* 見出し */}
+        <div className="flex items-end justify-between border-b border-gray-200 pb-3">
+          <div className="flex items-center gap-3">
+            <div className="w-1.5 h-7 bg-amber-500 rounded-full shrink-0" />
+            <div className="flex items-baseline gap-3">
+              <h2 className="text-2xl font-extrabold tracking-widest font-mono text-gray-950">
+                LATEST MOVIE
+              </h2>
+              <span className="text-xs font-bold text-gray-500">
+                最新動画はこちら
+              </span>
+            </div>
+          </div>
+
+          <Link href="/youtube" className="text-xs font-bold text-gray-800 hover:text-amber-600 hover:underline flex items-center gap-1 transition-colors">
+            <span>動画一覧を見る</span>
+            <ArrowRight className="w-3.5 h-3.5 text-amber-600" />
+          </Link>
+        </div>
+
+        {/* 動画プレイヤー (自動再生 iframe 16:9 独自ボタンなし) */}
+        <div className="bg-white rounded-2xl border border-gray-200 p-5 sm:p-8 shadow-2xs space-y-4">
+          <div className="relative w-full aspect-16/9 bg-black rounded-xl overflow-hidden shadow-xs border border-gray-200/80">
+            <iframe
+              src={`https://www.youtube.com/embed/${HERO_VIDEO_ID}?autoplay=1&mute=1&controls=0&playsinline=1&rel=0&loop=1&playlist=${HERO_VIDEO_ID}`}
+              title="最新動画はこちら"
+              className="absolute top-0 left-0 w-full h-full border-0 pointer-events-auto"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </div>
+
+          {/* 動画の下の小さなテキストと動画タイトル */}
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pt-2 text-xs border-t border-gray-100">
+            <div className="flex items-center gap-2">
+              <span className="font-bold text-amber-900 bg-amber-50 px-2 py-0.5 rounded border border-amber-200/80">
+                最新動画はこちら
+              </span>
+              <h3 className="font-extrabold text-gray-950 text-sm leading-snug">
+                {latestMovieObj.title}
+              </h3>
             </div>
 
-            <Link href="/youtube" className="text-xs font-bold text-gray-800 hover:text-amber-600 hover:underline flex items-center gap-1 transition-colors">
-              <span>すべての動画を見る</span>
-              <ArrowRight className="w-3.5 h-3.5 text-amber-600" />
-            </Link>
+            <a
+              href={latestMovieObj.youtubeURL || `https://www.youtube.com/watch?v=${HERO_VIDEO_ID}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-500 hover:text-amber-900 font-bold inline-flex items-center gap-1 shrink-0"
+            >
+              <span>YouTubeでフル視聴 ↗</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* ======================================================== */}
+      {/* 5. MOVIE PICKUP (スクロール連動フェードイン ＋ hover微拡大) */}
+      {/* ======================================================== */}
+      {moviePickups.length > 0 && (
+        <section
+          ref={moviePickupInView.ref}
+          id="movie-pickup"
+          className={`space-y-4 pt-2 scroll-reveal ${moviePickupInView.isInView ? "is-visible" : ""}`}
+        >
+          <div className="flex items-center gap-2 text-xs font-extrabold text-gray-800 border-b border-gray-200 pb-2">
+            <Film className="w-4 h-4 text-amber-600" />
+            <span>MOVIE PICKUP</span>
+            <span className="text-gray-400 font-normal">| 関連動画ピックアップ</span>
           </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-            {moviePickups.map((video) => {
+            {moviePickups.map((video, idx) => {
               const vId = video.videoId || extractYouTubeVideoId(video.youtubeURL || video.sourceURL);
               const thumb = video.thumbnailURL || (vId ? `https://img.youtube.com/vi/${vId}/hqdefault.jpg` : "/images/logo.png");
               const target = video.youtubeURL || video.sourceURL || "#";
@@ -253,7 +363,10 @@ export function HomeView() {
                   href={target}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group bg-white hover:bg-amber-50/20 rounded-md border border-gray-100 p-2 space-y-2 transition-colors block"
+                  style={{ transitionDelay: `${idx * 100}ms` }}
+                  className={`group bg-white hover:bg-amber-50/20 rounded-md border border-gray-100 p-2 space-y-2 transition-all block ${
+                    moviePickupInView.isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"
+                  }`}
                 >
                   <div className="relative aspect-16/9 bg-gray-900 rounded-sm overflow-hidden">
                     <img
@@ -267,7 +380,7 @@ export function HomeView() {
                     <div className="text-[10px] font-mono text-gray-400 font-bold">
                       {video.publishedDate}
                     </div>
-                    <h4 className="text-xs font-bold text-gray-950 group-hover:text-amber-900 line-clamp-2 leading-snug">
+                    <h4 className="text-xs font-bold text-gray-950 group-hover:text-amber-900 transition-colors line-clamp-2 leading-snug">
                       {video.title}
                     </h4>
                   </div>
@@ -288,10 +401,13 @@ export function HomeView() {
         <div className="lg:col-span-2 space-y-12">
 
           {/* ======================================================== */}
-          {/* 5. ARTICLES (関連記事 / 注目記事 4件) */}
+          {/* 6. ARTICLES (関連記事 / 注目記事 4件) */}
           {/* ======================================================== */}
-          <section id="articles" className="space-y-6">
-            
+          <section
+            ref={articlesInView.ref}
+            id="articles"
+            className={`space-y-6 scroll-reveal ${articlesInView.isInView ? "is-visible" : ""}`}
+          >
             {/* 作品サイト風 見出し */}
             <div className="flex items-end justify-between border-b border-gray-200 pb-3">
               <div className="flex items-center gap-3">
@@ -335,10 +451,15 @@ export function HomeView() {
           </section>
 
           {/* ======================================================== */}
-          {/* 6. PROFILE導線 (しょこちゃんの人物像が伝わる導線) */}
+          {/* 7. PROFILE導線 (スクロール連動でテキストと装飾線が順次フェードイン) */}
           {/* ======================================================== */}
-          <section id="profile-teaser" className="bg-white rounded-2xl border border-gray-200 p-6 sm:p-8 shadow-2xs space-y-4">
-            
+          <section
+            ref={profileInView.ref}
+            id="profile-teaser"
+            className={`bg-white rounded-2xl border border-gray-200 p-6 sm:p-8 shadow-2xs space-y-4 scroll-reveal ${
+              profileInView.isInView ? "is-visible" : ""
+            }`}
+          >
             <div className="flex items-center justify-between border-b border-gray-100 pb-3">
               <div className="flex items-center gap-2">
                 <User className="w-5 h-5 text-amber-600" />
@@ -367,8 +488,14 @@ export function HomeView() {
                 { label: "フルマラソン", desc: "サブ4達成の本格派ランナー" },
                 { label: "料理・スイーツ", desc: "クックパッドLIVEや料理番組で活躍" },
                 { label: "＝LOVE センター", desc: "『木漏れ日メゾフォルテ』ダブルセンター" },
-              ].map((box) => (
-                <div key={box.label} className="p-3 bg-gray-50/80 rounded-lg border border-gray-200/80 space-y-1">
+              ].map((box, bIdx) => (
+                <div
+                  key={box.label}
+                  style={{ transitionDelay: `${bIdx * 90}ms` }}
+                  className={`p-3 bg-gray-50/80 rounded-lg border border-gray-200/80 space-y-1 transition-all ${
+                    profileInView.isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"
+                  }`}
+                >
                   <div className="font-extrabold text-gray-950 text-xs">{box.label}</div>
                   <div className="text-[11px] text-gray-500 leading-snug">{box.desc}</div>
                 </div>

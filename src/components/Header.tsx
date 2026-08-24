@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Menu, X, Search } from "lucide-react";
@@ -8,7 +8,20 @@ import { Menu, X, Search } from "lucide-react";
 export const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const [isScrolled, setIsScrolled] = useState(false);
   const router = useRouter();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 20) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const navItems = [
     { label: "NEWS", href: "/news" },
@@ -26,15 +39,19 @@ export const Header: React.FC = () => {
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-xs border-b border-gray-200/70">
+    <header
+      className={`sticky top-0 z-50 bg-white/95 backdrop-blur-xs transition-all duration-300 border-b ${
+        isScrolled ? "border-gray-200/90 shadow-2xs py-0" : "border-gray-200/60 py-1"
+      }`}
+    >
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <div className="flex items-center justify-between h-16 sm:h-18">
+        <div className={`flex items-center justify-between transition-all duration-300 ${isScrolled ? "h-14 sm:h-15" : "h-16 sm:h-18"}`}>
           
-          {/* Logo & Subtitle: 日本語ロゴを主役に */}
+          {/* Logo & Subtitle */}
           <Link href="/" className="flex items-center gap-3 group">
-            <div className="w-1 h-6 bg-amber-500 rounded-full group-hover:bg-amber-600 transition-colors" />
+            <div className="w-1 h-5 sm:h-6 bg-amber-500 rounded-full group-hover:bg-amber-600 transition-colors" />
             <div className="flex flex-col">
-              <span className="text-xl sm:text-2xl font-extrabold tracking-tight text-gray-950 leading-tight group-hover:text-amber-900 transition-colors">
+              <span className={`font-extrabold tracking-tight text-gray-950 leading-tight group-hover:text-amber-900 transition-all ${isScrolled ? "text-lg sm:text-xl" : "text-xl sm:text-2xl"}`}>
                 しょこらの部屋
               </span>
               <span className="text-[9px] text-gray-400 font-mono tracking-widest uppercase">
