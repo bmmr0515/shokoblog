@@ -40,6 +40,114 @@ export const INITIAL_YEARS = [2026, 2025, 2024, 2023, 2022, 2021, 2020, 2019, 20
 
 export const INITIAL_LINK_ITEMS: LinkItem[] = [
   {
+    "id": "link-news-1787533058829-0",
+    "title": "＝LOVE、韓国SBS「인기가요(人気歌謡)」に初出演決定。「恋、はじめました。」を韓国語で初歌唱",
+    "sourceName": "PR TIMES / ソニー・ミュージックレーベルズ",
+    "sourceURL": "https://prtimes.jp/main/html/rd/p/000004972.000013546.html",
+    "publishedDate": "2026-08-21",
+    "year": 2026,
+    "category": "ニュース",
+    "tags": [
+      "瀧脇笙古",
+      "=LOVE",
+      "人気歌謡",
+      "韓国",
+      "ニュース"
+    ],
+    "description": "＝LOVEが8月23日のSBS「인기가요(人気歌謡)」に初出演し、「恋、はじめました。」Korean ver.を披露すると発表。",
+    "thumbnailURL": "/images/logo.png",
+    "contentType": "news",
+    "verified": true,
+    "lastCheckedAt": "2026-08-24T00:57:38.829Z"
+  },
+  {
+    "id": "link-news-1787533058830-1",
+    "title": "＝LOVE、SBS「인기가요(人気歌謡)」出演のため金浦空港に到着",
+    "sourceName": "PR TIMES / ソニー・ミュージックレーベルズ",
+    "sourceURL": "https://prtimes.jp/main/html/rd/p/000004975.000013546.html",
+    "publishedDate": "2026-08-22",
+    "year": 2026,
+    "category": "ニュース",
+    "tags": [
+      "瀧脇笙古",
+      "=LOVE",
+      "人気歌謡",
+      "韓国",
+      "ニュース"
+    ],
+    "description": "韓国・金浦空港に到着した＝LOVEの現地入りを紹介。翌日の人気歌謡出演と韓国語歌唱を告知。",
+    "thumbnailURL": "/images/logo.png",
+    "contentType": "news",
+    "verified": true,
+    "lastCheckedAt": "2026-08-24T00:57:38.830Z"
+  },
+  {
+    "id": "link-news-1787533058830-2",
+    "title": "＝LOVE、SBS「인기가요(人気歌謡)」に初出演。「恋、はじめました。」Korean versionを初披露",
+    "sourceName": "PR TIMES / ソニー・ミュージックレーベルズ",
+    "sourceURL": "https://prtimes.jp/main/html/rd/p/000004976.000013546.html",
+    "publishedDate": "2026-08-23",
+    "year": 2026,
+    "category": "ニュース",
+    "tags": [
+      "瀧脇笙古",
+      "=LOVE",
+      "人気歌謡",
+      "韓国",
+      "ニュース"
+    ],
+    "description": "韓国SBS「人気歌謡」で『恋、はじめました。』Korean versionを初披露。放送後の現地反響と映像公開を紹介。",
+    "thumbnailURL": "/images/logo.png",
+    "contentType": "news",
+    "verified": true,
+    "lastCheckedAt": "2026-08-24T00:57:38.830Z"
+  },
+  {
+    "id": "link-news-1787533058830-3",
+    "title": "＝LOVE、韓国の人気音楽番組に出演！「恋、はじめました。」韓国語ver.も公開",
+    "sourceName": "THE FIRST TIMES",
+    "sourceURL": "https://www.thefirsttimes.jp/news/0000869352/",
+    "publishedDate": "2026-08-23",
+    "year": 2026,
+    "category": "ニュース",
+    "tags": [
+      "瀧脇笙古",
+      "=LOVE",
+      "人気歌謡",
+      "韓国",
+      "ニュース"
+    ],
+    "description": "SBS「인기가요(人気歌謡)」初出演と韓国語バージョン披露を伝える音楽メディア記事。",
+    "thumbnailURL": "/images/logo.png",
+    "contentType": "news",
+    "verified": true,
+    "lastCheckedAt": "2026-08-24T00:57:38.830Z"
+  },
+  {
+    "id": "link-yt-1787533058830-0",
+    "title": "사랑, 시작했습니다. - ＝LOVE (이퀄러브) | SBS 260823 방송",
+    "sourceName": "SBSKPOP X INKIGAYO",
+    "channelName": "SBSKPOP X INKIGAYO",
+    "sourceURL": "https://www.youtube.com/watch?v=tF5LJLEf_zo",
+    "youtubeURL": "https://www.youtube.com/watch?v=tF5LJLEf_zo",
+    "videoId": "tF5LJLEf_zo",
+    "publishedDate": "2026-08-23",
+    "year": 2026,
+    "category": "ライブ映像",
+    "tags": [
+      "瀧脇笙古",
+      "=LOVE",
+      "人気歌謡",
+      "韓国",
+      "ライブ映像"
+    ],
+    "description": "＝LOVE（イコラブ）韓国SBS「인기가요(人気歌謡)」初出演パフォーマンス『사랑, 시작했습니다. (恋、はじめました。)』公式ライブ映像。",
+    "thumbnailURL": "https://i.ytimg.com/vi/tF5LJLEf_zo/hqdefault.jpg",
+    "contentType": "youtube",
+    "verified": true,
+    "lastCheckedAt": "2026-08-24T00:57:38.830Z"
+  },
+  {
     "id": "link-1787531684079-998",
     "title": "メディア2026.08.23NEW\n\t\t\t【掲載情報】集英社「MYOJO 11月号」※瀧脇笙古",
     "sourceName": "＝LOVE Official Website",
