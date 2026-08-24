@@ -28,19 +28,10 @@ export function HomeView() {
   // ヒーロー動画ID
   const HERO_VIDEO_ID = "T9kq0EVZgzY";
 
-  // FEATURE MOVIE 用動画の選定 (ヒーロー動画 HERO_VIDEO_ID との重複を完全回避)
-  const featureMovie =
-    youtubeItems.find(
-      (i) =>
-        i.videoId !== HERO_VIDEO_ID &&
-        extractYouTubeVideoId(i.youtubeURL || i.sourceURL) !== HERO_VIDEO_ID
-    ) || youtubeItems[0];
-
-  // MOVIE PICKUP 用 (ヒーロー動画 & FEATURE MOVIE の両方を除外した 4件)
+  // MOVIE PICKUP 用 (ヒーロー動画 T9kq0EVZgzY を除外した最新 4件)
   const moviePickups = youtubeItems
     .filter(
       (i) =>
-        i.id !== featureMovie?.id &&
         i.videoId !== HERO_VIDEO_ID &&
         extractYouTubeVideoId(i.youtubeURL || i.sourceURL) !== HERO_VIDEO_ID
     )
@@ -65,15 +56,15 @@ export function HomeView() {
   ];
 
   return (
-    <div className="space-y-16 sm:space-y-20 pb-12">
+    <div className="space-y-14 sm:space-y-18 pb-12">
 
       {/* ======================================================== */}
-      {/* 1. ヒーローセクション (静かで上質な2カラム・右側自動再生iframe) */}
+      {/* 1. ヒーローセクション (静かな映像作品サイトスタイル) */}
       {/* ======================================================== */}
       <section className="bg-white border border-gray-200/80 rounded-2xl p-6 sm:p-8 lg:p-10 shadow-2xs">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
           
-          {/* 左側 (PC): しょこらの部屋 見出し・説明文・CTA 1つ */}
+          {/* 左側 (PC): タイトル・コピー・CTA 1つ */}
           <div className="lg:col-span-5 space-y-4">
             <div className="inline-flex items-center gap-2 px-3 py-1 bg-amber-50 text-amber-900 text-xs font-bold rounded-full border border-amber-200/80">
               <Sparkles className="w-3.5 h-3.5 text-amber-600 shrink-0" />
@@ -89,9 +80,9 @@ export function HomeView() {
               </p>
             </div>
 
-            <div className="pt-2 flex items-center gap-3">
+            <div className="pt-2">
               <a
-                href="#feature-movie"
+                href="#news"
                 className="inline-flex items-center gap-2 px-5 py-2.5 bg-amber-500 hover:bg-amber-600 text-white font-extrabold text-xs sm:text-sm rounded-lg transition-colors shadow-2xs"
               >
                 <span>最新情報をチェック</span>
@@ -102,7 +93,7 @@ export function HomeView() {
 
           {/* 右側 (PC): 注目動画 (画面サイズいっぱいの自動再生 iframe) */}
           <div className="lg:col-span-7">
-            <div className="relative w-full aspect-16/9 bg-black rounded-xl overflow-hidden shadow-xs border border-gray-200">
+            <div className="relative w-full aspect-16/9 bg-black rounded-xl overflow-hidden shadow-xs border border-gray-200/80">
               <iframe
                 src={`https://www.youtube.com/embed/${HERO_VIDEO_ID}?autoplay=1&mute=1&controls=0&playsinline=1&rel=0&loop=1&playlist=${HERO_VIDEO_ID}`}
                 title="しょこらの部屋 注目映像"
@@ -226,21 +217,20 @@ export function HomeView() {
       </section>
 
       {/* ======================================================== */}
-      {/* 4. FEATURE MOVIE (注目動画 - 重複を完全回避・上大画面/下解説) */}
+      {/* 4. MOVIE PICKUP (動画ピックアップ - 厳選4本・装飾極力排した提示) */}
       {/* ======================================================== */}
-      {featureMovie && (
-        <section id="feature-movie" className="space-y-6 pt-2">
+      {moviePickups.length > 0 && (
+        <section id="movie-pickup" className="space-y-4 pt-2">
           
-          {/* 作品サイト風 見出し */}
           <div className="flex items-end justify-between border-b border-gray-200 pb-3">
             <div className="flex items-center gap-3">
               <div className="w-1.5 h-7 bg-amber-500 rounded-full shrink-0" />
               <div className="flex items-baseline gap-3">
                 <h2 className="text-2xl font-extrabold tracking-widest font-mono text-gray-950">
-                  FEATURE MOVIE
+                  MOVIE PICKUP
                 </h2>
                 <span className="text-xs font-bold text-gray-500">
-                  注目動画
+                  関連動画ピックアップ
                 </span>
               </div>
             </div>
@@ -249,92 +239,6 @@ export function HomeView() {
               <span>すべての動画を見る</span>
               <ArrowRight className="w-3.5 h-3.5 text-amber-600" />
             </Link>
-          </div>
-
-          {/* メイン動画 1本（第一候補: 上に大きな大画面iframe、下に解説文・ボタン） */}
-          {(() => {
-            const videoId = featureMovie.videoId || extractYouTubeVideoId(featureMovie.youtubeURL || featureMovie.sourceURL);
-            const targetUrl = featureMovie.youtubeURL || featureMovie.sourceURL || "#";
-
-            return (
-              <div className="bg-white rounded-2xl border border-gray-200 p-5 sm:p-8 shadow-2xs space-y-6">
-                
-                {/* 上: 画面幅いっぱいの大きな 16:9 iframe */}
-                {videoId ? (
-                  <div className="relative w-full aspect-16/9 bg-black rounded-xl overflow-hidden shadow-xs border border-gray-200">
-                    <iframe
-                      src={`https://www.youtube.com/embed/${videoId}`}
-                      title={featureMovie.title}
-                      className="absolute top-0 left-0 w-full h-full border-0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                    />
-                  </div>
-                ) : (
-                  <div className="relative w-full aspect-16/9 bg-gray-100 rounded-xl overflow-hidden border border-gray-200 flex items-center justify-center">
-                    <img
-                      src={featureMovie.thumbnailURL || "/images/logo.png"}
-                      alt={featureMovie.title}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                )}
-
-                {/* 下: 作品PV解説風の情報ブロック (空白感なし) */}
-                <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 border-t border-gray-100 pt-5">
-                  <div className="space-y-2 sm:max-w-3xl">
-                    <div className="flex items-center gap-2 text-xs flex-wrap">
-                      <span className="px-2.5 py-0.5 bg-amber-500 text-white font-extrabold text-[11px] rounded">
-                        PICKUP MOVIE
-                      </span>
-                      <span className="font-mono font-bold text-gray-500">
-                        {featureMovie.publishedDate}
-                      </span>
-                      <span className="px-2 py-0.5 bg-gray-100 text-gray-700 font-bold text-[11px] rounded border border-gray-200">
-                        {featureMovie.channelName || featureMovie.sourceName}
-                      </span>
-                    </div>
-
-                    <h3 className="text-xl sm:text-2xl font-extrabold text-gray-950 leading-snug">
-                      {featureMovie.title}
-                    </h3>
-
-                    {featureMovie.description && (
-                      <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
-                        {featureMovie.description}
-                      </p>
-                    )}
-                  </div>
-
-                  <div className="shrink-0 sm:w-auto w-full">
-                    <a
-                      href={targetUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center gap-2 w-full sm:w-auto py-3 px-6 bg-amber-500 hover:bg-amber-600 text-white font-extrabold text-xs sm:text-sm rounded-lg transition-colors shadow-2xs"
-                    >
-                      <span>YouTubeで見る ↗</span>
-                    </a>
-                  </div>
-                </div>
-
-              </div>
-            );
-          })()}
-
-        </section>
-      )}
-
-      {/* ======================================================== */}
-      {/* 5. MOVIE PICKUP (動画ピックアップ - 枠薄・角小さ・アイコン排除) */}
-      {/* ======================================================== */}
-      {moviePickups.length > 0 && (
-        <section id="movie-pickup" className="space-y-4">
-          
-          <div className="flex items-center gap-2 text-xs font-extrabold text-gray-800 border-b border-gray-200 pb-2">
-            <Film className="w-4 h-4 text-amber-600" />
-            <span>MOVIE PICKUP</span>
-            <span className="text-gray-400 font-normal">| 関連動画ピックアップ</span>
           </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
@@ -349,7 +253,7 @@ export function HomeView() {
                   href={target}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group bg-white hover:bg-amber-50/30 rounded-md border border-gray-100 p-2 space-y-2 transition-colors block"
+                  className="group bg-white hover:bg-amber-50/20 rounded-md border border-gray-100 p-2 space-y-2 transition-colors block"
                 >
                   <div className="relative aspect-16/9 bg-gray-900 rounded-sm overflow-hidden">
                     <img
@@ -380,11 +284,11 @@ export function HomeView() {
       {/* ======================================================== */}
       {/* 2カラムレイアウト: メインコンテンツ (ARTICLES / PROFILE) ＋ サイドバー */}
       {/* ======================================================== */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 pt-4">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 pt-2">
         <div className="lg:col-span-2 space-y-12">
 
           {/* ======================================================== */}
-          {/* 6. ARTICLES (関連記事 / 注目記事 4件) */}
+          {/* 5. ARTICLES (関連記事 / 注目記事 4件) */}
           {/* ======================================================== */}
           <section id="articles" className="space-y-6">
             
@@ -431,7 +335,7 @@ export function HomeView() {
           </section>
 
           {/* ======================================================== */}
-          {/* 7. PROFILE導線 (しょこちゃんの人物像が短く伝わる導線) */}
+          {/* 6. PROFILE導線 (しょこちゃんの人物像が伝わる導線) */}
           {/* ======================================================== */}
           <section id="profile-teaser" className="bg-white rounded-2xl border border-gray-200 p-6 sm:p-8 shadow-2xs space-y-4">
             

@@ -12,16 +12,20 @@ interface SidebarProps {
 }
 
 export const Sidebar: React.FC<SidebarProps> = ({ items: propItems }) => {
-  // 全本番データ (INITIAL_LINK_ITEMS + クライアントストア) を安全にマージ
+  // 全本番データ (INITIAL_LINK_ITEMS をベースにクライアントストアがあればマージ)
   const allItems = useMemo(() => {
-    if (propItems && propItems.length > 50) {
-      return propItems;
+    let base = INITIAL_LINK_ITEMS;
+    if (typeof window !== "undefined") {
+      try {
+        const store = getLinkItems();
+        if (store && store.length > base.length) {
+          base = store;
+        }
+      } catch (e) {
+        // fallback to INITIAL_LINK_ITEMS
+      }
     }
-    const storeItems = getLinkItems();
-    if (storeItems && storeItems.length >= INITIAL_LINK_ITEMS.length) {
-      return storeItems;
-    }
-    return INITIAL_LINK_ITEMS;
+    return base;
   }, [propItems]);
 
   const categoriesList: Category[] = [
@@ -40,18 +44,18 @@ export const Sidebar: React.FC<SidebarProps> = ({ items: propItems }) => {
     <aside className="space-y-8 text-xs">
       
       {/* Profile Box */}
-      <div className="border border-gray-200 p-4 space-y-2.5 bg-white rounded-lg shadow-2xs">
+      <div className="border border-gray-200/90 p-4 space-y-2.5 bg-white rounded-xl shadow-2xs">
         <h3 className="font-bold text-gray-900 border-b border-amber-500 pb-1.5 text-sm flex items-center justify-between">
           <span>瀧脇 笙古（TAKIWAKI SHOKO）</span>
-          <span className="text-[10px] text-amber-700 bg-amber-50 px-1.5 py-0.5 font-normal rounded">＝LOVE</span>
+          <span className="text-[10px] text-amber-800 bg-amber-50 px-1.5 py-0.5 font-bold rounded">＝LOVE</span>
         </h3>
-        <p className="text-gray-600 leading-relaxed">
-          2001年7月9日生まれ、神奈川県出身。O型。趣味は料理・カフェ巡り。特技はマラソン（サブ4達成）。プロ野球ニュース木曜MC。
+        <p className="text-gray-600 leading-relaxed text-xs">
+          2001年7月9日生まれ、神奈川県出身。趣味は料理・カフェ巡り。特技はマラソン（サブ4達成）。プロ野球ニュース木曜MC。
         </p>
         <div className="pt-1 flex gap-2">
           <Link
             href="/profile"
-            className="flex-1 py-1.5 px-2 bg-gray-900 text-white font-bold text-center hover:bg-gray-800 transition-colors rounded text-xs"
+            className="flex-1 py-1.5 px-2 bg-gray-900 text-white font-bold text-center hover:bg-gray-800 transition-colors rounded-md text-xs"
           >
             詳細プロフィール
           </Link>
@@ -59,17 +63,17 @@ export const Sidebar: React.FC<SidebarProps> = ({ items: propItems }) => {
             href="https://equal-love.jp/feature/takiwaki_shoko"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex-1 py-1.5 px-2 bg-gray-100 text-gray-800 font-bold text-center border border-gray-300 hover:bg-gray-200 transition-colors flex items-center justify-center gap-1 rounded text-xs"
+            className="flex-1 py-1.5 px-2 bg-gray-50 text-gray-800 font-bold text-center border border-gray-200 hover:bg-gray-100 transition-colors flex items-center justify-center gap-1 rounded-md text-xs"
           >
             <span>公式HP</span>
-            <ExternalLink className="w-3 h-3 text-gray-500" />
+            <ExternalLink className="w-3 h-3 text-gray-400" />
           </a>
         </div>
       </div>
 
       {/* Category Nav */}
-      <div className="border border-gray-200 p-4 space-y-2 bg-white rounded-lg shadow-2xs">
-        <h3 className="font-bold text-gray-900 border-b border-amber-500 pb-1.5 text-sm">
+      <div className="border border-gray-200/90 p-4 space-y-2 bg-white rounded-xl shadow-2xs">
+        <h3 className="font-bold text-gray-900 border-b border-amber-500 pb-1.5 text-sm tracking-wider font-mono">
           CATEGORY
         </h3>
         <ul className="divide-y divide-gray-100">
@@ -79,10 +83,10 @@ export const Sidebar: React.FC<SidebarProps> = ({ items: propItems }) => {
               <li key={cat}>
                 <Link
                   href={`/category/${encodeURIComponent(cat)}`}
-                  className="flex items-center justify-between py-2 text-gray-700 hover:text-orange-600 font-medium transition-colors"
+                  className="flex items-center justify-between py-2 text-gray-700 hover:text-amber-600 font-medium transition-colors"
                 >
                   <span>{cat}</span>
-                  <span className="text-xs font-mono font-bold text-amber-800 bg-amber-50 px-1.5 py-0.5 rounded">
+                  <span className="text-xs font-mono font-bold text-amber-900 bg-amber-50 px-1.5 py-0.5 rounded">
                     ({count})
                   </span>
                 </Link>
@@ -93,8 +97,8 @@ export const Sidebar: React.FC<SidebarProps> = ({ items: propItems }) => {
       </div>
 
       {/* Yearly Archive Nav */}
-      <div className="border border-gray-200 p-4 space-y-2 bg-white rounded-lg shadow-2xs">
-        <h3 className="font-bold text-gray-900 border-b border-amber-500 pb-1.5 text-sm">
+      <div className="border border-gray-200/90 p-4 space-y-2 bg-white rounded-xl shadow-2xs">
+        <h3 className="font-bold text-gray-900 border-b border-amber-500 pb-1.5 text-sm tracking-wider font-mono">
           ARCHIVE
         </h3>
         <div className="grid grid-cols-2 gap-1.5 pt-1 font-mono">
@@ -104,10 +108,10 @@ export const Sidebar: React.FC<SidebarProps> = ({ items: propItems }) => {
               <Link
                 key={yr}
                 href={`/archive/${yr}`}
-                className="py-1.5 px-2 bg-gray-50 hover:bg-amber-50 hover:text-orange-600 border border-gray-200 text-gray-700 flex justify-between items-center rounded transition-colors"
+                className="py-1.5 px-2 bg-gray-50 hover:bg-amber-50 hover:text-amber-900 border border-gray-200/80 text-gray-700 flex justify-between items-center rounded-md transition-colors"
               >
                 <span>{yr}年</span>
-                <span className="text-[11px] font-bold text-amber-800">({count})</span>
+                <span className="text-[11px] font-bold text-amber-900">({count})</span>
               </Link>
             );
           })}
@@ -115,8 +119,8 @@ export const Sidebar: React.FC<SidebarProps> = ({ items: propItems }) => {
       </div>
 
       {/* Tags Cloud */}
-      <div className="border border-gray-200 p-4 space-y-2 bg-white rounded-lg shadow-2xs">
-        <h3 className="font-bold text-gray-900 border-b border-amber-500 pb-1.5 text-sm">
+      <div className="border border-gray-200/90 p-4 space-y-2 bg-white rounded-xl shadow-2xs">
+        <h3 className="font-bold text-gray-900 border-b border-amber-500 pb-1.5 text-sm tracking-wider font-mono">
           TAGS
         </h3>
         <div className="flex flex-wrap gap-1.5 pt-1">
