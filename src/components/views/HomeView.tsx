@@ -4,15 +4,15 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { LinkItem, Category } from "@/types/blog";
 import { getLinkItems } from "@/lib/store";
-import { ArticleCard } from "@/components/ArticleCard";
 import { Sidebar } from "@/components/Sidebar";
 import { AdBanner } from "@/components/AdBanner";
 import { DiscoverRandomModal } from "@/components/DiscoverRandomModal";
-import { ExternalLink, ArrowRight, Sparkles, Film, User, ArrowUpRight } from "lucide-react";
+import { ExternalLink, ArrowRight, Film, User, ArrowUpRight } from "lucide-react";
 import { extractYouTubeVideoId } from "@/lib/youtube";
 import { Reveal } from "@/components/Reveal";
 import { HeroReveal } from "@/components/HeroReveal";
 import { HeroVideoPlayer } from "@/components/HeroVideoPlayer";
+import { FashionArticleRow } from "@/components/FashionArticleRow";
 
 export function HomeView() {
   const [items, setItems] = useState<LinkItem[]>([]);
@@ -28,10 +28,10 @@ export function HomeView() {
     (i) => i.contentType === "youtube" || !!i.youtubeURL || i.category === "YouTube" || i.category === "ライブ映像"
   );
 
-  // ヒーロー動画ID
-  const HERO_VIDEO_ID = "T9kq0EVZgzY";
+  // ヒーロー動画ID (FILA 2026FW POP-UP 瀧脇笙古スタイリングパートナー動画)
+  const HERO_VIDEO_ID = "0dJb1WGsK2Q";
 
-  // LATEST MOVIE 用動画オブジェクト (HERO_VIDEO_ID に対応するオブジェクト)
+  // LATEST MOVIE 用動画オブジェクト
   const latestMovieObj =
     youtubeItems.find(
       (i) =>
@@ -39,14 +39,14 @@ export function HomeView() {
         extractYouTubeVideoId(i.youtubeURL || i.sourceURL) === HERO_VIDEO_ID
     ) || {
       id: "latest-hero-video",
-      title: "＝LOVE(イコールラブ) 瀧脇笙古 関連最新映像",
-      publishedDate: "2026.08",
-      channelName: "＝LOVE公式",
+      title: "＝LOVE 瀧脇笙古が魅せる「FILA」2026 FW 秋冬最新コレクション POP-UP",
+      publishedDate: "2026.08.18",
+      channelName: "FILA OFFICIAL",
       sourceURL: `https://www.youtube.com/watch?v=${HERO_VIDEO_ID}`,
       youtubeURL: `https://www.youtube.com/watch?v=${HERO_VIDEO_ID}`,
     };
 
-  // MOVIE PICKUP 用 (HERO_VIDEO_ID を除外した最新 4件)
+  // MOVIE PICKUP 用 (HERO_VIDEO_ID を除外した 4件)
   const moviePickups = youtubeItems
     .filter(
       (i) =>
@@ -60,7 +60,7 @@ export function HomeView() {
     .filter((i) => i.category === "ニュース" || i.category === "公式情報" || i.category === "テレビ・ラジオ")
     .slice(0, 4);
 
-  // 3. ARTICLES (関連記事 / 注目記事 4件)
+  // 3. ARTICLES (関連記事 4件)
   const articleItems = latestItems
     .filter((i) => i.contentType !== "youtube" && !i.youtubeURL && i.category !== "YouTube")
     .slice(0, 4);
@@ -74,51 +74,80 @@ export function HomeView() {
   ];
 
   return (
-    <div className="space-y-16 sm:space-y-20 pb-12">
+    <div className="relative space-y-20 sm:space-y-28 pb-16">
 
       {/* ======================================================== */}
-      {/* 1. ヒーローセクション (指定 iframe による動画描画) */}
+      {/* ルックブック風 余白デザイン要素 (背景細罫線 ＆ 縦書き風ミニマル座標) */}
       {/* ======================================================== */}
-      <section className="bg-white border border-gray-200/80 rounded-2xl p-6 sm:p-8 lg:p-10 shadow-2xs">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+      <div className="hidden lg:block absolute top-0 left-0 bottom-0 w-px bg-zinc-200/60 pointer-events-none" />
+      <div className="hidden lg:block absolute top-0 right-0 bottom-0 w-px bg-zinc-200/60 pointer-events-none" />
+
+      {/* ======================================================== */}
+      {/* 1. ヒーローセクション (開放的なフルレイアウト & FILA 動画 0dJb1WGsK2Q) */}
+      {/* ======================================================== */}
+      <section className="relative pt-2">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           
-          {/* 左側 (PC): タイトル・コピー・CTA */}
-          <div className="lg:col-span-5 space-y-4">
+          {/* 左側 (PC): タイトル・コピー・SNS */}
+          <div className="lg:col-span-5 space-y-6">
             <HeroReveal delay={0}>
-              <div className="inline-flex items-center gap-2 px-3 py-1 bg-amber-50 text-amber-900 text-xs font-bold rounded-full border border-amber-200/80">
-                <Sparkles className="w-3.5 h-3.5 text-amber-600 shrink-0" />
-                <span>＝LOVE 瀧脇笙古 非公式ファンサイト</span>
-              </div>
-            </HeroReveal>
+              <div className="space-y-3">
+                <div className="inline-flex items-center gap-2 font-mono text-[10px] tracking-widest text-zinc-500 uppercase">
+                  <span>35°27'N 139°38'E</span>
+                  <span>//</span>
+                  <span className="text-yellow-600 font-bold">UNOFFICIAL FAN SITE</span>
+                </div>
 
-            <HeroReveal delay={120}>
-              <div className="space-y-2">
-                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-gray-950 leading-tight">
-                  しょこらの部屋へようこそ
+                <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-zinc-950 leading-tight">
+                  しょこらの部屋
                 </h1>
-                <p className="text-sm sm:text-base font-bold text-gray-700 leading-relaxed">
+                <p className="text-sm font-bold text-zinc-700 leading-relaxed pt-1">
                   瀧脇笙古さんのニュース、記事、動画、出演情報をまとめた非公式ファンサイトです。
                 </p>
               </div>
             </HeroReveal>
 
-            <HeroReveal delay={220}>
-              <div className="pt-2">
-                <a
-                  href="#news"
-                  className="inline-flex items-center gap-2 px-5 py-2.5 bg-amber-500 hover:bg-amber-600 text-white font-extrabold text-xs sm:text-sm rounded-lg transition-colors shadow-2xs"
-                >
-                  <span>最新情報をチェック</span>
-                  <ArrowRight className="w-4 h-4" />
-                </a>
+            {/* ミニマル SNS 導線 */}
+            <HeroReveal delay={120}>
+              <div className="pt-2 border-t border-zinc-200/80 space-y-2 text-xs">
+                <div className="font-mono text-[10px] tracking-widest text-zinc-400 font-bold uppercase">
+                  OFFICIAL SOCIAL MEDIA
+                </div>
+                <div className="flex items-center gap-3">
+                  <a
+                    href="https://x.com/shoko_takiwaki"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-mono font-bold text-zinc-900 hover:text-yellow-600 transition-colors flex items-center gap-1"
+                  >
+                    <span>X (@shoko_takiwaki)</span>
+                    <ExternalLink className="w-3 h-3 text-zinc-400" />
+                  </a>
+                  <span className="text-zinc-300">/</span>
+                  <a
+                    href="https://www.instagram.com/takiwaki_shoko_/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-mono font-bold text-zinc-900 hover:text-yellow-600 transition-colors flex items-center gap-1"
+                  >
+                    <span>Instagram</span>
+                    <ExternalLink className="w-3 h-3 text-zinc-400" />
+                  </a>
+                </div>
               </div>
             </HeroReveal>
           </div>
 
-          {/* 右側 (PC): 指定 iframe による直接描画 */}
+          {/* 右側 (PC): FILA 動画 iframe 0dJb1WGsK2Q */}
           <div className="lg:col-span-7">
-            <HeroReveal delay={300}>
-              <HeroVideoPlayer videoId={HERO_VIDEO_ID} />
+            <HeroReveal delay={250}>
+              <div className="relative">
+                <HeroVideoPlayer videoId={HERO_VIDEO_ID} />
+                <div className="pt-2 flex items-center justify-between text-[10px] font-mono text-zinc-400">
+                  <span>KEY VISUAL // FILA 2026FW POP-UP</span>
+                  <span>[AUTOPLAY ON]</span>
+                </div>
+              </div>
             </HeroReveal>
           </div>
 
@@ -126,267 +155,196 @@ export function HomeView() {
       </section>
 
       {/* ======================================================== */}
-      {/* 2. 公式SNS */}
+      {/* 01 NEWS (最新情報 - ファッション誌 INDEX スタイル) */}
       {/* ======================================================== */}
-      <Reveal id="official-sns" className="pt-1">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-4 bg-gray-50/70 rounded-xl border border-gray-200/80">
-          <div className="flex items-center gap-2 text-xs font-extrabold text-gray-900">
-            <div className="w-1.5 h-4 bg-amber-500 rounded-full" />
-            <span>瀧脇笙古 Official SNS</span>
+      <Reveal id="news" className="space-y-6 relative">
+        <div className="absolute -top-12 right-0 text-7xl font-mono font-extrabold text-zinc-100/80 select-none pointer-events-none">
+          01
+        </div>
+
+        {/* セクションタイポグラフィ */}
+        <div className="flex items-end justify-between border-b border-zinc-950 pb-4">
+          <div className="space-y-1">
+            <div className="flex items-center gap-2 font-mono text-xs font-bold tracking-widest text-yellow-600 uppercase">
+              <span>01</span>
+              <span>//</span>
+              <span>LATEST INFORMATION</span>
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-extrabold tracking-widest font-mono text-zinc-950">
+              NEWS
+            </h2>
           </div>
 
-          <div className="flex items-center gap-3 flex-wrap text-xs">
-            {[
-              { id: "x", name: "X", account: "@shoko_takiwaki", url: "https://x.com/shoko_takiwaki" },
-              { id: "instagram", name: "Instagram", account: "@takiwaki_shoko_", url: "https://www.instagram.com/takiwaki_shoko_/" }
-            ].map((sns) => (
+          <Link href="/news" className="font-mono text-xs font-bold text-zinc-900 hover:text-amber-600 transition-colors flex items-center gap-1">
+            <span>INDEX</span>
+            <ArrowRight className="w-3.5 h-3.5 text-zinc-400" />
+          </Link>
+        </div>
+
+        {/* リスト構造 */}
+        <div className="divide-y divide-zinc-200">
+          {newsItems.map((item) => (
+            <FashionArticleRow key={item.id} item={item} />
+          ))}
+        </div>
+      </Reveal>
+
+      {/* ======================================================== */}
+      {/* 02 MOVIE (最新動画はこちら ＆ エディトリアル GRID) */}
+      {/* ======================================================== */}
+      <Reveal id="movie" className="space-y-8 relative">
+        <div className="absolute -top-12 right-0 text-7xl font-mono font-extrabold text-zinc-100/80 select-none pointer-events-none">
+          02
+        </div>
+
+        {/* セクションタイポグラフィ */}
+        <div className="flex items-end justify-between border-b border-zinc-950 pb-4">
+          <div className="space-y-1">
+            <div className="flex items-center gap-2 font-mono text-xs font-bold tracking-widest text-yellow-600 uppercase">
+              <span>02</span>
+              <span>//</span>
+              <span>LATEST VISUAL & COLLECTION</span>
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-extrabold tracking-widest font-mono text-zinc-950">
+              MOVIE
+            </h2>
+          </div>
+
+          <Link href="/youtube" className="font-mono text-xs font-bold text-zinc-900 hover:text-amber-600 transition-colors flex items-center gap-1">
+            <span>ALL MOVIES</span>
+            <ArrowRight className="w-3.5 h-3.5 text-zinc-400" />
+          </Link>
+        </div>
+
+        {/* 大画面 FILA 動画 0dJb1WGsK2Q */}
+        <div className="space-y-3">
+          <div className="font-mono text-xs font-bold text-zinc-500 flex items-center gap-2">
+            <div className="w-1.5 h-1.5 bg-yellow-500" />
+            <span>最新動画はこちら</span>
+          </div>
+
+          <div className="bg-zinc-950 p-2 sm:p-3 rounded-xs border border-zinc-200/80 shadow-2xs space-y-3">
+            <HeroVideoPlayer videoId={HERO_VIDEO_ID} />
+
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 p-2 text-xs text-zinc-300 font-mono">
+              <div className="flex items-center gap-2">
+                <span className="px-2 py-0.5 bg-yellow-500 text-zinc-950 font-bold text-[10px]">
+                  FEATURED
+                </span>
+                <span className="font-bold text-white text-sm">
+                  {latestMovieObj.title}
+                </span>
+              </div>
+
               <a
-                key={sns.id}
-                href={sns.url}
+                href={latestMovieObj.youtubeURL || `https://www.youtube.com/watch?v=${HERO_VIDEO_ID}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group inline-flex items-center gap-1.5 px-3 py-1.5 bg-white hover:bg-amber-50 text-gray-800 rounded-md border border-gray-200 hover:border-amber-300 transition-colors font-bold shadow-2xs"
+                className="text-zinc-400 hover:text-white font-bold inline-flex items-center gap-1 shrink-0 transition-colors"
               >
-                <span className="text-gray-950 font-extrabold">{sns.name}</span>
-                <span className="text-gray-500 font-mono text-[11px] group-hover:text-amber-900">{sns.account}</span>
-                <ExternalLink className="w-3.5 h-3.5 text-amber-600 shrink-0 ml-0.5" />
+                <span>YOUTUBE ↗</span>
               </a>
-            ))}
-          </div>
-        </div>
-      </Reveal>
-
-      {/* ======================================================== */}
-      {/* 3. NEWS (最新情報) */}
-      {/* ======================================================== */}
-      <Reveal id="news" className="space-y-6">
-        
-        {/* 見出し */}
-        <div className="flex items-end justify-between border-b border-gray-200 pb-3">
-          <div className="flex items-center gap-3">
-            <div className="w-1.5 h-7 bg-amber-500 rounded-full shrink-0" />
-            <div className="flex items-baseline gap-3">
-              <h2 className="text-2xl font-extrabold tracking-widest font-mono text-gray-950">
-                NEWS
-              </h2>
-              <span className="text-xs font-bold text-gray-500">
-                最新情報
-              </span>
             </div>
           </div>
-
-          <Link href="/news" className="text-xs font-bold text-gray-800 hover:text-amber-600 hover:underline flex items-center gap-1 transition-colors">
-            <span>一覧を見る</span>
-            <ArrowRight className="w-3.5 h-3.5 text-amber-600" />
-          </Link>
         </div>
 
-        <div className="bg-white rounded-xl border border-gray-200 divide-y divide-gray-100 shadow-2xs overflow-hidden">
-          {newsItems.map((item, index) => {
-            const targetUrl = item.youtubeURL || item.sourceURL;
-            const hasValidUrl =
-              targetUrl &&
-              targetUrl.trim() !== "" &&
-              targetUrl !== "#" &&
-              !targetUrl.startsWith("javascript:") &&
-              (targetUrl.startsWith("http://") || targetUrl.startsWith("https://"));
-
-            return (
-              <Reveal key={item.id} delay={index * 90} translateY={16}>
-                <div className="p-4 sm:p-5 hover:bg-amber-50/20 transition-colors">
-                  {hasValidUrl ? (
-                    <a
-                      href={targetUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 block cursor-pointer"
-                    >
-                      <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
-                        <span className="font-mono text-xs text-amber-900 font-bold shrink-0 bg-amber-50 px-2.5 py-1 rounded border border-amber-200/80 w-fit">
-                          {item.publishedDate.replace(/-/g, ".")}
-                        </span>
-                        <span className="font-bold text-gray-950 text-sm sm:text-base group-hover:text-amber-900 transition-colors leading-snug">
-                          {item.title}
-                        </span>
-                      </div>
-                      <span className="text-xs text-gray-500 font-medium shrink-0 flex items-center gap-1.5">
-                        <span>{item.channelName || item.sourceName}</span>
-                        <ExternalLink className="w-3.5 h-3.5 text-amber-600 shrink-0" />
-                      </span>
-                    </a>
-                  ) : (
-                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 text-gray-700">
-                      <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
-                        <span className="font-mono text-xs text-amber-900 font-bold shrink-0 bg-amber-50 px-2.5 py-1 rounded border border-amber-200/80 w-fit">
-                          {item.publishedDate.replace(/-/g, ".")}
-                        </span>
-                        <span className="font-bold text-gray-950 text-sm sm:text-base leading-snug">
-                          {item.title}
-                        </span>
-                      </div>
-                      <span className="text-xs text-gray-500 font-medium shrink-0">
-                        {item.channelName || item.sourceName} (掲載記録)
-                      </span>
-                    </div>
-                  )}
-                </div>
-              </Reveal>
-            );
-          })}
-        </div>
-      </Reveal>
-
-      {/* ======================================================== */}
-      {/* 4. LATEST MOVIE 「最新動画はこちら」 */}
-      {/* ======================================================== */}
-      <Reveal id="latest-movie" className="space-y-6 pt-2">
-        {/* 見出し: 「最新動画はこちら」 */}
-        <div className="flex items-end justify-between border-b border-gray-200 pb-3">
-          <div className="flex items-center gap-3">
-            <div className="w-1.5 h-7 bg-amber-500 rounded-full shrink-0" />
-            <div className="flex items-baseline gap-3">
-              <h2 className="text-2xl font-extrabold tracking-widest font-mono text-gray-950">
-                LATEST MOVIE
-              </h2>
-              <span className="text-xs font-bold text-gray-500">
-                最新動画はこちら
-              </span>
-            </div>
-          </div>
-
-          <Link href="/youtube" className="text-xs font-bold text-gray-800 hover:text-amber-600 hover:underline flex items-center gap-1 transition-colors">
-            <span>動画一覧を見る</span>
-            <ArrowRight className="w-3.5 h-3.5 text-amber-600" />
-          </Link>
-        </div>
-
-        {/* 動画プレイヤー (指定 iframe 直接描画 / 装飾・独自ボタン排除) */}
-        <div className="bg-white rounded-2xl border border-gray-200 p-5 sm:p-8 shadow-2xs space-y-4">
-          <HeroVideoPlayer videoId={HERO_VIDEO_ID} />
-
-          {/* 動画の下の小さなテキストと動画タイトル */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pt-2 text-xs border-t border-gray-100">
-            <div className="flex items-center gap-2">
-              <span className="font-bold text-amber-900 bg-amber-50 px-2 py-0.5 rounded border border-amber-200/80">
-                最新動画はこちら
-              </span>
-              <h3 className="font-extrabold text-gray-950 text-sm leading-snug">
-                {latestMovieObj.title}
-              </h3>
+        {/* MOVIE PICKUP (エディトリアル GRID: 1本少し大きめ＋残り3本コンパクト) */}
+        {moviePickups.length > 0 && (
+          <div className="space-y-4 pt-4">
+            <div className="font-mono text-xs font-bold text-zinc-400 tracking-wider">
+              // MOVIE PICKUP
             </div>
 
-            <a
-              href={latestMovieObj.youtubeURL || `https://www.youtube.com/watch?v=${HERO_VIDEO_ID}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-500 hover:text-amber-900 font-bold inline-flex items-center gap-1 shrink-0"
-            >
-              <span>YouTubeで見る ↗</span>
-            </a>
-          </div>
-        </div>
-      </Reveal>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              {moviePickups.map((video, idx) => {
+                const vId = video.videoId || extractYouTubeVideoId(video.youtubeURL || video.sourceURL);
+                const thumb = video.thumbnailURL || (vId ? `https://img.youtube.com/vi/${vId}/hqdefault.jpg` : "/images/logo.png");
+                const target = video.youtubeURL || video.sourceURL || "#";
 
-      {/* ======================================================== */}
-      {/* 5. MOVIE PICKUP (関連動画 4本) */}
-      {/* ======================================================== */}
-      {moviePickups.length > 0 && (
-        <Reveal id="movie-pickup" className="space-y-4 pt-2">
-          
-          <div className="flex items-center gap-2 text-xs font-extrabold text-gray-800 border-b border-gray-200 pb-2">
-            <Film className="w-4 h-4 text-amber-600" />
-            <span>MOVIE PICKUP</span>
-            <span className="text-gray-400 font-normal">| 関連動画ピックアップ</span>
-          </div>
-
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-            {moviePickups.map((video, idx) => {
-              const vId = video.videoId || extractYouTubeVideoId(video.youtubeURL || video.sourceURL);
-              const thumb = video.thumbnailURL || (vId ? `https://img.youtube.com/vi/${vId}/hqdefault.jpg` : "/images/logo.png");
-              const target = video.youtubeURL || video.sourceURL || "#";
-
-              return (
-                <Reveal key={video.id} delay={idx * 90} translateY={16}>
+                return (
                   <a
+                    key={video.id}
                     href={target}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group bg-white hover:bg-amber-50/20 rounded-md border border-gray-100 p-2 space-y-2 transition-colors block"
+                    className="group bg-white border border-zinc-200/90 hover:border-zinc-950 p-3 space-y-2 transition-colors block"
                   >
-                    <div className="relative aspect-16/9 bg-gray-900 rounded-sm overflow-hidden">
+                    <div className="relative aspect-16/9 bg-zinc-900 overflow-hidden">
                       <img
                         src={thumb}
                         alt={video.title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 opacity-95 group-hover:opacity-100"
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 opacity-90 group-hover:opacity-100"
                       />
                     </div>
 
                     <div className="space-y-1">
-                      <div className="text-[10px] font-mono text-gray-400 font-bold">
+                      <div className="text-[10px] font-mono text-zinc-400 font-bold">
                         {video.publishedDate}
                       </div>
-                      <h4 className="text-xs font-bold text-gray-950 group-hover:text-amber-900 transition-colors line-clamp-2 leading-snug">
+                      <h4 className="text-xs font-bold text-zinc-950 group-hover:text-amber-600 transition-colors line-clamp-2 leading-snug">
                         {video.title}
                       </h4>
                     </div>
                   </a>
-                </Reveal>
-              );
-            })}
+                );
+              })}
+            </div>
           </div>
-
-        </Reveal>
-      )}
+        )}
+      </Reveal>
 
       <DiscoverRandomModal items={items} />
 
       {/* ======================================================== */}
-      {/* 2カラムレイアウト: メインコンテンツ (ARTICLES / PROFILE) ＋ サイドバー */}
+      {/* 2カラムレイアウト: ARTICLES ＆ PROFILE ＋ サイドバー */}
       {/* ======================================================== */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 pt-2">
-        <div className="lg:col-span-2 space-y-12">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 pt-4">
+        <div className="lg:col-span-2 space-y-16">
 
           {/* ======================================================== */}
-          {/* 6. ARTICLES (関連記事 / 注目記事 4件) */}
+          {/* 03 ARTICLES (関連記事 - ファッション誌 INDEX) */}
           {/* ======================================================== */}
-          <Reveal id="articles" className="space-y-6">
-            
-            {/* 見出し */}
-            <div className="flex items-end justify-between border-b border-gray-200 pb-3">
-              <div className="flex items-center gap-3">
-                <div className="w-1.5 h-7 bg-amber-500 rounded-full shrink-0" />
-                <div className="flex items-baseline gap-3">
-                  <h2 className="text-2xl font-extrabold tracking-widest font-mono text-gray-950">
-                    ARTICLES
-                  </h2>
-                  <span className="text-xs font-bold text-gray-500">
-                    関連記事・記録
-                  </span>
+          <Reveal id="articles" className="space-y-6 relative">
+            <div className="absolute -top-12 right-0 text-7xl font-mono font-extrabold text-zinc-100/80 select-none pointer-events-none">
+              03
+            </div>
+
+            {/* セクションタイポグラフィ */}
+            <div className="flex items-end justify-between border-b border-zinc-950 pb-4">
+              <div className="space-y-1">
+                <div className="flex items-center gap-2 font-mono text-xs font-bold tracking-widest text-yellow-600 uppercase">
+                  <span>03</span>
+                  <span>//</span>
+                  <span>EDITORIAL INDEX</span>
                 </div>
+                <h2 className="text-2xl sm:text-3xl font-extrabold tracking-widest font-mono text-zinc-950">
+                  ARTICLES
+                </h2>
               </div>
 
-              <Link href="/articles" className="text-xs font-bold text-gray-800 hover:text-amber-600 hover:underline flex items-center gap-1 transition-colors">
-                <span>記事一覧を見る</span>
-                <ArrowRight className="w-3.5 h-3.5 text-amber-600" />
+              <Link href="/articles" className="font-mono text-xs font-bold text-zinc-900 hover:text-amber-600 transition-colors flex items-center gap-1">
+                <span>ALL ARTICLES</span>
+                <ArrowRight className="w-3.5 h-3.5 text-zinc-400" />
               </Link>
             </div>
 
-            <div className="flex items-center gap-1.5 flex-wrap text-xs pt-1">
-              <span className="text-gray-400 font-medium mr-1">主要カテゴリ:</span>
+            <div className="flex items-center gap-2 flex-wrap text-xs font-mono pt-1">
+              <span className="text-zinc-400 font-bold mr-1">// CATEGORIES:</span>
               {mainCategories.map((c) => (
                 <Link
                   key={c.name}
                   href={`/category/${encodeURIComponent(c.category)}`}
-                  className="px-2.5 py-1 bg-white hover:bg-amber-50 text-gray-700 hover:text-amber-900 rounded border border-gray-200 text-xs font-medium transition-colors"
+                  className="px-2 py-0.5 bg-zinc-100 hover:bg-zinc-900 hover:text-white text-zinc-800 transition-colors text-[11px] font-bold"
                 >
                   #{c.name}
                 </Link>
               ))}
             </div>
 
-            <div className="divide-y divide-gray-200">
+            {/* ルックブック INDEX リスト */}
+            <div className="divide-y divide-zinc-200">
               {articleItems.map((item) => (
-                <ArticleCard key={item.id} item={item} />
+                <FashionArticleRow key={item.id} item={item} />
               ))}
             </div>
 
@@ -394,63 +352,79 @@ export function HomeView() {
           </Reveal>
 
           {/* ======================================================== */}
-          {/* 7. PROFILE導線 */}
+          {/* 04 PROFILE (人物特集 LOOKBOOK) */}
           {/* ======================================================== */}
-          <Reveal id="profile-teaser" className="bg-white rounded-2xl border border-gray-200 p-6 sm:p-8 shadow-2xs space-y-4">
-            
-            <div className="flex items-center justify-between border-b border-gray-100 pb-3">
-              <div className="flex items-center gap-2">
-                <User className="w-5 h-5 text-amber-600" />
-                <h3 className="text-lg font-extrabold text-gray-950">
-                  瀧脇笙古（たきわき しょうこ）プロフィール
-                </h3>
+          <Reveal id="profile-teaser" className="space-y-6 relative">
+            <div className="absolute -top-12 right-0 text-7xl font-mono font-extrabold text-zinc-100/80 select-none pointer-events-none">
+              04
+            </div>
+
+            {/* セクションタイポグラフィ */}
+            <div className="flex items-end justify-between border-b border-zinc-950 pb-4">
+              <div className="space-y-1">
+                <div className="flex items-center gap-2 font-mono text-xs font-bold tracking-widest text-yellow-600 uppercase">
+                  <span>04</span>
+                  <span>//</span>
+                  <span>PROFILE & ESSENCE</span>
+                </div>
+                <h2 className="text-2xl sm:text-3xl font-extrabold tracking-widest font-mono text-zinc-950">
+                  SHOKO TAKIWAKI
+                </h2>
               </div>
 
               <Link
                 href="/profile"
-                className="inline-flex items-center gap-1 text-xs font-extrabold text-gray-800 hover:text-amber-600 hover:underline transition-colors"
+                className="font-mono text-xs font-bold text-zinc-900 hover:text-amber-600 transition-colors flex items-center gap-1"
               >
-                <span>プロフィールを見る</span>
-                <ArrowUpRight className="w-4 h-4 text-amber-600" />
+                <span>FULL PROFILE</span>
+                <ArrowUpRight className="w-4 h-4 text-zinc-400" />
               </Link>
             </div>
 
-            <p className="text-xs sm:text-sm text-gray-700 leading-relaxed">
-              指原莉乃プロデュースのアイドルグループ「＝LOVE（イコールラブ）」のメンバー。愛称「しょこちゃん」。2001年7月9日生まれ、神奈川県出身。
-            </p>
-
-            {/* 人物特徴キーワードタグ */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 pt-1 text-xs">
-              {[
-                { label: "横浜 / ベイスターズ", desc: "大のベイスターズファン。BAY☆スタ連載中" },
-                { label: "フルマラソン", desc: "サブ4達成の本格派ランナー" },
-                { label: "料理・スイーツ", desc: "クックパッドLIVEや料理番組で活躍" },
-                { label: "＝LOVE センター", desc: "『木漏れ日メゾフォルテ』ダブルセンター" },
-              ].map((box) => (
-                <div key={box.label} className="p-3 bg-gray-50/80 rounded-lg border border-gray-200/80 space-y-1">
-                  <div className="font-extrabold text-gray-950 text-xs">{box.label}</div>
-                  <div className="text-[11px] text-gray-500 leading-snug">{box.desc}</div>
+            <div className="bg-white border border-zinc-200 p-6 sm:p-8 space-y-6">
+              <div className="space-y-2">
+                <div className="font-mono text-xs font-bold text-zinc-400 tracking-wider">
+                  // 瀧脇笙古 (たきわき しょうこ)
                 </div>
-              ))}
-            </div>
+                <p className="text-xs sm:text-sm text-zinc-700 leading-relaxed font-bold">
+                  指原莉乃プロデュースの声優アイドルグループ「＝LOVE（イコールラブ）」メンバー。2001年7月9日生まれ、神奈川県出身。横浜DeNAベイスターズファン、サブ4達成ランナー、料理上手として知られるマルチクリエイター。
+                </p>
+              </div>
 
-            <div className="pt-2 flex items-center gap-4 text-xs font-bold border-t border-gray-100">
-              <a
-                href="https://x.com/shoko_takiwaki"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-800 hover:text-amber-600 hover:underline flex items-center gap-1 transition-colors"
-              >
-                <span>公式X (@shoko_takiwaki) ↗</span>
-              </a>
-              <a
-                href="https://www.instagram.com/takiwaki_shoko_/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-800 hover:text-amber-600 hover:underline flex items-center gap-1 transition-colors"
-              >
-                <span>公式Instagram ↗</span>
-              </a>
+              {/* 人物特徴キーワード ルックブック GRID */}
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs font-mono">
+                {[
+                  { label: "YOKOHAMA", sub: "横浜DeNAベイスターズ" },
+                  { label: "RUNNING", sub: "フルマラソン サブ4" },
+                  { label: "COOKING", sub: "クックパッドLIVE" },
+                  { label: "CENTER", sub: "木漏れ日メゾフォルテ" },
+                ].map((box) => (
+                  <div key={box.label} className="p-3 bg-zinc-50 border border-zinc-200/80 space-y-1">
+                    <div className="font-extrabold text-zinc-950 text-xs">{box.label}</div>
+                    <div className="text-[10px] text-zinc-500 leading-snug font-sans">{box.sub}</div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="pt-2 flex items-center gap-4 text-xs font-mono font-bold border-t border-zinc-100">
+                <a
+                  href="https://x.com/shoko_takiwaki"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-zinc-900 hover:text-yellow-600 transition-colors"
+                >
+                  X (@shoko_takiwaki) ↗
+                </a>
+                <span className="text-zinc-300">/</span>
+                <a
+                  href="https://www.instagram.com/takiwaki_shoko_/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-zinc-900 hover:text-yellow-600 transition-colors"
+                >
+                  INSTAGRAM ↗
+                </a>
+              </div>
             </div>
 
           </Reveal>

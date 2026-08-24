@@ -8,11 +8,11 @@ interface HeroVideoPlayerProps {
 }
 
 export const HeroVideoPlayer: React.FC<HeroVideoPlayerProps> = ({
-  videoId = "T9kq0EVZgzY",
+  videoId = "0dJb1WGsK2Q",
   className = "",
 }) => {
-  // 指定されたパラメータ付きの公式組み込み URL
-  const embedUrl = `https://www.youtube.com/embed/${videoId}?si=or3llUFGc63K_jhE&controls=0&autoplay=1&mute=1&playsinline=1`;
+  // 指定されたパラメータ付きの公式組み込み URL (FILA 2026FW Lookbook Video)
+  const embedUrl = `https://www.youtube.com/embed/${videoId}?si=uDjoiyZsF1_NVCRs&controls=0&autoplay=1&mute=1&playsinline=1&loop=1&playlist=${videoId}`;
 
   return (
     <div
@@ -22,7 +22,7 @@ export const HeroVideoPlayer: React.FC<HeroVideoPlayerProps> = ({
         aspectRatio: "16 / 9",
         overflow: "hidden",
       }}
-      className={`bg-black rounded-xl border border-gray-200/80 shadow-2xs ${className}`}
+      className={`bg-zinc-950 rounded-sm border border-zinc-200/80 shadow-2xs ${className}`}
     >
       {/* 指定された YouTube iframe を JSX 正式記法で直接描画 */}
       <iframe

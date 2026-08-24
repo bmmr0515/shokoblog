@@ -41,33 +41,33 @@ export const Header: React.FC = () => {
   return (
     <header
       className={`sticky top-0 z-50 bg-white/95 backdrop-blur-xs transition-all duration-300 border-b ${
-        isScrolled ? "border-gray-200/90 shadow-2xs py-0" : "border-gray-200/60 py-1"
+        isScrolled ? "border-zinc-200/90 shadow-2xs py-0" : "border-zinc-200/60 py-1"
       }`}
     >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <div className={`flex items-center justify-between transition-all duration-300 ${isScrolled ? "h-14 sm:h-15" : "h-16 sm:h-18"}`}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className={`flex items-center justify-between transition-all duration-300 ${isScrolled ? "h-14 sm:h-16" : "h-16 sm:h-18"}`}>
           
           {/* Logo & Subtitle */}
           <Link href="/" className="flex items-center gap-3 group">
-            <div className="w-1 h-5 sm:h-6 bg-amber-500 rounded-full group-hover:bg-amber-600 transition-colors" />
+            <div className="w-1 h-5 sm:h-6 bg-yellow-500 rounded-none group-hover:bg-amber-600 transition-colors" />
             <div className="flex flex-col">
-              <span className={`font-extrabold tracking-tight text-gray-950 leading-tight group-hover:text-amber-900 transition-all ${isScrolled ? "text-lg sm:text-xl" : "text-xl sm:text-2xl"}`}>
+              <span className={`font-extrabold tracking-tight text-zinc-950 leading-tight group-hover:text-amber-900 transition-all ${isScrolled ? "text-lg sm:text-xl" : "text-xl sm:text-2xl"}`}>
                 しょこらの部屋
               </span>
-              <span className="text-[9px] text-gray-400 font-mono tracking-widest uppercase">
-                Takiwaki Shoko Unofficial Fan Site
+              <span className="text-[9px] text-zinc-400 font-mono tracking-widest uppercase">
+                SHOKO TAKIWAKI UNOFFICIAL FAN SITE
               </span>
             </div>
           </Link>
 
-          {/* Desktop Navigation & Compact Search */}
+          {/* Desktop Navigation & Sharp Search */}
           <div className="hidden md:flex items-center gap-8">
-            <nav className="flex items-center gap-6 text-xs font-bold tracking-widest text-gray-700">
+            <nav className="flex items-center gap-6 text-xs font-bold tracking-widest text-zinc-800 font-mono">
               {navItems.map((item) => (
                 <Link
                   key={item.label}
                   href={item.href}
-                  className="hover:text-amber-600 transition-colors py-1 relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-amber-500 after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-200"
+                  className="hover:text-amber-600 transition-colors py-1 relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-yellow-500 after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-200"
                 >
                   {item.label}
                 </Link>
@@ -79,10 +79,10 @@ export const Header: React.FC = () => {
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="検索 (例: ベイスターズ)"
-                className="w-44 pl-8 pr-3 py-1.5 text-xs bg-gray-50/80 rounded border border-gray-200 focus:outline-none focus:bg-white focus:border-amber-500 transition-colors"
+                placeholder="SEARCH..."
+                className="w-40 pl-8 pr-3 py-1.5 text-xs bg-zinc-50 rounded-xs border border-zinc-200 focus:outline-none focus:bg-white focus:border-zinc-400 transition-colors font-mono uppercase"
               />
-              <Search className="w-3.5 h-3.5 text-gray-400 absolute left-2.5 top-1/2 -translate-y-1/2" />
+              <Search className="w-3.5 h-3.5 text-zinc-400 absolute left-2.5 top-1/2 -translate-y-1/2" />
             </form>
           </div>
 
@@ -90,7 +90,7 @@ export const Header: React.FC = () => {
           <div className="flex items-center gap-2 md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="p-2 text-gray-700 hover:text-amber-600 focus:outline-none"
+              className="p-2 text-zinc-800 hover:text-amber-600 focus:outline-none"
               aria-label="メニューを開く"
             >
               {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -101,25 +101,25 @@ export const Header: React.FC = () => {
 
       {/* Mobile Menu Drawer */}
       {isOpen && (
-        <div className="md:hidden border-t border-gray-200 bg-white px-4 py-4 space-y-4">
+        <div className="md:hidden border-t border-zinc-200 bg-white px-4 py-4 space-y-4">
           <form onSubmit={handleSearchSubmit} className="relative">
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="キーワード検索 (例: マラソン)"
-              className="w-full pl-8 pr-3 py-2 text-xs bg-gray-50 rounded border border-gray-200 focus:outline-none focus:border-amber-500"
+              placeholder="SEARCH..."
+              className="w-full pl-8 pr-3 py-2 text-xs bg-zinc-50 rounded-xs border border-zinc-200 focus:outline-none focus:border-zinc-400 font-mono"
             />
-            <Search className="w-3.5 h-3.5 text-gray-400 absolute left-2.5 top-1/2 -translate-y-1/2" />
+            <Search className="w-3.5 h-3.5 text-zinc-400 absolute left-2.5 top-1/2 -translate-y-1/2" />
           </form>
 
-          <nav className="grid grid-cols-2 gap-2 text-xs font-bold text-gray-800">
+          <nav className="grid grid-cols-2 gap-2 text-xs font-bold text-zinc-800 font-mono">
             {navItems.map((item) => (
               <Link
                 key={item.label}
                 href={item.href}
                 onClick={() => setIsOpen(false)}
-                className="py-2.5 px-3 bg-gray-50 hover:bg-amber-50 hover:text-amber-900 rounded border border-gray-200 text-center tracking-wider"
+                className="py-2.5 px-3 bg-zinc-50 hover:bg-zinc-100 text-zinc-900 rounded-xs border border-zinc-200 text-center tracking-wider"
               >
                 {item.label}
               </Link>
