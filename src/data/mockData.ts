@@ -40,6 +40,28 @@ export const INITIAL_YEARS = [2026, 2025, 2024, 2023, 2022, 2021, 2020, 2019, 20
 
 export const INITIAL_LINK_ITEMS: LinkItem[] = [
   {
+    "id": "link-1787531684079-998",
+    "title": "メディア2026.08.23NEW\n\t\t\t【掲載情報】集英社「MYOJO 11月号」※瀧脇笙古",
+    "sourceName": "＝LOVE Official Website",
+    "sourceURL": "https://equal-love.jp/news/detail/11080",
+    "publishedDate": "2026-08-23",
+    "year": 2026,
+    "category": "ニュース",
+    "tags": [
+      "瀧脇笙古",
+      "=LOVE",
+      "ニュース"
+    ],
+    "description": "＝LOVE公式NEWS掲載: メディア2026.08.23NEW\n\t\t\t【掲載情報】集英社「MYOJO 11月号」※瀧脇笙古",
+    "thumbnailURL": "/images/logo.png",
+    "contentType": "official",
+    "youtubeURL": null,
+    "verified": true,
+    "lastCheckedAt": "2026-08-24T00:34:44.079Z",
+    "isFeatured": false,
+    "isHighlight": false
+  },
+  {
     "id": "link-csv-1787531615939-1",
     "title": "Lovely Day♡ BASEGATE横浜関内 presents 妄想散歩 #5",
     "sourceName": "radiko",
