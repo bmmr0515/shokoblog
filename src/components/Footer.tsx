@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export const Footer: React.FC = () => {
   return (
-    <footer className="bg-zinc-950 text-zinc-400 text-xs font-mono border-t border-zinc-800">
+    <footer className="bg-[#191919] text-zinc-400 text-xs font-mono border-t border-zinc-800">
       <div className="w-full max-w-[1720px] mx-auto px-5 sm:px-10 lg:px-16 py-14 space-y-10">
         
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
@@ -13,8 +13,8 @@ export const Footer: React.FC = () => {
           {/* Brand Logo & Subtitle */}
           <div className="md:col-span-5 space-y-3">
             <div className="flex items-center gap-2">
-              <div className="w-1.5 h-5 bg-yellow-500" />
-              <span className="text-xl font-black text-white tracking-tight font-sans">
+              <div className="w-1.5 h-5 bg-[#F6C744] rounded-full" />
+              <span className="text-xl font-maru font-extrabold text-white tracking-tight">
                 しょこらの部屋
               </span>
             </div>
@@ -25,7 +25,7 @@ export const Footer: React.FC = () => {
 
           {/* Quick Links */}
           <div className="md:col-span-4 space-y-2">
-            <div className="text-[10px] font-bold text-yellow-500 uppercase tracking-widest">
+            <div className="text-[10px] font-bold text-[#F6C744] uppercase tracking-widest">
               // SITE INDEX
             </div>
             <div className="grid grid-cols-2 gap-2 text-xs font-bold">
@@ -40,7 +40,7 @@ export const Footer: React.FC = () => {
 
           {/* Disclaimer Note */}
           <div className="md:col-span-3 space-y-2">
-            <div className="text-[10px] font-bold text-yellow-500 uppercase tracking-widest">
+            <div className="text-[10px] font-bold text-[#F6C744] uppercase tracking-widest">
               // DISCLAIMER
             </div>
             <p className="text-[11px] text-zinc-500 font-sans leading-relaxed">

@@ -3,16 +3,22 @@
 @tailwind utilities;
 
 :root {
-  --font-sans: 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
-  --bg-primary: #FFFFFF;
+  --font-sans: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+  --font-maru-gothic: 'Zen Maru Gothic', 'Hiragino Maru Gothic ProN', sans-serif;
+  --bg-primary: #FFFDF7;
 }
 
 body {
   background-color: var(--bg-primary);
-  color: #1F2937;
+  color: #191919;
   font-family: var(--font-sans);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+}
+
+/* 丸みのある上品な和文タイポグラフィ */
+.font-maru {
+  font-family: var(--font-maru-gothic);
 }
 
 /* Strict Clean Scrollbar */
@@ -21,29 +27,27 @@ body {
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #F3F4F6;
+  background: #FFFDF7;
 }
 ::-webkit-scrollbar-thumb {
-  background: #EAB308;
+  background: #F6C744;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #D97706;
+  background: #E99A32;
 }
 
-/* Remove all gradient background utilities */
 .bg-shoko-gradient {
-  background-color: #FFFFFF;
+  background-color: #FFFDF7;
 }
 
 /* ======================================================== */
-/* 静かな映画作品サイト風 アニメーションユーティリティ */
+/* 静かな映画・ファッション特設サイト風 アニメーション */
 /* ======================================================== */
 
-/* 初回フェードイン・アップ */
 @keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(24px);
   }
   to {
     opacity: 1;
@@ -65,10 +69,10 @@ body {
   opacity: 0;
 }
 
-/* スクロール連動 フェードイン・アップ (Intersection Observer) */
+/* スクロール連動 フェードイン */
 .scroll-reveal {
   opacity: 0;
-  transform: translateY(24px);
+  transform: translateY(32px);
   transition: opacity 700ms cubic-bezier(0.16, 1, 0.3, 1), transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
 }
