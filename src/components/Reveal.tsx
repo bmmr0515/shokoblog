@@ -15,7 +15,7 @@ export const Reveal: React.FC<RevealProps> = ({
   id,
   delay = 0,
   className = "",
-  translateY = 28,
+  translateY = 32,
 }) => {
   const ref = useRef<HTMLDivElement | null>(null);
   const [isVisible, setIsVisible] = useState(false);

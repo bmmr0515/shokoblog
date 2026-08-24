@@ -18,20 +18,20 @@ export const FashionArticleRow: React.FC<FashionArticleRowProps> = ({ item }) =>
     (targetUrl.startsWith("http://") || targetUrl.startsWith("https://"));
 
   const content = (
-    <div className="group py-4 sm:py-5 border-b border-zinc-200/90 hover:border-zinc-950 transition-colors cursor-pointer flex flex-col sm:flex-row sm:items-baseline justify-between gap-3 text-xs">
+    <div className="group py-4 sm:py-5 border-b border-zinc-200 hover:border-zinc-950 transition-colors cursor-pointer flex flex-col sm:flex-row sm:items-baseline justify-between gap-3 text-xs">
       <div className="flex flex-col sm:flex-row sm:items-baseline gap-3 sm:gap-6 flex-1">
         {/* 日付 */}
         <span className="font-mono text-xs text-zinc-400 font-bold shrink-0">
           {item.publishedDate.replace(/-/g, ".")}
         </span>
 
-        {/* カテゴリ / 媒体 */}
+        {/* カテゴリ / 媒体 (KEY VISUAL と共通デザイン言語) */}
         <div className="flex items-center gap-2 shrink-0">
-          <span className="px-2 py-0.5 bg-zinc-100 text-zinc-800 font-mono font-bold text-[10px] uppercase rounded-xs border border-zinc-200">
+          <span className="px-2 py-0.5 bg-yellow-500 text-zinc-950 font-mono font-bold text-[10px] uppercase rounded-none">
             {item.category}
           </span>
-          <span className="text-zinc-500 font-mono text-[11px]">
-            [{item.channelName || item.sourceName}]
+          <span className="text-zinc-500 font-mono text-[11px] font-bold">
+            // {item.channelName || item.sourceName}
           </span>
         </div>
 
