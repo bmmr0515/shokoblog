@@ -74,7 +74,7 @@ export function HomeView() {
   ];
 
   return (
-    <div className="relative space-y-16 sm:space-y-24 pb-16 pt-0">
+    <div className="relative pb-16 pt-2 sm:pt-4 space-y-12 sm:space-y-20">
 
       {/* ======================================================== */}
       {/* ルックブック風 余白デザイン要素 (背景細罫線 ＆ 縦書き風座標) */}
@@ -83,15 +83,15 @@ export function HomeView() {
       <div className="hidden lg:block absolute top-0 right-0 bottom-0 w-px bg-zinc-200/60 pointer-events-none" />
 
       {/* ======================================================== */}
-      {/* 1. ヒーローセクション (縦余白詰め & 大迫力タイトル & スマホ最適順序: タイトル->動画->SNS) */}
+      {/* 1. ヒーローセクション (ヘッダー直下余白圧縮 & height: auto 徹底) */}
       {/* ======================================================== */}
-      <section className="relative pt-1 sm:pt-2">
+      <section className="relative py-2 sm:py-4">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-center">
           
-          {/* 1. タイトルパート (PC: 左上 / スマホ: 最上部) */}
-          <div className="lg:col-span-5 space-y-4">
+          {/* 1. タイトルパート (PC: 左 / スマホ: 上部) */}
+          <div className="lg:col-span-5 space-y-3.5">
             <HeroReveal delay={0}>
-              <div className="space-y-3">
+              <div className="space-y-2.5">
                 <div className="inline-flex items-center gap-2 font-mono text-[10px] tracking-widest text-zinc-500 uppercase">
                   <span className="px-2 py-0.5 bg-yellow-500 text-zinc-950 font-bold text-[10px]">
                     LOOKBOOK 2026
@@ -108,7 +108,7 @@ export function HomeView() {
                   </h1>
                 </div>
 
-                <p className="text-xs sm:text-sm font-bold text-zinc-700 leading-relaxed pt-1">
+                <p className="text-xs sm:text-sm font-bold text-zinc-700 leading-relaxed pt-0.5">
                   瀧脇笙古さんのニュース、記事、動画、出演情報をまとめた非公式ファンサイトです。
                 </p>
               </div>
@@ -117,7 +117,7 @@ export function HomeView() {
             {/* PC表示用: SNS 導線 */}
             <div className="hidden lg:block">
               <HeroReveal delay={120}>
-                <div className="pt-3 border-t border-zinc-200/80 space-y-2 text-xs">
+                <div className="pt-2.5 border-t border-zinc-200/80 space-y-1.5 text-xs">
                   <div className="font-mono text-[10px] tracking-widest text-zinc-400 font-bold uppercase">
                     OFFICIAL SOCIAL MEDIA // 瀧脇笙古
                   </div>
@@ -152,7 +152,7 @@ export function HomeView() {
             <HeroReveal delay={250}>
               <div className="relative">
                 <HeroVideoPlayer videoId={HERO_VIDEO_ID} />
-                <div className="pt-2 flex items-center justify-between text-[10px] font-mono text-zinc-400 font-bold">
+                <div className="pt-1.5 flex items-center justify-between text-[10px] font-mono text-zinc-400 font-bold">
                   <span className="flex items-center gap-1.5">
                     <span className="px-1.5 py-0.2 bg-yellow-500 text-zinc-950 font-bold text-[9px]">KEY VISUAL</span>
                     <span>FILA 2026FW POP-UP</span>
@@ -164,7 +164,7 @@ export function HomeView() {
           </div>
 
           {/* 3. スマホ表示用: SNS 導線 (動画直下) */}
-          <div className="block lg:hidden pt-2">
+          <div className="block lg:hidden pt-1">
             <HeroReveal delay={350}>
               <div className="p-3 bg-zinc-50 border border-zinc-200/80 space-y-1.5 text-xs font-mono">
                 <div className="text-[10px] tracking-widest text-zinc-400 font-bold uppercase">
@@ -198,8 +198,11 @@ export function HomeView() {
         </div>
       </section>
 
+      {/* ヒーローとNEWSの間の洗練された極細境界ライン */}
+      <div className="border-b border-zinc-200/80 my-4 sm:my-8" />
+
       {/* ======================================================== */}
-      {/* 01 NEWS (最新情報 - デザイン言語の統一) */}
+      {/* 01 NEWS (最新情報 - 適正間隔 72px~96px 相当に配置) */}
       {/* ======================================================== */}
       <Reveal id="news" className="space-y-6 relative">
         <div className="absolute -top-12 right-0 text-7xl sm:text-8xl font-mono font-black text-zinc-100 select-none pointer-events-none">
