@@ -13,6 +13,7 @@ import { Reveal } from "@/components/Reveal";
 import { HeroReveal } from "@/components/HeroReveal";
 import { HeroVideoPlayer } from "@/components/HeroVideoPlayer";
 import { FashionArticleRow } from "@/components/FashionArticleRow";
+import { InitialOpeningLoader } from "@/components/InitialOpeningLoader";
 
 export function HomeView() {
   const [items, setItems] = useState<LinkItem[]>([]);
@@ -74,25 +75,22 @@ export function HomeView() {
   ];
 
   return (
-    <div className="relative pb-16 pt-2 sm:pt-4 space-y-12 sm:space-y-20">
+    <div className="w-full max-w-[1720px] mx-auto px-5 sm:px-10 lg:px-16 space-y-16 sm:space-y-24 pb-16 pt-2">
+      
+      {/* 映画・作品特設サイト風 初回オープニングローダー */}
+      <InitialOpeningLoader />
 
       {/* ======================================================== */}
-      {/* ルックブック風 余白デザイン要素 (背景細罫線 ＆ 縦書き風座標) */}
+      {/* 1. ヒーローセクション (フル幅化 ＆ 呪術廻戦風 大迫力映像ビジュアル) */}
       {/* ======================================================== */}
-      <div className="hidden lg:block absolute top-0 left-0 bottom-0 w-px bg-zinc-200/60 pointer-events-none" />
-      <div className="hidden lg:block absolute top-0 right-0 bottom-0 w-px bg-zinc-200/60 pointer-events-none" />
-
-      {/* ======================================================== */}
-      {/* 1. ヒーローセクション (ヘッダー直下余白圧縮 & height: auto 徹底) */}
-      {/* ======================================================== */}
-      <section className="relative py-2 sm:py-4">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-center">
+      <section className="relative py-2 sm:py-6">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           
-          {/* 1. タイトルパート (PC: 左 / スマホ: 上部) */}
-          <div className="lg:col-span-5 space-y-3.5">
+          {/* 左側 35%: タイトル・コピー・SNS (安全読性幅 max-w-[480px]) */}
+          <div className="lg:col-span-4 space-y-5">
             <HeroReveal delay={0}>
-              <div className="space-y-2.5">
-                <div className="inline-flex items-center gap-2 font-mono text-[10px] tracking-widest text-zinc-500 uppercase">
+              <div className="space-y-3 max-w-[480px]">
+                <div className="inline-flex items-center gap-2 font-mono text-[10px] sm:text-xs tracking-widest text-zinc-500 uppercase font-bold">
                   <span className="px-2 py-0.5 bg-yellow-500 text-zinc-950 font-bold text-[10px]">
                     LOOKBOOK 2026
                   </span>
@@ -103,25 +101,25 @@ export function HomeView() {
                 {/* 大迫力タイトル ＋ 左アクセント縦ライン */}
                 <div className="flex items-stretch gap-3">
                   <div className="w-1.5 bg-yellow-500 rounded-none shrink-0" />
-                  <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-zinc-950 leading-none">
+                  <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-zinc-950 leading-none font-sans">
                     しょこらの部屋
                   </h1>
                 </div>
 
-                <p className="text-xs sm:text-sm font-bold text-zinc-700 leading-relaxed pt-0.5">
-                  瀧脇笙古さんのニュース、記事、動画、出演情報をまとめた非公式ファンサイトです。
+                <p className="text-xs sm:text-sm font-bold text-zinc-700 leading-relaxed pt-1">
+                  瀧脇笙古さんのニュース、記事、動画をまとめた非公式ファンサイトです。
                 </p>
               </div>
             </HeroReveal>
 
             {/* PC表示用: SNS 導線 */}
-            <div className="hidden lg:block">
+            <div className="hidden lg:block max-w-[480px]">
               <HeroReveal delay={120}>
-                <div className="pt-2.5 border-t border-zinc-200/80 space-y-1.5 text-xs">
+                <div className="pt-4 border-t border-zinc-200 space-y-2 text-xs">
                   <div className="font-mono text-[10px] tracking-widest text-zinc-400 font-bold uppercase">
                     OFFICIAL SOCIAL MEDIA // 瀧脇笙古
                   </div>
-                  <div className="flex items-center gap-3 font-mono font-bold text-xs">
+                  <div className="flex items-center gap-4 font-mono font-bold text-xs">
                     <a
                       href="https://x.com/shoko_takiwaki"
                       target="_blank"
@@ -147,15 +145,17 @@ export function HomeView() {
             </div>
           </div>
 
-          {/* 2. 動画パート (PC: 右 / スマホ: 中央) */}
-          <div className="lg:col-span-7">
+          {/* 右側 65%: 画面幅を贅沢に使う巨大映像ビジュアル (0dJb1WGsK2Q) */}
+          <div className="lg:col-span-8">
             <HeroReveal delay={250}>
-              <div className="relative">
+              <div className="relative w-full">
                 <HeroVideoPlayer videoId={HERO_VIDEO_ID} />
-                <div className="pt-1.5 flex items-center justify-between text-[10px] font-mono text-zinc-400 font-bold">
-                  <span className="flex items-center gap-1.5">
-                    <span className="px-1.5 py-0.2 bg-yellow-500 text-zinc-950 font-bold text-[9px]">KEY VISUAL</span>
-                    <span>FILA 2026FW POP-UP</span>
+                
+                {/* 映像下部ミニマルラベル */}
+                <div className="pt-2 flex items-center justify-between text-[10px] font-mono text-zinc-500 font-bold">
+                  <span className="flex items-center gap-2">
+                    <span className="px-2 py-0.5 bg-yellow-500 text-zinc-950 font-bold text-[9px]">KEY VISUAL</span>
+                    <span>FILA 2026FW POP-UP COLLECTION</span>
                   </span>
                   <span>[AUTOPLAY ON]</span>
                 </div>
@@ -163,14 +163,14 @@ export function HomeView() {
             </HeroReveal>
           </div>
 
-          {/* 3. スマホ表示用: SNS 導線 (動画直下) */}
+          {/* スマホ表示用: SNS 導線 (動画直下) */}
           <div className="block lg:hidden pt-1">
             <HeroReveal delay={350}>
-              <div className="p-3 bg-zinc-50 border border-zinc-200/80 space-y-1.5 text-xs font-mono">
+              <div className="p-3.5 bg-zinc-50 border border-zinc-200 space-y-2 text-xs font-mono">
                 <div className="text-[10px] tracking-widest text-zinc-400 font-bold uppercase">
                   OFFICIAL SOCIAL MEDIA
                 </div>
-                <div className="flex items-center gap-3 font-bold text-xs">
+                <div className="flex items-center gap-4 font-bold text-xs">
                   <a
                     href="https://x.com/shoko_takiwaki"
                     target="_blank"
@@ -198,18 +198,18 @@ export function HomeView() {
         </div>
       </section>
 
-      {/* ヒーローとNEWSの間の洗練された極細境界ライン */}
-      <div className="border-b border-zinc-200/80 my-4 sm:my-8" />
+      {/* ヒーローとNEWSの間の洗練された境界線 */}
+      <div className="border-b border-zinc-200 my-4 sm:my-6" />
 
       {/* ======================================================== */}
-      {/* 01 NEWS (最新情報 - 適正間隔 72px~96px 相当に配置) */}
+      {/* 01 NEWS (フル幅ベース - リスト構造) */}
       {/* ======================================================== */}
       <Reveal id="news" className="space-y-6 relative">
         <div className="absolute -top-12 right-0 text-7xl sm:text-8xl font-mono font-black text-zinc-100 select-none pointer-events-none">
           01
         </div>
 
-        {/* セクションタイポグラフィ ＆ 統一デザイン言語 */}
+        {/* セクションタイポグラフィ */}
         <div className="flex items-end justify-between border-b-2 border-zinc-950 pb-3">
           <div className="space-y-1">
             <div className="flex items-center gap-2 font-mono text-xs font-bold tracking-widest text-zinc-950 uppercase">
@@ -228,7 +228,7 @@ export function HomeView() {
           </Link>
         </div>
 
-        {/* リスト構造 */}
+        {/* フル幅 リスト構造 */}
         <div className="divide-y divide-zinc-200">
           {newsItems.map((item) => (
             <FashionArticleRow key={item.id} item={item} />
@@ -237,14 +237,14 @@ export function HomeView() {
       </Reveal>
 
       {/* ======================================================== */}
-      {/* 02 MOVIE (最新動画はこちら ＆ エディトリアル GRID) */}
+      {/* 02 MOVIE (フル幅ベース - 巨大動画 ＆ 変形エディトリアル GRID) */}
       {/* ======================================================== */}
       <Reveal id="movie" className="space-y-6 relative">
         <div className="absolute -top-12 right-0 text-7xl sm:text-8xl font-mono font-black text-zinc-100 select-none pointer-events-none">
           02
         </div>
 
-        {/* セクションタイポグラフィ ＆ 統一デザイン言語 */}
+        {/* セクションタイポグラフィ */}
         <div className="flex items-end justify-between border-b-2 border-zinc-950 pb-3">
           <div className="space-y-1">
             <div className="flex items-center gap-2 font-mono text-xs font-bold tracking-widest text-zinc-950 uppercase">
@@ -270,7 +270,7 @@ export function HomeView() {
             <span>最新動画はこちら</span>
           </div>
 
-          <div className="bg-zinc-950 p-2 sm:p-3 rounded-xs border border-zinc-200/80 shadow-2xs space-y-3">
+          <div className="bg-zinc-950 p-2 sm:p-4 rounded-xs border border-zinc-200/80 shadow-2xs space-y-3">
             <HeroVideoPlayer videoId={HERO_VIDEO_ID} />
 
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 p-2 text-xs text-zinc-300 font-mono">
@@ -303,7 +303,7 @@ export function HomeView() {
               <span>// RECOMMENDED VISUALS</span>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
               {moviePickups.map((video) => {
                 const vId = video.videoId || extractYouTubeVideoId(video.youtubeURL || video.sourceURL);
                 const thumb = video.thumbnailURL || (vId ? `https://img.youtube.com/vi/${vId}/hqdefault.jpg` : "/images/logo.png");
@@ -315,7 +315,7 @@ export function HomeView() {
                     href={target}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group bg-white border border-zinc-200 hover:border-zinc-950 p-3 space-y-2 transition-colors block"
+                    className="group bg-white border border-zinc-200 hover:border-zinc-950 p-3 space-y-2.5 transition-colors block"
                   >
                     <div className="relative aspect-16/9 bg-zinc-900 overflow-hidden">
                       <img
@@ -329,7 +329,7 @@ export function HomeView() {
                       <div className="text-[10px] font-mono text-zinc-400 font-bold">
                         {video.publishedDate}
                       </div>
-                      <h4 className="text-xs font-bold text-zinc-950 group-hover:text-amber-600 transition-colors line-clamp-2 leading-snug">
+                      <h4 className="text-xs sm:text-sm font-bold text-zinc-950 group-hover:text-amber-600 transition-colors line-clamp-2 leading-snug">
                         {video.title}
                       </h4>
                     </div>
@@ -346,18 +346,18 @@ export function HomeView() {
       {/* ======================================================== */}
       {/* 2カラムレイアウト: ARTICLES ＆ PROFILE ＋ サイドバー */}
       {/* ======================================================== */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 pt-2">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 pt-2">
         <div className="lg:col-span-2 space-y-14">
 
           {/* ======================================================== */}
-          {/* 03 ARTICLES (関連記事 - 統一デザイン言語) */}
+          {/* 03 ARTICLES (フル幅ベース - 関連記事 INDEX) */}
           {/* ======================================================== */}
           <Reveal id="articles" className="space-y-6 relative">
             <div className="absolute -top-12 right-0 text-7xl sm:text-8xl font-mono font-black text-zinc-100 select-none pointer-events-none">
               03
             </div>
 
-            {/* セクションタイポグラフィ ＆ 統一デザイン言語 */}
+            {/* セクションタイポグラフィ */}
             <div className="flex items-end justify-between border-b-2 border-zinc-950 pb-3">
               <div className="space-y-1">
                 <div className="flex items-center gap-2 font-mono text-xs font-bold tracking-widest text-zinc-950 uppercase">
@@ -407,7 +407,7 @@ export function HomeView() {
               04
             </div>
 
-            {/* セクションタイポグラフィ ＆ 統一デザイン言語 */}
+            {/* セクションタイポグラフィ */}
             <div className="flex items-end justify-between border-b-2 border-zinc-950 pb-3">
               <div className="space-y-1">
                 <div className="flex items-center gap-2 font-mono text-xs font-bold tracking-widest text-zinc-950 uppercase">

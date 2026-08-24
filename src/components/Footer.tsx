@@ -6,19 +6,19 @@ import Link from "next/link";
 export const Footer: React.FC = () => {
   return (
     <footer className="bg-zinc-950 text-zinc-400 text-xs font-mono border-t border-zinc-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-8">
+      <div className="w-full max-w-[1720px] mx-auto px-5 sm:px-10 lg:px-16 py-14 space-y-10">
         
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
           
           {/* Brand Logo & Subtitle */}
           <div className="md:col-span-5 space-y-3">
             <div className="flex items-center gap-2">
-              <div className="w-1 h-5 bg-yellow-500" />
-              <span className="text-xl font-extrabold text-white tracking-tight font-sans">
+              <div className="w-1.5 h-5 bg-yellow-500" />
+              <span className="text-xl font-black text-white tracking-tight font-sans">
                 しょこらの部屋
               </span>
             </div>
-            <p className="text-zinc-400 text-xs font-sans leading-relaxed">
+            <p className="text-zinc-400 text-xs font-sans leading-relaxed max-w-[480px]">
               ＝LOVE（イコールラブ）メンバー 瀧脇笙古さんの非公式ファンサイトです。最新ニュース、出演メディア情報、YouTube動画などの記録を配信しています。
             </p>
           </div>
@@ -28,7 +28,7 @@ export const Footer: React.FC = () => {
             <div className="text-[10px] font-bold text-yellow-500 uppercase tracking-widest">
               // SITE INDEX
             </div>
-            <div className="grid grid-cols-2 gap-2 text-xs">
+            <div className="grid grid-cols-2 gap-2 text-xs font-bold">
               <Link href="/news" className="hover:text-white transition-colors">NEWS (最新情報)</Link>
               <Link href="/articles" className="hover:text-white transition-colors">ARTICLES (記事)</Link>
               <Link href="/youtube" className="hover:text-white transition-colors">MOVIE (動画)</Link>
@@ -51,7 +51,7 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 border-t border-zinc-900 flex flex-col sm:flex-row items-center justify-between gap-4 text-[10px] text-zinc-500">
+        <div className="pt-8 border-t border-zinc-900 flex flex-col sm:flex-row items-center justify-between gap-4 text-[10px] text-zinc-500 font-bold">
           <div>
             &copy; {new Date().getFullYear()} しょこらの部屋 // TAKIWAKI SHOKO UNOFFICIAL FAN SITE
           </div>

@@ -44,25 +44,25 @@ export const Header: React.FC = () => {
         isScrolled ? "border-zinc-200/90 shadow-2xs py-0" : "border-zinc-200/60 py-1"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="w-full max-w-[1720px] mx-auto px-5 sm:px-10 lg:px-16">
         <div className={`flex items-center justify-between transition-all duration-300 ${isScrolled ? "h-14 sm:h-16" : "h-16 sm:h-18"}`}>
           
-          {/* Logo & Subtitle */}
+          {/* Logo & Subtitle (画面端から適正な安全余白で配置) */}
           <Link href="/" className="flex items-center gap-3 group">
-            <div className="w-1 h-5 sm:h-6 bg-yellow-500 rounded-none group-hover:bg-amber-600 transition-colors" />
+            <div className="w-1.5 h-5 sm:h-6 bg-yellow-500 rounded-none group-hover:bg-amber-600 transition-colors" />
             <div className="flex flex-col">
-              <span className={`font-extrabold tracking-tight text-zinc-950 leading-tight group-hover:text-amber-900 transition-all ${isScrolled ? "text-lg sm:text-xl" : "text-xl sm:text-2xl"}`}>
+              <span className={`font-black tracking-tight text-zinc-950 leading-tight group-hover:text-amber-900 transition-all ${isScrolled ? "text-lg sm:text-xl" : "text-xl sm:text-2xl"}`}>
                 しょこらの部屋
               </span>
-              <span className="text-[9px] text-zinc-400 font-mono tracking-widest uppercase">
+              <span className="text-[9px] text-zinc-400 font-mono tracking-widest uppercase font-bold">
                 SHOKO TAKIWAKI UNOFFICIAL FAN SITE
               </span>
             </div>
           </Link>
 
-          {/* Desktop Navigation & Sharp Search */}
+          {/* Desktop Navigation & Search */}
           <div className="hidden md:flex items-center gap-8">
-            <nav className="flex items-center gap-6 text-xs font-bold tracking-widest text-zinc-800 font-mono">
+            <nav className="flex items-center gap-8 text-xs font-bold tracking-widest text-zinc-800 font-mono">
               {navItems.map((item) => (
                 <Link
                   key={item.label}
@@ -80,7 +80,7 @@ export const Header: React.FC = () => {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="SEARCH..."
-                className="w-40 pl-8 pr-3 py-1.5 text-xs bg-zinc-50 rounded-xs border border-zinc-200 focus:outline-none focus:bg-white focus:border-zinc-400 transition-colors font-mono uppercase"
+                className="w-44 pl-8 pr-3 py-1.5 text-xs bg-zinc-50 rounded-xs border border-zinc-200 focus:outline-none focus:bg-white focus:border-zinc-400 transition-colors font-mono uppercase"
               />
               <Search className="w-3.5 h-3.5 text-zinc-400 absolute left-2.5 top-1/2 -translate-y-1/2" />
             </form>
@@ -101,7 +101,7 @@ export const Header: React.FC = () => {
 
       {/* Mobile Menu Drawer */}
       {isOpen && (
-        <div className="md:hidden border-t border-zinc-200 bg-white px-4 py-4 space-y-4">
+        <div className="md:hidden border-t border-zinc-200 bg-white px-5 py-4 space-y-4">
           <form onSubmit={handleSearchSubmit} className="relative">
             <input
               type="text"
