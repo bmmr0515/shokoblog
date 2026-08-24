@@ -39,6 +39,177 @@ export const INITIAL_TAGS = [
 export const INITIAL_YEARS = [2026, 2025, 2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017];
 
 export const INITIAL_LINK_ITEMS: LinkItem[] = [
+  {
+    "id": "link-csv-1787531615939-1",
+    "title": "Lovely Day♡ BASEGATE横浜関内 presents 妄想散歩 #5",
+    "sourceName": "radiko",
+    "sourceURL": "https://radiko.jp/podcast/episodes/4323ef0c-bd70-436d-9f6c-dd5197010483",
+    "publishedDate": "2026-02-04",
+    "year": 2026,
+    "category": "テレビ・ラジオ",
+    "tags": [
+      "瀧脇笙古",
+      "=LOVE",
+      "テレビ・ラジオ"
+    ],
+    "description": "瀧脇笙古をゲストに迎え、BASE GATE横浜関内をテーマに妄想散歩する公式ポッドキャスト回。",
+    "thumbnailURL": "/images/logo.png",
+    "contentType": "radio",
+    "verified": true,
+    "lastCheckedAt": "2026-08-24T00:33:35.939Z"
+  },
+  {
+    "id": "link-csv-1787531615939-3",
+    "title": "Lovely Day♡ BASEGATE横浜関内 presents 妄想散歩 #6",
+    "sourceName": "radiko",
+    "sourceURL": "https://radiko.jp/podcast/episodes/41a8efae-a142-44e5-9b8f-5525c79a2ced",
+    "publishedDate": "2026-02-11",
+    "year": 2026,
+    "category": "テレビ・ラジオ",
+    "tags": [
+      "瀧脇笙古",
+      "=LOVE",
+      "テレビ・ラジオ"
+    ],
+    "description": "瀧脇笙古出演の公式ポッドキャスト第2回。横浜関内の新施設をテーマにトーク。",
+    "thumbnailURL": "/images/logo.png",
+    "contentType": "radio",
+    "verified": true,
+    "lastCheckedAt": "2026-08-24T00:33:35.939Z"
+  },
+  {
+    "id": "link-csv-1787531615939-4",
+    "title": "＝LOVE 20thシングル『劇薬中毒』発売記念スペシャルリリースイベント",
+    "sourceName": "＝LOVE公式",
+    "sourceURL": "https://equal-love.jp/schedule/detail/11111",
+    "publishedDate": "2026-02-14",
+    "year": 2026,
+    "category": "イベント",
+    "tags": [
+      "瀧脇笙古",
+      "=LOVE",
+      "イベント"
+    ],
+    "description": "すみだ産業会館で開催。瀧脇笙古は第2部メンバーとして参加。",
+    "thumbnailURL": "/images/logo.png",
+    "contentType": "event",
+    "verified": true,
+    "lastCheckedAt": "2026-08-24T00:33:35.939Z"
+  },
+  {
+    "id": "link-csv-1787531615939-5",
+    "title": "＝LOVE 20thシングル『劇薬中毒』発売記念スペシャルリリースイベント",
+    "sourceName": "＝LOVE公式",
+    "sourceURL": "https://equal-love.jp/schedule/detail/11112",
+    "publishedDate": "2026-02-25",
+    "year": 2026,
+    "category": "イベント",
+    "tags": [
+      "瀧脇笙古",
+      "=LOVE",
+      "イベント"
+    ],
+    "description": "さいたまスーパーアリーナ展示ホールで開催。瀧脇笙古は第3部メンバーとして参加。",
+    "thumbnailURL": "/images/logo.png",
+    "contentType": "event",
+    "verified": true,
+    "lastCheckedAt": "2026-08-24T00:33:35.939Z"
+  },
+  {
+    "id": "link-csv-1787531615939-6",
+    "title": "＝LOVEオフィシャルカレンダーブック2026.04～2027.03 発売記念オンラインサイン会",
+    "sourceName": "＝LOVE公式",
+    "sourceURL": "https://equal-love.jp/schedule/detail/11298",
+    "publishedDate": "2026-03-22",
+    "year": 2026,
+    "category": "イベント",
+    "tags": [
+      "瀧脇笙古",
+      "=LOVE",
+      "イベント"
+    ],
+    "description": "瀧脇笙古のオンラインサイン会開催記録。配信動画自体は現在非公開のため、記事ページのみ掲載。",
+    "thumbnailURL": "/images/logo.png",
+    "contentType": "event",
+    "verified": true,
+    "lastCheckedAt": "2026-08-24T00:33:35.939Z"
+  },
+  {
+    "id": "link-csv-1787531615939-7",
+    "title": "今日のゲスト「＝LOVE」 #イコラブ #瀧脇笙古",
+    "sourceName": "Fm yokohama Tresen",
+    "sourceURL": "https://tresen.fmyokohama.jp/49242/",
+    "publishedDate": "2026-04-23",
+    "year": 2026,
+    "category": "インタビュー",
+    "tags": [
+      "瀧脇笙古",
+      "=LOVE",
+      "インタビュー"
+    ],
+    "description": "Tresen最多17回目の出演。『劇薬中毒』、国立競技場ライブ、ベイスターズについて語る。",
+    "thumbnailURL": "/images/logo.png",
+    "contentType": "interview",
+    "verified": true,
+    "lastCheckedAt": "2026-08-24T00:33:35.939Z"
+  },
+  {
+    "id": "link-csv-1787531615939-9",
+    "title": "【スカパー! プロ野球アンバサダー企画】バッテリィズと＝LOVE瀧脇笙古のゆるっと副音声",
+    "sourceName": "PR TIMES / スカパーJSAT",
+    "sourceURL": "https://prtimes.jp/main/html/rd/p/000000095.000158612.html",
+    "publishedDate": "2026-06-25",
+    "year": 2026,
+    "category": "ベイスターズ",
+    "tags": [
+      "瀧脇笙古",
+      "=LOVE",
+      "ベイスターズ"
+    ],
+    "description": "阪神vs横浜DeNA戦で、ベイスターズファンの瀧脇笙古がバッテリィズと副音声を担当する企画発表。",
+    "thumbnailURL": "/images/logo.png",
+    "contentType": "news",
+    "verified": true,
+    "lastCheckedAt": "2026-08-24T00:33:35.939Z"
+  },
+  {
+    "id": "link-csv-1787531615939-11",
+    "title": "阪神vs横浜DeNA戦で瀧脇笙古が副音声出演　GAORA特別企画",
+    "sourceName": "MANTANWEB / PR TIMES",
+    "sourceURL": "https://mantan-web.jp/prtimes/article/20260717prt00m200000787a.html",
+    "publishedDate": "2026-07-17",
+    "year": 2026,
+    "category": "ベイスターズ",
+    "tags": [
+      "瀧脇笙古",
+      "=LOVE",
+      "ベイスターズ"
+    ],
+    "description": "7月21日の阪神vs横浜DeNA戦で、瀧脇笙古がバッテリィズと副音声出演する企画を紹介。",
+    "thumbnailURL": "/images/logo.png",
+    "contentType": "news",
+    "verified": true,
+    "lastCheckedAt": "2026-08-24T00:33:35.939Z"
+  },
+  {
+    "id": "link-csv-1787531615939-12",
+    "title": "瀧脇笙古へのバースデーメッセージを募集",
+    "sourceName": "＝LOVE公式",
+    "sourceURL": "https://equal-love.jp/news/detail/11713",
+    "publishedDate": "2026-07-08",
+    "year": 2026,
+    "category": "公式情報",
+    "tags": [
+      "瀧脇笙古",
+      "=LOVE",
+      "公式情報"
+    ],
+    "description": "7月9日の誕生日に向けたファンクラブ公式バースデーメッセージ募集と生誕記念特設サイトの案内。",
+    "thumbnailURL": "/images/logo.png",
+    "contentType": "official",
+    "verified": true,
+    "lastCheckedAt": "2026-08-24T00:33:35.939Z"
+  },
   // ==========================================
   // 🎬 MOVIE / YouTube 瀧脇笙古さん本人直接出演確定データ (全101件)
   // 最厳格掲載基準: 動画内に「瀧脇笙古本人が実際に出演している」動画のみ厳選。
