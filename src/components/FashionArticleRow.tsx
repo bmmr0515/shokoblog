@@ -25,17 +25,17 @@ export const FashionArticleRow: React.FC<FashionArticleRowProps> = ({ item }) =>
           {item.publishedDate.replace(/-/g, ".")}
         </span>
 
-        {/* カテゴリ / 媒体 (ひまわりイエロー ＋ ブラウン文字) */}
+        {/* カテゴリ / 媒体 */}
         <div className="flex items-center gap-2 shrink-0">
           <span className="px-2.5 py-0.5 bg-[#FFF4C7] border border-[#F6C744]/40 text-[#5C4533] font-mono font-bold text-[10px] uppercase rounded-full">
             {item.category}
           </span>
-          <span className="text-[#8C694D] font-mono text-[11px] font-bold">
-            // {item.channelName || item.sourceName}
+          <span className="text-[#8C694D] font-sans text-[11px] font-bold">
+            [{item.channelName || item.sourceName}]
           </span>
         </div>
 
-        {/* タイトル (柔らかく読みやすい Noto Sans / 丸みほんのり) */}
+        {/* タイトル */}
         <h3 className="font-bold text-[#191919] text-sm sm:text-base group-hover:text-[#E99A32] transition-colors leading-snug font-sans">
           {item.title}
         </h3>

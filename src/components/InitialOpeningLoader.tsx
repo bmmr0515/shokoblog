@@ -44,18 +44,15 @@ export const InitialOpeningLoader: React.FC = () => {
         opacity: isFadingOut ? 0 : 1,
         transition: "opacity 300ms ease-out",
       }}
-      className="fixed inset-0 z-9999 bg-zinc-950 flex flex-col items-center justify-center pointer-events-none"
+      className="fixed inset-0 z-9999 bg-[#191919] flex flex-col items-center justify-center pointer-events-none"
     >
-      <div className="text-center space-y-2">
-        <div className="font-mono text-[10px] sm:text-xs tracking-widest text-yellow-500 font-bold uppercase">
-          // TAKIWAKI SHOKO UNOFFICIAL FAN SITE
+      <div className="text-center space-y-2.5">
+        <div className="text-[10px] sm:text-xs tracking-widest text-[#F6C744] font-bold uppercase font-sans">
+          瀧脇笙古 非公式ファンサイト
         </div>
-        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight font-sans">
+        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-maru font-extrabold text-white tracking-tight">
           しょこらの部屋
         </h1>
-        <div className="font-mono text-[9px] text-zinc-500 tracking-widest uppercase pt-1">
-          LOADING VISUAL EXPERIENCE...
-        </div>
       </div>
     </div>
   );
