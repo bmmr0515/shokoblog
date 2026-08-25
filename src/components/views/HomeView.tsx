@@ -81,12 +81,12 @@ export function HomeView() {
       <InitialOpeningLoader />
 
       {/* ======================================================== */}
-      {/* 1. ヒーローセクション (ダミー英字・座標全削除 ＆ 本質的で上品な構成) */}
+      {/* 1. ヒーローセクション */}
       {/* ======================================================== */}
       <section className="relative py-6 sm:py-10 px-5 sm:px-10 bg-[#FFF9ED] rounded-2xl border border-[#F5ECD8]">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           
-          {/* 左側 40%: しょこらの部屋・説明文・公式SNS のみ */}
+          {/* 左側 40%: しょこらの部屋・説明文・公式SNS */}
           <div className="lg:col-span-5 space-y-6">
             <HeroReveal delay={0}>
               <div className="space-y-4">
@@ -198,7 +198,7 @@ export function HomeView() {
       <div className="border-b border-[#F0E4CE] my-4 sm:my-6" />
 
       {/* ======================================================== */}
-      {/* 01 NEWS (最新情報 - すっきり整理) */}
+      {/* 01 NEWS (最新情報) */}
       {/* ======================================================== */}
       <Reveal id="news" className="space-y-6 relative">
         <div className="absolute -top-10 right-2 text-6xl sm:text-7xl font-mono font-bold text-[#FFF4C7] select-none pointer-events-none">
@@ -407,7 +407,7 @@ export function HomeView() {
           </Reveal>
 
           {/* ======================================================== */}
-          {/* 04 PROFILE (人物特集) */}
+          {/* 04 PROFILE (人物特集 - 事実確認に基づいた上品な表現) */}
           {/* ======================================================== */}
           <Reveal id="profile-teaser" className="space-y-6 relative">
             <div className="absolute -top-10 right-2 text-6xl sm:text-7xl font-mono font-bold text-[#FFF4C7] select-none pointer-events-none">
@@ -440,31 +440,77 @@ export function HomeView() {
               </Link>
             </div>
 
+            {/* 人物特集ページ風の洗練されたカード */}
             <div className="bg-white border border-[#F0E4CE] p-6 sm:p-8 space-y-6 rounded-2xl shadow-2xs">
-              <div className="space-y-2">
-                <div className="font-maru text-xs font-bold text-[#E99A32] tracking-wider">
-                  瀧脇笙古 (たきわき しょうこ)
+              
+              {/* 大見出し ＋ 確実な一次情報文章 */}
+              <div className="space-y-3">
+                <div className="flex items-center justify-between border-b border-[#F0E4CE] pb-3">
+                  <div>
+                    <h3 className="text-2xl sm:text-3xl font-maru font-extrabold text-[#191919]">
+                      瀧脇笙古 <span className="text-xs font-mono font-normal text-[#8C694D]">（たきわき しょうこ）</span>
+                    </h3>
+                  </div>
+                  <span className="px-3 py-1 bg-[#FFF4C7] text-[#5C4533] font-mono font-bold text-xs rounded-full border border-[#F6C744]/40">
+                    ＝LOVE
+                  </span>
                 </div>
+
                 <p className="text-xs sm:text-sm text-[#5C4533] leading-relaxed font-bold font-sans">
-                  指原莉乃プロデュースの声優アイドルグループ「＝LOVE（イコールラブ）」メンバー。2001年7月9日生まれ、神奈川県出身。横浜DeNAベイスターズファン、サブ4達成ランナー、料理上手として知られるマルチクリエイター。
+                  2001年7月9日生まれ、神奈川県出身。指原莉乃プロデュースのアイドルグループ「＝LOVE」のメンバー。愛称は「しょこちゃん」。料理、ヘアアレンジ、横浜散策、カフェ巡りを趣味とし、特技はマラソン。横浜DeNAベイスターズへの愛、フルマラソンへの挑戦、料理、そしてステージで見せるパフォーマンスなど、好きなことを長く続けながら自分の強みに変えてきたメンバーです。
                 </p>
               </div>
 
-              {/* 人物特徴キーワード GRID */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
-                {[
-                  { label: "YOKOHAMA", sub: "横浜DeNAベイスターズ" },
-                  { label: "RUNNING", sub: "フルマラソン サブ4" },
-                  { label: "COOKING", sub: "クックパッドLIVE" },
-                  { label: "CENTER", sub: "木漏れ日メゾフォルテ" },
-                ].map((box) => (
-                  <div key={box.label} className="p-3 bg-[#FFF9ED] border border-[#F0E4CE] space-y-1 rounded-xl">
-                    <div className="font-extrabold text-[#191919] text-xs font-mono">{box.label}</div>
-                    <div className="text-[10px] text-[#8C694D] leading-snug font-sans">{box.sub}</div>
+              {/* 特徴 4項目 (ご指示通りの正確な記録・事実情報) */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+                
+                {/* 1. YOKOHAMA */}
+                <div className="p-4 bg-[#FFF9ED] border border-[#F0E4CE] space-y-1.5 rounded-xl">
+                  <div className="flex items-center justify-between font-mono">
+                    <span className="font-extrabold text-[#191919] text-xs">YOKOHAMA</span>
+                    <span className="text-[10px] text-[#E99A32] font-bold">横浜・ベイスターズ</span>
                   </div>
-                ))}
+                  <p className="text-[11px] text-[#5C4533] leading-relaxed font-sans font-bold">
+                    横浜とベイスターズを愛する、しょこちゃん。神奈川県出身で公式プロフィールの趣味にも「横浜散策」。横浜DeNAベイスターズファンとしても知られ、セレモニアルピッチ、連載「BAY☆スタ」、野球関連番組など活動の幅を広げています。
+                  </p>
+                </div>
+
+                {/* 2. RUNNING */}
+                <div className="p-4 bg-[#FFF9ED] border border-[#F0E4CE] space-y-1.5 rounded-xl">
+                  <div className="flex items-center justify-between font-mono">
+                    <span className="font-extrabold text-[#191919] text-xs">RUNNING</span>
+                    <span className="text-[10px] text-[#E99A32] font-bold">サブ4達成</span>
+                  </div>
+                  <p className="text-[11px] text-[#5C4533] leading-relaxed font-sans font-bold">
+                    <span className="text-[#191919] font-extrabold">東京マラソン2023でサブ4達成（3時間57分06秒）</span>。フルマラソン完走とサブ4を達成し、公式プロフィールの特技でも「マラソン」とされています。
+                  </p>
+                </div>
+
+                {/* 3. COOKING */}
+                <div className="p-4 bg-[#FFF9ED] border border-[#F0E4CE] space-y-1.5 rounded-xl">
+                  <div className="flex items-center justify-between font-mono">
+                    <span className="font-extrabold text-[#191919] text-xs">COOKING</span>
+                    <span className="text-[10px] text-[#E99A32] font-bold">料理・カレー丼</span>
+                  </div>
+                  <p className="text-[11px] text-[#5C4533] leading-relaxed font-sans font-bold">
+                    公式プロフィールの趣味のひとつが「料理」。2018年の「クックアイドルNo.1決定戦」で決勝進出し、本人考案の「疲労回復キーマカレー丼」を公開。
+                  </p>
+                </div>
+
+                {/* 4. CENTER */}
+                <div className="p-4 bg-[#FFF9ED] border border-[#F0E4CE] space-y-1.5 rounded-xl">
+                  <div className="flex items-center justify-between font-mono">
+                    <span className="font-extrabold text-[#191919] text-xs">CENTER</span>
+                    <span className="text-[10px] text-[#E99A32] font-bold">センター楽曲</span>
+                  </div>
+                  <p className="text-[11px] text-[#5C4533] leading-relaxed font-sans font-bold">
+                    2021年「BPM170の君へ」で自身初センターを担当。さらに2025年「木漏れ日メゾフォルテ」では音嶋莉沙ちゃんとのダブルセンターを担当。
+                  </p>
+                </div>
+
               </div>
 
+              {/* SNS 導線 */}
               <div className="pt-2 flex items-center gap-4 text-xs font-bold border-t border-[#F0E4CE]">
                 <a
                   href="https://x.com/shoko_takiwaki"
