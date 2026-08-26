@@ -14,6 +14,7 @@ import { HeroReveal } from "@/components/HeroReveal";
 import { HeroVideoPlayer } from "@/components/HeroVideoPlayer";
 import { FashionArticleRow } from "@/components/FashionArticleRow";
 import { InitialOpeningLoader } from "@/components/InitialOpeningLoader";
+import { FilaPopUpBanner } from "@/components/FilaPopUpBanner";
 
 export function HomeView() {
   const [items, setItems] = useState<LinkItem[]>([]);
@@ -75,7 +76,7 @@ export function HomeView() {
   ];
 
   return (
-    <div className="w-full max-w-[1720px] mx-auto px-5 sm:px-10 lg:px-16 space-y-16 sm:space-y-24 pb-16 pt-2">
+    <div className="w-full max-w-[1720px] mx-auto px-5 sm:px-10 lg:px-16 space-y-14 sm:space-y-20 pb-16 pt-2">
       
       {/* 初回オープニングローダー */}
       <InitialOpeningLoader />
@@ -194,8 +195,12 @@ export function HomeView() {
         </div>
       </section>
 
-      {/* 洗練された境界線 */}
-      <div className="border-b border-[#F0E4CE] my-4 sm:my-6" />
+      {/* ======================================================== */}
+      {/* 2. FILA POP UP 告知専用セクション (ヒーロー直下に自動判定表示) */}
+      {/* ======================================================== */}
+      <Reveal id="fila-popup-section">
+        <FilaPopUpBanner />
+      </Reveal>
 
       {/* ======================================================== */}
       {/* 01 NEWS (最新情報) */}
@@ -407,7 +412,7 @@ export function HomeView() {
           </Reveal>
 
           {/* ======================================================== */}
-          {/* 04 PROFILE (人物特集 - 事実確認に基づいた上品な表現) */}
+          {/* 04 PROFILE (人物特集) */}
           {/* ======================================================== */}
           <Reveal id="profile-teaser" className="space-y-6 relative">
             <div className="absolute -top-10 right-2 text-6xl sm:text-7xl font-mono font-bold text-[#FFF4C7] select-none pointer-events-none">
@@ -461,7 +466,7 @@ export function HomeView() {
                 </p>
               </div>
 
-              {/* 特徴 4項目 (ご指示通りの正確な記録・事実情報) */}
+              {/* 特徴 4項目 */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
                 
                 {/* 1. YOKOHAMA */}
