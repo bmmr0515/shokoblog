@@ -15,6 +15,7 @@ import { HeroVideoPlayer } from "@/components/HeroVideoPlayer";
 import { FashionArticleRow } from "@/components/FashionArticleRow";
 import { InitialOpeningLoader } from "@/components/InitialOpeningLoader";
 import { FilaPopUpBanner } from "@/components/FilaPopUpBanner";
+import { SingleReleaseSection } from "@/components/SingleReleaseSection";
 
 export function HomeView() {
   const [items, setItems] = useState<LinkItem[]>([]);
@@ -196,7 +197,14 @@ export function HomeView() {
       </section>
 
       {/* ======================================================== */}
-      {/* 2. FILA POP UP 告知専用セクション (ヒーロー直下に自動判定表示) */}
+      {/* 2. ＝LOVE 21stシングル発売記念 瀧脇笙古ちゃん店頭キャンペーン特集 */}
+      {/* ======================================================== */}
+      <Reveal id="single-release-section">
+        <SingleReleaseSection />
+      </Reveal>
+
+      {/* ======================================================== */}
+      {/* 3. FILA POP UP 告知専用セクション */}
       {/* ======================================================== */}
       <Reveal id="fila-popup-section">
         <FilaPopUpBanner />
