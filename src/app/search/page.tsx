@@ -8,6 +8,7 @@ import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Sidebar } from "@/components/Sidebar";
 import { ArticleListWithAds } from "@/components/ArticleListWithAds";
 import { Search, Sparkles } from "lucide-react";
+import { sortItemsByDate } from "@/lib/date-sort";
 
 function SearchContent() {
   const searchParams = useSearchParams();
@@ -34,7 +35,7 @@ function SearchContent() {
     .split(/\s+/)
     .filter((k) => k.length > 0);
 
-  const searchResults = query
+  const rawSearchResults = query
     ? items.filter((item) => {
         const fullText = (
           item.title +
@@ -51,6 +52,8 @@ function SearchContent() {
         return keywords.every((kw) => fullText.includes(kw));
       })
     : [];
+
+  const searchResults = sortItemsByDate(rawSearchResults, "desc");
 
   const suggestedKeywords = ["ベイスターズ", "マラソン", "料理", "横浜", "SASUKE", "インタビュー"];
 
