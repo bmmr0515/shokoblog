@@ -4,22 +4,21 @@ import React, { useEffect, useState } from "react";
 import { ExternalLink, MapPin, Calendar, Sparkles } from "lucide-react";
 
 export const FilaPopUpBanner: React.FC = () => {
-  const [isActive, setIsActive] = useState(false);
+  // デフォルト true で確実にバナーを初回レンダリング
+  const [isActive, setIsActive] = useState(true);
 
   useEffect(() => {
-    // 現在日時の自動判定 (2026-08-26 00:00:00 〜 2026-09-01 23:59:59)
+    // 終了日時の判定: 2026年9月1日 23:59:59 (JST)
+    // 実機ブラウザの年数差に左右されず、終了日時を明確に過ぎた場合のみ非表示にする
     const now = new Date();
-    const startDate = new Date("2026-08-26T00:00:00+09:00");
-    const endDate = new Date("2026-09-01T23:59:59+09:00");
+    const expiryDate = new Date("2026-09-01T23:59:59+09:00");
 
-    if (now >= startDate && now <= endDate) {
-      setIsActive(true);
-    } else {
+    if (now > expiryDate) {
       setIsActive(false);
     }
   }, []);
 
-  // 期間外は自動で完全非表示
+  // 2026年9月2日以降は自動で非表示
   if (!isActive) return null;
 
   return (
