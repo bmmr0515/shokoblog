@@ -40,6 +40,30 @@ export const INITIAL_YEARS = [2026, 2025, 2024, 2023, 2022, 2021, 2020, 2019, 20
 
 export const INITIAL_LINK_ITEMS: LinkItem[] = [
   {
+  "id": "link-fmyokohama-tresen-20260827",
+  "title": "今日のゲスト「＝LOVE」 #イコラブ #瀧脇笙古",
+  "sourceName": "Fm yokohama Tresen",
+  "sourceURL": "https://tresen.fmyokohama.jp/51060/",
+  "publishedDate": "2026-08-27",
+  "year": 2026,
+  "category": "テレビ・ラジオ",
+  "tags": [
+    "瀧脇笙古",
+    "=LOVE",
+    "Fm yokohama",
+    "Tresen",
+    "ラジオ",
+    "横浜"
+  ],
+  "description": "＝LOVEの瀧脇笙古ちゃんがFm yokohama「Tresen」にゲスト出演。今回で番組最多18回目の登場となった最新出演記事。",
+  "contentType": "news",
+  "thumbnailURL": "/images/logo.png",
+  "verified": true,
+  "lastCheckedAt": "2026-08-27T10:04:44.010Z",
+  "isFeatured": true,
+  "isHighlight": true
+},
+  {
     "id": "link-news-1787533058829-0",
     "title": "＝LOVE、韓国SBS「인기가요(人気歌謡)」に初出演決定。「恋、はじめました。」を韓国語で初歌唱",
     "sourceName": "PR TIMES / ソニー・ミュージックレーベルズ",

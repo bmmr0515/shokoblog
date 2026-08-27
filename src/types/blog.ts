@@ -59,6 +59,7 @@ export interface LinkItem {
   contentType: ContentType;
   youtubeURL?: string | null;
   videoId?: string;
+  radikoURL?: string | null;
   verified: boolean;
   lastCheckedAt: string;
   isFeatured?: boolean;
