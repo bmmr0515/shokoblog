@@ -5,7 +5,7 @@ import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Sidebar } from "@/components/Sidebar";
 import { getLinkItems } from "@/lib/store";
 import { LinkItem } from "@/types/blog";
-import { ExternalLink, Award, Trophy, User } from "lucide-react";
+import { ExternalLink, Award, Trophy, User, Heart, Sparkles, Flame, Users } from "lucide-react";
 
 export function ProfileView() {
   const [items, setItems] = useState<LinkItem[]>([]);
@@ -30,20 +30,20 @@ export function ProfileView() {
   ];
 
   const mainAchievements = [
+    { title: "クックアイドルNo.1決定戦", detail: "優勝 / 本人考案レシピ公開" },
     { title: "東京マラソン2023", detail: "3時間57分06秒 / サブ4達成" },
-    { title: "BPM170の君へ", detail: "自身初センター" },
+    { title: "BPM170の君へ", detail: "自身初センターを担当" },
     { title: "木漏れ日メゾフォルテ", detail: "音嶋莉沙ちゃんとのダブルセンター" },
     { title: "フジテレビONE『プロ野球ニュース』", detail: "木曜MC" },
-    { title: "サンケイスポーツ特別版「BAY☆スタ」", detail: "「BAYSTARS=LOVE」連載" },
   ];
 
   return (
     <div className="w-full max-w-[1280px] mx-auto px-5 sm:px-8 lg:px-12 space-y-8 py-2">
       
-      {/* 9. パンくず ＆ 余白 */}
+      {/* パンくず ＆ 余白 */}
       <Breadcrumbs items={[{ label: "PROFILE" }]} />
 
-      {/* 6. タイトル強弱表現 */}
+      {/* タイトル強弱表現 */}
       <div className="border-b-2 border-[#191919] pb-4 space-y-1">
         <div className="flex items-center gap-2 text-xs font-mono font-bold text-[#8C694D] uppercase">
           <User className="w-4 h-4 text-[#E99A32]" />
@@ -54,12 +54,12 @@ export function ProfileView() {
             PROFILE
           </h1>
           <span className="text-xs sm:text-sm font-maru font-bold text-[#8C694D]">
-            瀧脇笙古 プロフィール
+            瀧脇笙古 プロフィール ＆ 魅力紹介
           </span>
         </div>
       </div>
 
-      {/* 1. 2. 中央配置 ＆ 8:4 カラム */}
+      {/* 2カラム構成 */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
         
         {/* メインカラム (720px〜800px) */}
@@ -109,7 +109,87 @@ export function ProfileView() {
             </div>
           </div>
 
-          {/* 2. 主な記録・実績 */}
+          {/* 2. 4テーマ魅力特集 (EFFORT / GROWTH / FAN / CHALLENGE) */}
+          <div className="border border-[#F0E4CE] p-6 sm:p-8 space-y-6 bg-white rounded-2xl shadow-2xs">
+            <div className="border-b border-[#F0E4CE] pb-3 space-y-1">
+              <div className="text-[10px] font-mono font-bold text-[#E99A32] uppercase">
+                ESSENCE & CHARM OF SHOKO
+              </div>
+              <h3 className="font-maru font-extrabold text-lg sm:text-xl text-[#191919]">
+                瀧脇笙古ちゃんの魅力 4つのストーリー
+              </h3>
+            </div>
+
+            <div className="space-y-6 font-sans">
+              
+              {/* Theme 1: EFFORT / 努力 */}
+              <div className="p-4 sm:p-5 bg-[#FFF9ED] border border-[#F0E4CE] rounded-xl space-y-2">
+                <div className="flex items-center gap-2 font-mono">
+                  <span className="p-1 bg-[#F6C744] text-[#191919] rounded font-bold text-[10px]">
+                    01
+                  </span>
+                  <span className="font-bold text-[#E99A32] text-xs uppercase">EFFORT // 努力と研鑽</span>
+                </div>
+                <h4 className="font-maru font-extrabold text-base text-[#191919]">
+                  未経験から積み重ねたパフォーマンス
+                </h4>
+                <p className="text-xs text-[#5C4533] font-bold leading-relaxed max-w-[640px]">
+                  ＝LOVE加入時はダンス未経験。そこから日々のレッスンと努力を積み重ね、現在ではダンスパートや重要な歌割りを任される場面も増えています。最初から完成されたアイドルではなく、地道な努力で成長してきた姿勢が大きな魅力です。
+                </p>
+              </div>
+
+              {/* Theme 2: GROWTH / 成長と結果 */}
+              <div className="p-4 sm:p-5 bg-[#FFF9ED] border border-[#F0E4CE] rounded-xl space-y-2">
+                <div className="flex items-center gap-2 font-mono">
+                  <span className="p-1 bg-[#F6C744] text-[#191919] rounded font-bold text-[10px]">
+                    02
+                  </span>
+                  <span className="font-bold text-[#E99A32] text-xs uppercase">GROWTH // 好きなことを結果に</span>
+                </div>
+                <h4 className="font-maru font-extrabold text-base text-[#191919]">
+                  クックアイドル優勝 ＆ マラソン サブ4達成
+                </h4>
+                <p className="text-xs text-[#5C4533] font-bold leading-relaxed max-w-[640px]">
+                  料理では「クックアイドルNo.1決定戦」で<span className="text-[#191919] bg-[#FFF4C7] px-1 rounded">優勝</span>し、本人考案レシピを公開。マラソンでは「東京マラソン2023」でサブ4（3時間57分06秒）を達成。さらにステージでは「BPM170の君へ」で自身初センター、「木漏れ日メゾフォルテ」ではダブルセンターを担当し、好きなこと・特技を確かな結果へと結びつけてきました。
+                </p>
+              </div>
+
+              {/* Theme 3: FAN / ファンとの絆 */}
+              <div className="p-4 sm:p-5 bg-[#FFF9ED] border border-[#F0E4CE] rounded-xl space-y-2">
+                <div className="flex items-center gap-2 font-mono">
+                  <span className="p-1 bg-[#F6C744] text-[#191919] rounded font-bold text-[10px]">
+                    03
+                  </span>
+                  <span className="font-bold text-[#E99A32] text-xs uppercase">FAN // ファンとの距離感と歩み</span>
+                </div>
+                <h4 className="font-maru font-extrabold text-base text-[#191919]">
+                  一緒に成長を感じられる時間
+                </h4>
+                <p className="text-xs text-[#5C4533] font-bold leading-relaxed max-w-[640px]">
+                  SHOWROOMなどを通して継続的に自分の言葉で発信を続け、ファンからは記憶力の良さや、一人ひとりとの交流を大切にする姿勢も魅力として語られています。「応援しているうちに、成長を一緒に感じられる」という時間そのものが、瀧脇笙古ちゃんを応援する楽しさの大きなひとつです。
+                </p>
+              </div>
+
+              {/* Theme 4: CHALLENGE / 挑戦と愛 */}
+              <div className="p-4 sm:p-5 bg-[#FFF9ED] border border-[#F0E4CE] rounded-xl space-y-2">
+                <div className="flex items-center gap-2 font-mono">
+                  <span className="p-1 bg-[#F6C744] text-[#191919] rounded font-bold text-[10px]">
+                    04
+                  </span>
+                  <span className="font-bold text-[#E99A32] text-xs uppercase">CHALLENGE // 横浜・ベイスターズ・挑戦</span>
+                </div>
+                <h4 className="font-maru font-extrabold text-base text-[#191919]">
+                  個性を強みに変えていく力
+                </h4>
+                <p className="text-xs text-[#5C4533] font-bold leading-relaxed max-w-[640px]">
+                  横浜DeNAベイスターズへの愛、横浜散策、SASUKEへの挑戦など、一見するとバラバラに見える好きなことや情熱を、一つずつ長く続けながら自分の確かな強みに変えてきたのが瀧脇笙古さんです。
+                </p>
+              </div>
+
+            </div>
+          </div>
+
+          {/* 3. 主な記録・実績 */}
           <div className="border border-[#F6C744] p-6 sm:p-8 space-y-4 bg-[#FFF9ED]/80 rounded-2xl shadow-2xs">
             <h3 className="font-maru font-extrabold text-base text-[#191919] border-b border-[#F0E4CE] pb-2.5 flex items-center gap-2">
               <Trophy className="w-4 h-4 text-[#E99A32]" />
@@ -128,60 +208,6 @@ export function ProfileView() {
                   </div>
                 </div>
               ))}
-            </div>
-          </div>
-
-          {/* 3. 経歴・主なトピックス (可読幅 max-w-[680px] / max-w-[640px]) */}
-          <div className="border border-[#F0E4CE] p-6 sm:p-8 space-y-5 bg-white rounded-2xl shadow-2xs">
-            <h3 className="font-maru font-extrabold text-base text-[#191919] border-b border-[#F0E4CE] pb-2.5">
-              経歴・主なトピックス
-            </h3>
-
-            <div className="text-[#5C4533] leading-relaxed space-y-5 text-xs sm:text-sm font-sans font-bold max-w-[680px]">
-              <div className="space-y-2">
-                <h4 className="font-maru font-extrabold text-[#191919] text-sm sm:text-base border-l-4 border-[#F6C744] pl-2.5">
-                  横浜・横浜DeNAベイスターズへの深い情熱
-                </h4>
-                <p className="max-w-[640px]">
-                  2017年より＝LOVEのメンバーとして活動する、愛称「しょこちゃん」。神奈川・横浜への愛が強く、横浜DeNAベイスターズのファンとしても知られています。
-                </p>
-                <p className="max-w-[640px]">
-                  横浜スタジアムでのセレモニアルピッチ、サンケイスポーツ特別版「BAY☆スタ」の連載「BAYSTARS=LOVE」、フジテレビONE『プロ野球ニュース』木曜MCなど、アイドルの枠を越えて野球・横浜に関わる活動を広げています。
-                </p>
-              </div>
-
-              <div className="space-y-2 pt-1">
-                <h4 className="font-maru font-extrabold text-[#191919] text-sm sm:text-base border-l-4 border-[#F6C744] pl-2.5">
-                  スポーツへのストイックな挑戦
-                </h4>
-                <p className="max-w-[640px]">
-                  スポーツへの挑戦も、しょこちゃんを語るうえで欠かせません。東京マラソン2023では42.195kmを「3時間57分06秒」で完走し、念願のサブ4を達成。TBS『SASUKE』への出場やSASUKEアイドル予選会への挑戦など、持久力と努力を武器に活動の幅を広げています。
-                </p>
-              </div>
-
-              <div className="space-y-2 pt-1">
-                <h4 className="font-maru font-extrabold text-[#191919] text-sm sm:text-base border-l-4 border-[#F6C744] pl-2.5">
-                  センター楽曲と＝LOVEでの輝き
-                </h4>
-                <p className="max-w-[640px]">
-                  ＝LOVEでは、2021年に「BPM170の君へ」で自身初のセンターを担当。疾走感のある楽曲と、ランニングを続けてきたしょこちゃん自身の歩みが重なる一曲となりました。
-                </p>
-                <p className="max-w-[640px]">
-                  さらに「木漏れ日メゾフォルテ」では音嶋莉沙ちゃんとのダブルセンターを務めるなど、グループの中でも新たな表情を見せ続けています。
-                </p>
-              </div>
-
-              <div className="space-y-2 pt-1">
-                <h4 className="font-maru font-extrabold text-[#191919] text-sm sm:text-base border-l-4 border-[#F6C744] pl-2.5">
-                  料理と自然体で親しみやすい魅力
-                </h4>
-                <p className="max-w-[640px]">
-                  料理も得意分野のひとつです。「クックアイドルNo.1決定戦」への挑戦をはじめ、グルメ企画や料理企画にも数多く出演。一方で「しょこりさ」の街歩きやハンバーガー部などでは、スポーツ時のストイックな姿とはまた違う、自然体で親しみやすい姿を見ることができます。
-                </p>
-                <p className="font-maru font-extrabold text-[#191919] pt-2 text-sm sm:text-base border-t border-[#F0E4CE]">
-                  「アイドル」「ランナー」「野球ファン」「横浜」「料理」。一見するとバラバラに見える好きなことや挑戦を、ひとつずつ長く続けながら自分の強みに変えてきたのが瀧脇笙古さんです。
-                </p>
-              </div>
             </div>
           </div>
 

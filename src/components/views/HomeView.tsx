@@ -454,50 +454,50 @@ export function HomeView() {
                 </div>
 
                 <p className="text-xs sm:text-sm text-[#5C4533] leading-relaxed font-bold font-sans">
-                  2001年7月9日生まれ、神奈川県出身。指原莉乃プロデュースのアイドルグループ「＝LOVE」のメンバー。愛称は「しょこちゃん」。料理、ヘアアレンジ、横浜散策、カフェ巡りを趣味とし、特技はマラソン。横浜DeNAベイスターズへの愛、フルマラソンへの挑戦、料理、そしてステージで見せるパフォーマンスなど、好きなことを長く続けながら自分の強みに変えてきたメンバーです。
+                  2001年7月9日生まれ、神奈川県出身。指原莉乃プロデュースの「＝LOVE」メンバー。加入時はダンス未経験から努力を積み重ね、パフォーマンス力と重要な歌割りを手にしてきた成長系アイドル。「クックアイドルNo.1決定戦」優勝、東京マラソン2023サブ4達成、センター楽曲の担当など、好きなことを熱量と継続で確かな強みに変えてきた人物です。
                 </p>
               </div>
 
-              {/* 特徴 4項目 */}
+              {/* 特徴 4テーマ (EFFORT / GROWTH / FAN / CHALLENGE) */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
                 
                 <div className="p-3.5 bg-[#FFF9ED] border border-[#F0E4CE] space-y-1 rounded-xl">
                   <div className="flex items-center justify-between font-mono">
-                    <span className="font-extrabold text-[#191919] text-xs">YOKOHAMA</span>
-                    <span className="text-[10px] text-[#E99A32] font-bold">横浜・ベイスターズ</span>
+                    <span className="font-extrabold text-[#191919] text-xs">EFFORT</span>
+                    <span className="text-[10px] text-[#E99A32] font-bold">未経験からの努力</span>
                   </div>
                   <p className="text-[11px] text-[#5C4533] leading-relaxed font-sans font-bold">
-                    横浜とベイスターズを愛する、しょこちゃん。神奈川県出身で「横浜散策」が趣味。セレモニアルピッチ、連載「BAY☆スタ」、野球関連番組で活動。
+                    ダンス未経験で加入。地道な努力を積み重ね、現在ではダンスパートや重要パートを担当する成長の物語。
                   </p>
                 </div>
 
                 <div className="p-3.5 bg-[#FFF9ED] border border-[#F0E4CE] space-y-1 rounded-xl">
                   <div className="flex items-center justify-between font-mono">
-                    <span className="font-extrabold text-[#191919] text-xs">RUNNING</span>
-                    <span className="text-[10px] text-[#E99A32] font-bold">サブ4達成</span>
+                    <span className="font-extrabold text-[#191919] text-xs">GROWTH</span>
+                    <span className="text-[10px] text-[#E99A32] font-bold">クックアイドル優勝</span>
                   </div>
                   <p className="text-[11px] text-[#5C4533] leading-relaxed font-sans font-bold">
-                    <span className="text-[#191919] font-extrabold">東京マラソン2023でサブ4達成（3時間57分06秒）</span>。フルマラソン完走。特技はマラソン。
+                    <span className="text-[#191919] font-extrabold">「クックアイドルNo.1決定戦」で優勝</span>。東京マラソンサブ4（3時間57分06秒）達成、センター楽曲担当。
                   </p>
                 </div>
 
                 <div className="p-3.5 bg-[#FFF9ED] border border-[#F0E4CE] space-y-1 rounded-xl">
                   <div className="flex items-center justify-between font-mono">
-                    <span className="font-extrabold text-[#191919] text-xs">COOKING</span>
-                    <span className="text-[10px] text-[#E99A32] font-bold">料理・キーマカレー丼</span>
+                    <span className="font-extrabold text-[#191919] text-xs">FAN</span>
+                    <span className="text-[10px] text-[#E99A32] font-bold">ファンとの歩み</span>
                   </div>
                   <p className="text-[11px] text-[#5C4533] leading-relaxed font-sans font-bold">
-                    趣味は料理。「クックアイドルNo.1決定戦」で決勝進出し、本人考案の「疲労回復キーマカレー丼」も話題に。
+                    SHOWROOM等の配信を継続。一人ひとりとの交流を大切にし、応援するほど成長を一緒に感じられる存在。
                   </p>
                 </div>
 
                 <div className="p-3.5 bg-[#FFF9ED] border border-[#F0E4CE] space-y-1 rounded-xl">
                   <div className="flex items-center justify-between font-mono">
-                    <span className="font-extrabold text-[#191919] text-xs">CENTER</span>
-                    <span className="text-[10px] text-[#E99A32] font-bold">センター楽曲</span>
+                    <span className="font-extrabold text-[#191919] text-xs">CHALLENGE</span>
+                    <span className="text-[10px] text-[#E99A32] font-bold">横浜・強みへの挑戦</span>
                   </div>
                   <p className="text-[11px] text-[#5C4533] leading-relaxed font-sans font-bold">
-                    2021年「BPM170の君へ」初センター。2025年「木漏れ日メゾフォルテ」音嶋莉沙ちゃんとのダブルセンター。
+                    横浜DeNAベイスターズ愛、横浜散策、SASUKE等、好きなことを長く続けながら個性を自分の強みに変える力。
                   </p>
                 </div>
 
