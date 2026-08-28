@@ -40,6 +40,75 @@ export const INITIAL_YEARS = [2026, 2025, 2024, 2023, 2022, 2021, 2020, 2019, 20
 
 export const INITIAL_LINK_ITEMS: LinkItem[] = [
   {
+  "id": "link-eqlove-sanrio-present-20260828",
+  "title": "21stシングル発売記念 ＝LOVE × サンリオキャラクタースペシャルライブ 本日当選発表",
+  "sourceName": "＝LOVE Official",
+  "sourceURL": "https://equal-love.jp/news/detail/11602",
+  "publishedDate": "2026-08-28",
+  "year": 2026,
+  "category": "公式情報",
+  "tags": [
+    "＝LOVE",
+    "サンリオ",
+    "スペシャルライブ",
+    "恋をはじめました",
+    "当選発表"
+  ],
+  "description": "21stシングル『恋、はじめました。』発売記念スペシャルプレゼント企画。9月2日開催「＝LOVE サンリオキャラクタースペシャルライブ」の当選発表日です。",
+  "contentType": "official",
+  "thumbnailURL": "/images/logo.png",
+  "verified": true,
+  "lastCheckedAt": "2026-08-28T02:28:19.056Z",
+  "isFeatured": true,
+  "isHighlight": true
+},
+  {
+  "id": "link-eqlove-mstation-20260828",
+  "title": "本日Mステ出演！テレビ朝日系「ミュージックステーション」『恋、はじめました。』披露",
+  "sourceName": "テレビ朝日 Mステ",
+  "sourceURL": "https://sp.equal-love.jp/news/detail/11826",
+  "publishedDate": "2026-08-28",
+  "year": 2026,
+  "category": "テレビ・ラジオ",
+  "tags": [
+    "＝LOVE",
+    "Mステ",
+    "ミュージックステーション",
+    "恋をはじめました",
+    "瀧脇笙古"
+  ],
+  "description": "＝LOVEがテレビ朝日系「ミュージックステーション」（21:00〜21:54）に出演。新曲『恋、はじめました。』を披露します。",
+  "contentType": "tv",
+  "thumbnailURL": "/images/logo.png",
+  "verified": true,
+  "lastCheckedAt": "2026-08-28T02:28:19.056Z",
+  "isFeatured": true,
+  "isHighlight": true
+},
+  {
+  "id": "link-eqlove-9th-concert-fc2-20260828",
+  "title": "9th ANNIVERSARY PREMIUM CONCERT FC2次先行 当落日",
+  "sourceName": "＝LOVE Official",
+  "sourceURL": "https://equal-love.jp/news/detail/11840",
+  "publishedDate": "2026-08-28",
+  "year": 2026,
+  "category": "公式情報",
+  "tags": [
+    "＝LOVE",
+    "9thANNIVERSARY",
+    "コンサート",
+    "TOYOTAARENATOKYO",
+    "FC先行"
+  ],
+  "description": "＝LOVE 9周年コンサート「＝LOVE 9th ANNIVERSARY PREMIUM CONCERT」FC2次先行の当落日です。公演：2026年10月15日・16日 TOYOTA ARENA TOKYO",
+  "contentType": "official",
+  "thumbnailURL": "/images/logo.png",
+  "verified": true,
+  "lastCheckedAt": "2026-08-28T02:28:19.056Z",
+  "isFeatured": true,
+  "isHighlight": true
+},
+  {
   "id": "link-fmyokohama-tresen-20260827",
   "title": "今日のゲスト「＝LOVE」 #イコラブ #瀧脇笙古",
   "sourceName": "Fm yokohama Tresen",
