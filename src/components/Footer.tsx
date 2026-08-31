@@ -28,10 +28,11 @@ export const Footer: React.FC = () => {
             <div className="text-[10px] font-bold text-[#F6C744] uppercase tracking-widest">
               // SITE INDEX
             </div>
-            <div className="grid grid-cols-2 gap-2 text-xs font-bold">
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 text-xs font-bold">
               <Link href="/news" className="hover:text-white transition-colors">NEWS (最新情報)</Link>
               <Link href="/articles" className="hover:text-white transition-colors">ARTICLES (記事)</Link>
               <Link href="/youtube" className="hover:text-white transition-colors">MOVIE (動画)</Link>
+              <Link href="/history" className="hover:text-[#F6C744] text-[#F6C744] transition-colors">HISTORY (歴史)</Link>
               <Link href="/profile" className="hover:text-white transition-colors">PROFILE (人物)</Link>
               <Link href="/about" className="hover:text-white transition-colors">ABOUT (当サイトについて)</Link>
               <Link href="/contact" className="hover:text-white transition-colors">CONTACT (お問い合わせ)</Link>
