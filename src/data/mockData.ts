@@ -40,6 +40,53 @@ export const INITIAL_YEARS = [2026, 2025, 2024, 2023, 2022, 2021, 2020, 2019, 20
 
 export const INITIAL_LINK_ITEMS: LinkItem[] = [
   {
+    "id": "link-fila-hankyu-popup-lastday-20260901",
+    "title": "FILA 2026FW POP UP 本日最終日（阪急うめだ本店）",
+    "sourceName": "FILA / 阪急うめだ本店",
+    "sourceURL": "https://www.fila.jp/contents/feature/fila_eley/",
+    "publishedDate": "2026-09-01",
+    "year": 2026,
+    "category": "イベント",
+    "tags": [
+      "瀧脇笙古",
+      "FILA",
+      "POP UP",
+      "阪急うめだ本店",
+      "本日最終日",
+      "スタイリングパートナー"
+    ],
+    "description": "瀧脇笙古がスタイリングパートナーを務めるFILA 2026FW POP UPが、阪急うめだ本店 8F 「GREEN AGE」コトコトステージ81で本日9月1日（10:00〜20:00）まで開催中。",
+    "contentType": "news",
+    "thumbnailURL": "/images/logo.png",
+    "verified": true,
+    "lastCheckedAt": "2026-09-01T08:15:00.000Z",
+    "isFeatured": true,
+    "isHighlight": true
+  },
+  {
+    "id": "link-eqlove-kimiai-tv-20260901",
+    "title": "「キミはもっと＝LOVEを愛せるか!!!」放送予定（フジテレビ 深夜0:55〜）",
+    "sourceName": "フジテレビ / ＝LOVE Official",
+    "sourceURL": "https://equal-love.jp/schedule/",
+    "publishedDate": "2026-09-01",
+    "year": 2026,
+    "category": "テレビ・ラジオ",
+    "tags": [
+      "瀧脇笙古",
+      "＝LOVE",
+      "キミはもっと＝LOVEを愛せるか",
+      "フジテレビ",
+      "テレビ"
+    ],
+    "description": "フジテレビ「キミはもっと＝LOVEを愛せるか!!!」放送予定（2026年9月1日 深夜0:55〜）。",
+    "contentType": "tv",
+    "thumbnailURL": "/images/logo.png",
+    "verified": true,
+    "lastCheckedAt": "2026-09-01T08:15:00.000Z",
+    "isFeatured": true,
+    "isHighlight": true
+  },
+  {
   "id": "link-eqlove-sanrio-present-20260828",
   "title": "21stシングル発売記念 ＝LOVE × サンリオキャラクタースペシャルライブ 本日当選発表",
   "sourceName": "＝LOVE Official",
