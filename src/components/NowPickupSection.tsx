@@ -5,10 +5,8 @@ import {
   Sparkles,
   Disc,
   Radio,
-  ShoppingBag,
-  ExternalLink,
-  Store,
-  Globe
+  Clock,
+  AlertCircle
 } from "lucide-react";
 
 export const NowPickupSection: React.FC = () => {
@@ -34,7 +32,7 @@ export const NowPickupSection: React.FC = () => {
             <span className="px-2 py-0.5 bg-[#F6C744] text-[#191919] font-mono font-black text-[10px] rounded-full uppercase">
               NOW / PICK UP
             </span>
-            <span>現在開催中・最新重要トピック</span>
+            <span>現在開催中・重要トピック (2026.08.31時点)</span>
           </div>
           <h2 className="text-xl sm:text-2xl font-extrabold tracking-wider font-mono text-[#191919]">
             NOW / PICK UP
@@ -47,7 +45,7 @@ export const NowPickupSection: React.FC = () => {
           rel="noopener noreferrer"
           className="font-mono text-xs font-bold text-[#5C4533] hover:text-[#E99A32] transition-colors flex items-center gap-1 shrink-0"
         >
-          <span>FILA公式を見る ↗</span>
+          <span>公式情報を見る ↗</span>
         </a>
       </div>
 
@@ -55,54 +53,29 @@ export const NowPickupSection: React.FC = () => {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         
         {/* ======================================================== */}
-        {/* トピック 1: FILA × 瀧脇笙古 統合カード (店舗3会場 ＋ 公式オンライン) */}
+        {/* トピック 1: FILA 2026FW POP UP 阪急うめだ本店 (明日まで) */}
         {/* ======================================================== */}
         <div className="bg-[#FFF9ED] border-2 border-[#F6C744] p-4 rounded-xl space-y-2.5 shadow-2xs flex flex-col justify-between">
           <div className="space-y-2">
             <div className="flex items-center justify-between">
-              <span className="px-2 py-0.5 bg-[#F6C744] text-[#191919] font-mono font-black text-[10px] rounded-full uppercase flex items-center gap-1">
-                <Sparkles className="w-3 h-3 text-[#191919]" />
-                <span>ONLINE開始！</span>
+              <span className="px-2.5 py-0.5 bg-[#E99A32] text-white font-mono font-extrabold text-[10px] rounded-full flex items-center gap-1">
+                <Clock className="w-3 h-3 text-white" />
+                <span>明日まで</span>
               </span>
-              <span className="text-[10px] font-mono font-bold text-[#E99A32]">2026.08.29 START</span>
+              <span className="text-[10px] font-mono font-bold text-[#8C694D]">2026.08.26 — 09.01</span>
             </div>
 
             <h3 className="font-maru font-extrabold text-sm sm:text-base text-[#191919] leading-snug">
-              FILA × 瀧脇笙古<br />就任記念キャンペーン開催中！
+              FILA 2026FW POP UP<br />阪急うめだ本店
             </h3>
 
             <p className="text-xs text-[#5C4533] font-bold leading-relaxed font-sans">
-              POP UP 3会場に加え、8/29 10:00より<span className="text-[#191919] font-extrabold bg-[#FFF4C7] px-1 rounded">FILA公式オンラインストア</span>でも就任記念キャンペーン（ノベルティ付）がスタート！
+              瀧脇笙古ちゃんがスタイリングパートナーを務めるFILA 2026FW POP UPは、阪急うめだ本店で9月1日まで開催中。
             </p>
-
-            {/* 4つの導線リスト */}
-            <div className="grid grid-cols-2 gap-1 text-[10px] font-mono font-bold pt-1">
-              <div className="bg-white/80 border border-[#F0E4CE] p-1.5 rounded flex items-center gap-1 text-[#5C4533]">
-                <Store className="w-3 h-3 text-[#E99A32] shrink-0" />
-                <span className="truncate">阪急うめだ本店</span>
-              </div>
-              <div className="bg-white/80 border border-[#F0E4CE] p-1.5 rounded flex items-center gap-1 text-[#5C4533]">
-                <Store className="w-3 h-3 text-[#E99A32] shrink-0" />
-                <span className="truncate">渋谷PARCO</span>
-              </div>
-              <div className="bg-white/80 border border-[#F0E4CE] p-1.5 rounded flex items-center gap-1 text-[#5C4533]">
-                <Store className="w-3 h-3 text-[#E99A32] shrink-0" />
-                <span className="truncate">東京ソラマチ</span>
-              </div>
-              <div className="bg-[#FFF4C7] border border-[#F6C744] p-1.5 rounded flex items-center gap-1 text-[#191919]">
-                <Globe className="w-3 h-3 text-[#E99A32] shrink-0" />
-                <span className="truncate">公式オンライン</span>
-              </div>
-            </div>
-
-            <div className="text-[10px] text-[#8C694D] font-sans leading-tight pt-0.5 space-y-0.5">
-              <div>・ノベルティはなくなり次第終了</div>
-              <div>・店舗とオンラインで一部扱い商品が異なります</div>
-            </div>
           </div>
 
           <div className="pt-2 border-t border-[#F0E4CE] flex items-center justify-between text-xs font-mono font-bold">
-            <span className="text-[10px] text-[#8C694D]">4会場・WEBで展開</span>
+            <span className="text-[10px] text-[#8C694D]">阪急うめだ8F GREEN AGE</span>
             <a
               href="https://www.fila.jp/contents/feature/fila_eley/"
               target="_blank"
@@ -115,29 +88,29 @@ export const NowPickupSection: React.FC = () => {
         </div>
 
         {/* ======================================================== */}
-        {/* トピック 2: ＝LOVE 21stシングル発売店頭企画 */}
+        {/* トピック 2: 21st SINGLE 店頭キャンペーン (本日まで) */}
         {/* ======================================================== */}
-        <div className="bg-white border border-[#F0E4CE] hover:border-[#F6C744] p-4 rounded-xl space-y-2.5 shadow-2xs flex flex-col justify-between transition-colors">
+        <div className="bg-white border-2 border-[#E99A32] p-4 rounded-xl space-y-2.5 shadow-2xs flex flex-col justify-between">
           <div className="space-y-2">
             <div className="flex items-center justify-between">
-              <span className="px-2 py-0.5 bg-[#FFF4C7] text-[#5C4533] font-mono font-bold text-[10px] rounded-full border border-[#F6C744]/40 flex items-center gap-1">
-                <Disc className="w-3 h-3 text-[#E99A32]" />
-                <span>2026.08.26 RELEASE</span>
+              <span className="px-2.5 py-0.5 bg-[#191919] text-[#F6C744] font-mono font-extrabold text-[10px] rounded-full flex items-center gap-1">
+                <AlertCircle className="w-3 h-3 text-[#F6C744]" />
+                <span>基本本日まで</span>
               </span>
-              <span className="text-[10px] font-mono font-bold text-[#8C694D]">8/25 - 9/7</span>
+              <span className="text-[10px] font-mono font-bold text-[#8C694D]">21st SINGLE</span>
             </div>
 
             <h3 className="font-maru font-extrabold text-sm sm:text-base text-[#191919] leading-snug">
-              21st SINGLE 『恋、はじめました。』発売記念
+              21st SINGLE 『恋、はじめました。』店頭キャンペーン
             </h3>
 
             <p className="text-xs text-[#5C4533] font-bold leading-relaxed font-sans">
-              横浜ビブレ店特別企画（直筆サイン色紙＆POP展示、抽選）をはじめ、タワレコ各店ソロ応援、渋谷、全国パネル展を開催中！
+              瀧脇笙古ちゃんソロ応援キャンペーン、全国パネル展など、基本実施期間は8月31日まで。（※店舗により期間が異なる場合があります）
             </p>
           </div>
 
           <div className="pt-2 border-t border-[#F0E4CE] flex items-center justify-between text-xs font-mono font-bold">
-            <span className="text-[10px] text-[#8C694D]">※横浜ビブレ特別展示中</span>
+            <span className="text-[10px] text-[#8C694D]">※店舗により異なる場合あり</span>
             <a
               href="https://equal-love.jp/news/detail/11864"
               target="_blank"
