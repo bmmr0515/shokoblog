@@ -10,13 +10,9 @@ import {
   RotateCcw,
   Maximize2,
   Film,
-  Newspaper,
-  Volume2,
-  VolumeX,
-  ChevronRight
+  Newspaper
 } from "lucide-react";
 
-// YouTube IFrame Player API のグローバル型定義
 declare global {
   interface Window {
     onYouTubeIframeAPIReady?: () => void;
@@ -24,426 +20,100 @@ declare global {
   }
 }
 
-// シーンオブジェクトの型定義
-export type SceneType = "opening" | "title" | "video" | "text" | "interlude" | "ending";
+export type SceneType = "opening" | "chapter" | "video" | "fade" | "credits_1" | "credits_films" | "credits_featuring" | "credits_curated" | "credits_disclaimer" | "last_frame";
 
 export interface Scene {
   id: string;
   chapterNum?: string;
   type: SceneType;
   year?: string;
-  titleEn?: string;
-  titleJa?: string;
-  subText?: string;
-  subtitlePre?: string;
-  subtitlePost?: string;
-  specialStat?: { value: string; label: string };
-  timeGapText?: string;
-  // テキストカード用 (字幕カード切り替え配列)
-  cards?: string[];
-  // 動画用
+  label?: string;
   videoId?: string;
   start?: number;
-  end?: number | null;
-  duration?: number; // ミリ秒 (title / text / interlude 用)
+  duration?: number;
 }
 
-// 全ドキュメンタリータイムラインのシーンデータ構造 (完全指定通り)
+const FEATURED_FILMS_LIST = [
+  "Documentary of =LOVE - Episode 0 - Audition -",
+  "Documentary of =LOVE - Episode 1 - Training Camp -",
+  "SASUKE 2020",
+  "『BPM170の君へ』 Making",
+  "『BPM170の君へ』 Live Performance",
+  "Tokyo Marathon 2023",
+  "突然ですが占ってもいいですか？",
+  "『木漏れ日メゾフォルテ』",
+  "横浜スタジアム セレモニアルピッチ",
+  "FILA 2026FW"
+];
+
+// 無駄な解説テキストを排した純粋シネマシーンデータ
 const SCENES: Scene[] = [
-  // ========================================================
   // OPENING
-  // ========================================================
-  {
-    id: "opening",
-    type: "opening",
-    year: "2017 — 2026",
-    titleEn: "SHOKO TAKIWAKI",
-    titleJa: "HISTORY",
-    subText: "最初から、できたわけではない。",
-    duration: 4500
-  },
+  { id: "opening", type: "opening", duration: 3500 },
 
-  // ========================================================
-  // CHAPTER 01: 2017 / AUDITION
-  // ========================================================
-  {
-    id: "ch1-title",
-    chapterNum: "01",
-    type: "title",
-    year: "2017",
-    titleEn: "AUDITION",
-    titleJa: "THE BEGINNING",
-    subText: "すべては、オーディションから。",
-    duration: 3500
-  },
-  {
-    id: "ch1-video",
-    chapterNum: "01",
-    type: "video",
-    videoId: "zXR_xhihDOQ",
-    start: 1,
-    end: null
-  },
-  {
-    id: "ch1-text",
-    chapterNum: "01",
-    type: "text",
-    cards: [
-      "2017年。＝LOVEのオーディションから、しょこちゃんのアイドル人生が始まりました。",
-      "現在の姿だけを見ると、最初から何でもできたように見えるかもしれません。",
-      "でも、このあと待っていたのは、決して順調な道だけではありませんでした。",
-      "最初にぶつかったのは、ダンスでした。"
-    ],
-    duration: 10000
-  },
+  // CHAPTER 01
+  { id: "ch1-card", chapterNum: "01", type: "chapter", year: "2017", label: "01 / 2017 / AUDITION", duration: 3000 },
+  { id: "ch1-video", chapterNum: "01", type: "video", videoId: "zXR_xhihDOQ", start: 1 },
+  { id: "ch1-fade", type: "fade", duration: 1000 },
 
-  // ========================================================
-  // CHAPTER 02: 2017 / TRAINING
-  // ========================================================
-  {
-    id: "ch2-title",
-    chapterNum: "02",
-    type: "title",
-    year: "2017",
-    titleEn: "TRAINING",
-    titleJa: "TRAINING",
-    subText: "できない自分と向き合う。",
-    duration: 3500
-  },
-  {
-    id: "ch2-video",
-    chapterNum: "02",
-    type: "video",
-    videoId: "RPlkP-5jP44",
-    start: 756, // 厳守!
-    end: null
-  },
-  {
-    id: "ch2-text",
-    chapterNum: "02",
-    type: "text",
-    cards: [
-      "＝LOVE加入時、しょこちゃんはダンス未経験でした。",
-      "初期の合宿では、厳しいレッスンの中で苦戦する姿も残されています。",
-      "できなかったものが、少しずつできるようになっていく。",
-      "このHISTORYで描きたい成長は、ここから始まっています。",
-      "ダンス経験は、ありませんでした。"
-    ],
-    duration: 12000
-  },
+  // CHAPTER 02
+  { id: "ch2-card", chapterNum: "02", type: "chapter", year: "2017", label: "02 / 2017 / TRAINING", duration: 3000 },
+  { id: "ch2-video", chapterNum: "02", type: "video", videoId: "RPlkP-5jP44", start: 756 }, // 756 厳守
+  { id: "ch2-fade", type: "fade", duration: 1000 },
 
-  // ========================================================
-  // INTERLUDE: 2018 / COOKING
-  // ========================================================
-  {
-    id: "interlude-cooking",
-    chapterNum: "02.5",
-    type: "interlude",
-    year: "2018",
-    titleEn: "COOKING",
-    titleJa: "クックアイドルNo.1決定戦 優勝",
-    cards: [
-      "料理という、もうひとつの強み。",
-      "「クックアイドルNo.1決定戦」に挑戦し、見事優勝を果たしました。",
-      "好きなものを磨き、結果につなげていく。",
-      "この姿勢は、その後の挑戦にもつながっていきます。"
-    ],
-    duration: 8500
-  },
+  // CHAPTER 03
+  { id: "ch3-card", chapterNum: "03", type: "chapter", year: "2020", label: "03 / 2020 / SASUKE", duration: 3000 },
+  { id: "ch3-video", chapterNum: "03", type: "video", videoId: "zUeSRsheJC8", start: 0 },
+  { id: "ch3-fade", type: "fade", duration: 1000 },
 
-  // ========================================================
-  // CHAPTER 03: 2020 / SASUKE
-  // ========================================================
-  {
-    id: "ch3-title",
-    chapterNum: "03",
-    type: "title",
-    year: "2020",
-    titleEn: "SASUKE",
-    titleJa: "CHALLENGE",
-    subText: "挑戦する場所は、ステージだけではない。",
-    duration: 3500
-  },
-  {
-    id: "ch3-video",
-    chapterNum: "03",
-    type: "video",
-    videoId: "zUeSRsheJC8",
-    start: 0,
-    end: null
-  },
-  {
-    id: "ch3-text",
-    chapterNum: "03",
-    type: "text",
-    cards: [
-      "運動が得意という個性を生かし、2020年には「SASUKE」に挑戦。",
-      "アイドル活動とは違う場所でも、新しいことに飛び込んでいきます。",
-      "できることだけを選ぶのではなく、挑戦しながら活動の幅を広げていきました。",
-      "そして2021年、大きな転機が訪れます。"
-    ],
-    duration: 10000
-  },
+  // CHAPTER 04
+  { id: "ch4-card", chapterNum: "04", type: "chapter", year: "2021", label: "04 / 2021 / FIRST CENTER", duration: 3000 },
+  { id: "ch4-video", chapterNum: "04", type: "video", videoId: "ei0BtXWrVb4", start: 1065 }, // 1065 厳守
+  { id: "ch4-fade", type: "fade", duration: 1000 },
 
-  // ========================================================
-  // CHAPTER 04: 2021 / FIRST CENTER (クライマックス 1)
-  // ========================================================
-  {
-    id: "ch4-title",
-    chapterNum: "04",
-    type: "title",
-    year: "2021",
-    titleEn: "FIRST CENTER",
-    titleJa: "FIRST CENTER",
-    subtitlePre: "加入から4年。",
-    subtitlePost: "初めて、センターに立ちました。",
-    subText: "「BPM170の君へ」自身初センター",
-    duration: 4500
-  },
-  {
-    id: "ch4-video",
-    chapterNum: "04",
-    type: "video",
-    videoId: "ei0BtXWrVb4",
-    start: 1065, // 厳守!
-    end: null
-  },
-  {
-    id: "ch4-text",
-    chapterNum: "04",
-    type: "text",
-    cards: [
-      "2021年。「BPM170の君へ」で、しょこちゃんは自身初のセンターを任されました。",
-      "加入当初はダンス未経験。思うようにできなかった時期から、少しずつ経験を積み重ねてきました。",
-      "そして、その先で届いた初センター。",
-      "さらにこの曲は、しょこちゃんの「走る」という個性とも深くつながっています。",
-      "そして、その想いをステージへ。"
-    ],
-    duration: 12000
-  },
+  // CHAPTER 05
+  { id: "ch5-card", chapterNum: "05", type: "chapter", year: "2021", label: "05 / 2021 / ON STAGE", duration: 3000 },
+  { id: "ch5-video", chapterNum: "05", type: "video", videoId: "8Jtyt23R-jg", start: 0 },
+  { id: "ch5-fade", type: "fade", duration: 1000 },
 
-  // ========================================================
-  // CHAPTER 05: 2021 / ON STAGE
-  // ========================================================
-  {
-    id: "ch5-title",
-    chapterNum: "05",
-    type: "title",
-    year: "2021",
-    titleEn: "ON STAGE",
-    titleJa: "ON STAGE",
-    subText: "真ん中に立つ姿。",
-    duration: 3000
-  },
-  {
-    id: "ch5-video",
-    chapterNum: "05",
-    type: "video",
-    videoId: "8Jtyt23R-jg",
-    start: 0,
-    end: null
-  },
-  {
-    id: "ch5-text",
-    chapterNum: "05",
-    type: "text",
-    cards: [
-      "メイキングで語られた想いは、実際のステージへ。",
-      "真んちに立ち、楽曲を背負い、観客へ届ける。",
-      "2017年の合宿から見てきたからこそ、この景色には意味があります。",
-      "そして、“走る”という個性は、さらに先へ。"
-    ],
-    duration: 9000
-  },
+  // CHAPTER 06
+  { id: "ch6-card", chapterNum: "06", type: "chapter", year: "2023", label: "06 / 2023 / MARATHON", duration: 3000 },
+  { id: "ch6-video", chapterNum: "06", type: "video", videoId: "RoVAmDAGej8", start: 0 },
+  { id: "ch6-fade", type: "fade", duration: 1000 },
 
-  // ========================================================
-  // CHAPTER 06: 2023 / RUN
-  // ========================================================
-  {
-    id: "ch6-title",
-    chapterNum: "06",
-    type: "title",
-    year: "2023",
-    titleEn: "RUN",
-    titleJa: "RUN",
-    specialStat: { value: "03:57:06", label: "SUB 4" },
-    subText: "走り続けた先に。",
-    duration: 4000
-  },
-  {
-    id: "ch6-video",
-    chapterNum: "06",
-    type: "video",
-    videoId: "RoVAmDAGej8",
-    start: 0,
-    end: null
-  },
-  {
-    id: "ch6-text",
-    chapterNum: "06",
-    type: "text",
-    cards: [
-      "しょこちゃんを語るうえで、マラソンは欠かせません。",
-      "継続して走り、記録と向き合い続け、東京マラソン2023では 3時間57分06秒 で完走。サブ4を達成しました。",
-      "「BPM170の君へ」で描かれた個性が、現実の結果にもつながっていきました。",
-      "走り続けた時間は、確かな記録になりました。"
-    ],
-    duration: 11000
-  },
+  // CHAPTER 07
+  { id: "ch7-card", chapterNum: "07", type: "chapter", year: "2024", label: "07 / HEART", duration: 3000 },
+  { id: "ch7-video", chapterNum: "07", type: "video", videoId: "-syTHUFdQyk", start: 1678 }, // 1678 厳守
+  { id: "ch7-fade", type: "fade", duration: 1000 },
 
-  // ========================================================
-  // CHAPTER 07: HEART (本人の内面)
-  // ========================================================
-  {
-    id: "ch7-title",
-    chapterNum: "07",
-    type: "title",
-    year: "2024",
-    titleEn: "HEART",
-    titleJa: "HEART",
-    subText: "強さだけでは、ありません。",
-    duration: 3500
-  },
-  {
-    id: "ch7-video",
-    chapterNum: "07",
-    type: "video",
-    videoId: "-syTHUFdQyk",
-    start: 1678, // 厳守!
-    end: null
-  },
-  {
-    id: "ch7-text",
-    chapterNum: "07",
-    type: "text",
-    cards: [
-      "努力を続けているからといって、いつも迷わないわけではありません。",
-      "挑戦を重ねてきたしょこちゃんにも、悩みや不安があります。",
-      "普段とは少し違う表情から、一人の人として積み重ねてきた時間が見えてきます。"
-    ],
-    duration: 9000
-  },
+  // CHAPTER 08
+  { id: "ch8-card", chapterNum: "08", type: "chapter", year: "2025", label: "08 / 2025 / DOUBLE CENTER", duration: 3000 },
+  { id: "ch8-video", chapterNum: "08", type: "video", videoId: "4xBmuiQNGdc", start: 0 },
+  { id: "ch8-fade", type: "fade", duration: 1000 },
 
-  // ========================================================
-  // CHAPTER 08: 2025 / DOUBLE CENTER
-  // ========================================================
-  {
-    id: "ch8-title",
-    chapterNum: "08",
-    type: "title",
-    year: "2025",
-    titleEn: "DOUBLE CENTER",
-    titleJa: "DOUBLE CENTER",
-    timeGapText: "2021 FIRST CENTER ➔ 2025 DOUBLE CENTER",
-    subText: "もう一度、センターへ。",
-    duration: 4000
-  },
-  {
-    id: "ch8-video",
-    chapterNum: "08",
-    type: "video",
-    videoId: "4xBmuiQNGdc",
-    start: 0,
-    end: null
-  },
-  {
-    id: "ch8-text",
-    chapterNum: "08",
-    type: "text",
-    cards: [
-      "初センターから約4年。",
-      "「木漏れ日メゾフォルテ」で、音嶋莉沙ちゃんとのダブルセンターを務めました。",
-      "歌も、ダンスも、ステージでの存在感も。",
-      "活動を重ねる中で、少しずつ任される役割を増やしてきました。"
-    ],
-    duration: 10000
-  },
+  // CHAPTER 09
+  { id: "ch9-card", chapterNum: "09", type: "chapter", year: "2025", label: "09 / 2025 / YOKOHAMA", duration: 3000 },
+  { id: "ch9-video", chapterNum: "09", type: "video", videoId: "fe_nGoGe9DQ", start: 0 },
+  { id: "ch9-fade", type: "fade", duration: 1000 },
 
-  // ========================================================
-  // CHAPTER 09: 2025 / YOKOHAMA
-  // ========================================================
-  {
-    id: "ch9-title",
-    chapterNum: "09",
-    type: "title",
-    year: "2025",
-    titleEn: "YOKOHAMA",
-    titleJa: "YOKOHAMA",
-    subText: "好きだと言い続けた先に。 A DREAM CAME TRUE",
-    duration: 3500
-  },
-  {
-    id: "ch9-video",
-    chapterNum: "09",
-    type: "video",
-    videoId: "fe_nGoGe9DQ",
-    start: 0,
-    end: null
-  },
-  {
-    id: "ch9-text",
-    chapterNum: "09",
-    type: "text",
-    cards: [
-      "神奈川県出身。そして、横浜DeNAベイスターズを長く応援してきたしょこちゃん。",
-      "野球について発信し、関連する仕事を重ね、ついには横浜スタジアムでセレモニアルピッチを務めました。",
-      "好きなものを発信し続けることで、ひとつの夢が仕事につながりました。",
-      "A DREAM CAME TRUE"
-    ],
-    duration: 10000
-  },
+  // CHAPTER 10
+  { id: "ch10-card", chapterNum: "10", type: "chapter", year: "2026", label: "10 / 2026 / FILA", duration: 3000 },
+  { id: "ch10-video", chapterNum: "10", type: "video", videoId: "0dJb1WGsK2Q", start: 0 },
+  { id: "ch10-fade", type: "fade", duration: 1000 },
 
-  // ========================================================
-  // CHAPTER 10: 2026 / NOW (ラスト)
-  // ========================================================
-  {
-    id: "ch10-title",
-    chapterNum: "10",
-    type: "title",
-    year: "2026",
-    titleEn: "NOW",
-    titleJa: "NOW",
-    subText: "そして、現在。",
-    duration: 3500
-  },
-  {
-    id: "ch10-video",
-    chapterNum: "10",
-    type: "video",
-    videoId: "0dJb1WGsK2Q",
-    start: 0,
-    end: null
-  },
-  {
-    id: "ch10-text",
-    chapterNum: "10",
-    type: "text",
-    cards: [
-      "歌。ダンス。料理。マラソン。スポーツ。横浜。",
-      "ひとつずつ活動の幅を広げてきた先で、2026年、FILAのスタイリングパートナーへ。",
-      "2017年の合宿で苦戦していた姿から、約9年。",
-      "突然ここに来たわけではありません。積み重ねてきた時間が、新しい景色につながっています。"
-    ],
-    duration: 11000
-  },
-
-  // ========================================================
-  // ENDING
-  // ========================================================
-  {
-    id: "ending",
-    type: "ending",
-    year: "2017 — 2026",
-    titleEn: "SHOKO TAKIWAKI HISTORY",
-    titleJa: "物語は、まだ続いています。"
-  }
+  // ENDING CREDITS (1画面ずつフェード)
+  { id: "cred-1", type: "credits_1", duration: 4000 },
+  { id: "cred-films", type: "credits_films", duration: 7000 },
+  { id: "cred-featuring", type: "credits_featuring", duration: 4000 },
+  { id: "cred-curated", type: "credits_curated", duration: 4000 },
+  { id: "cred-disclaimer", type: "credits_disclaimer", duration: 4500 },
+  { id: "last-frame", type: "last_frame" }
 ];
 
 export function HistoryView() {
   const [sceneIndex, setSceneIndex] = useState<number>(0);
   const [hasStarted, setHasStarted] = useState<boolean>(false);
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
-  const [cardIndex, setCardIndex] = useState<number>(0);
   const [isApiReady, setIsApiReady] = useState<boolean>(false);
   const [needUserResume, setNeedUserResume] = useState<boolean>(false);
 
@@ -453,7 +123,6 @@ export function HistoryView() {
 
   const currentScene = SCENES[sceneIndex];
 
-  // 1. YouTube IFrame Player API の動的読み込み
   useEffect(() => {
     if (window.YT && window.YT.Player) {
       setIsApiReady(true);
@@ -470,7 +139,6 @@ export function HistoryView() {
     };
   }, []);
 
-  // 2. タイマー解除のクリーンアップ
   const clearTimer = () => {
     if (timerRef.current) {
       clearTimeout(timerRef.current);
@@ -478,7 +146,6 @@ export function HistoryView() {
     }
   };
 
-  // 3. 次のシーンへ自動進行
   const nextScene = () => {
     clearTimer();
     setNeedUserResume(false);
@@ -489,27 +156,22 @@ export function HistoryView() {
     }
   };
 
-  // 4. 前のシーンへ戻る
   const prevScene = () => {
     clearTimer();
     setNeedUserResume(false);
     if (sceneIndex > 0) {
-      // 一つ前のビデオまたはタイトルに移動
       let targetIdx = sceneIndex - 1;
-      while (targetIdx > 0 && SCENES[targetIdx].type === "text") {
+      while (targetIdx > 0 && SCENES[targetIdx].type === "fade") {
         targetIdx--;
       }
       setSceneIndex(targetIdx);
     }
   };
 
-  // 5. 特定のチャプター番号の先頭シーンへ跳躍
   const jumpToChapter = (chapterNumStr: string) => {
     clearTimer();
     setNeedUserResume(false);
-    const targetIdx = SCENES.findIndex(
-      (s) => s.chapterNum === chapterNumStr && (s.type === "title" || s.type === "video")
-    );
+    const targetIdx = SCENES.findIndex((s) => s.chapterNum === chapterNumStr && s.type === "chapter");
     if (targetIdx !== -1) {
       if (!hasStarted) setHasStarted(true);
       setIsPlaying(true);
@@ -517,20 +179,17 @@ export function HistoryView() {
     }
   };
 
-  // 6. YouTube プレイヤーの初期化 ＆ onStateChange 監視
+  // YouTube プレイヤー初期化
   useEffect(() => {
     if (!isApiReady || currentScene.type !== "video") return;
 
-    // 既存プレイヤーがあれば破棄
     if (playerRef.current) {
-      try {
-        playerRef.current.destroy();
-      } catch (e) {}
+      try { playerRef.current.destroy(); } catch (e) {}
       playerRef.current = null;
     }
 
-    const iframeContainer = document.getElementById("yt-player-slot");
-    if (!iframeContainer) return;
+    const iframeSlot = document.getElementById("yt-player-slot");
+    if (!iframeSlot) return;
 
     playerRef.current = new window.YT.Player("yt-player-slot", {
       height: "100%",
@@ -546,21 +205,15 @@ export function HistoryView() {
       events: {
         onReady: (event: any) => {
           if (isPlaying) {
-            try {
-              event.target.playVideo();
-            } catch (err) {
-              setNeedUserResume(true);
-            }
+            try { event.target.playVideo(); } catch (err) { setNeedUserResume(true); }
           }
         },
         onStateChange: (event: any) => {
-          // YT.PlayerState.ENDED (0)
           if (event.data === window.YT.PlayerState.ENDED) {
             nextScene();
           }
         },
         onError: () => {
-          // エラー時も安全に次シーンへ進行
           nextScene();
         }
       }
@@ -571,57 +224,31 @@ export function HistoryView() {
     };
   }, [sceneIndex, isApiReady]);
 
-  // 7. 非動画シーン (title, text, interlude, opening) の自動タイマーカウントダウン
+  // 非動画シーンのタイマー進行
   useEffect(() => {
     clearTimer();
-    setCardIndex(0);
     setNeedUserResume(false);
 
     if (!hasStarted || !isPlaying) return;
 
-    if (currentScene.type === "text" && currentScene.cards) {
-      // テキストカードの字幕スライドショータイマー
-      const perCardTime = (currentScene.duration || 8000) / currentScene.cards.length;
-      
-      const interval = setInterval(() => {
-        setCardIndex((prev) => {
-          if (prev < currentScene.cards!.length - 1) {
-            return prev + 1;
-          } else {
-            clearInterval(interval);
-            return prev;
-          }
-        });
-      }, perCardTime);
-
-      timerRef.current = setTimeout(() => {
-        clearInterval(interval);
-        nextScene();
-      }, currentScene.duration || 8000);
-
-      return () => {
-        clearInterval(interval);
-        clearTimer();
-      };
-    } else if (
-      currentScene.type === "title" ||
+    if (
       currentScene.type === "opening" ||
-      currentScene.type === "interlude"
+      currentScene.type === "chapter" ||
+      currentScene.type === "fade" ||
+      currentScene.type.startsWith("credits_")
     ) {
       timerRef.current = setTimeout(() => {
         nextScene();
-      }, currentScene.duration || 4000);
+      }, currentScene.duration || 3000);
     }
   }, [sceneIndex, hasStarted, isPlaying]);
 
-  // STORY再生開始トリガー
   const handleStartStory = () => {
     setHasStarted(true);
     setIsPlaying(true);
     setSceneIndex(0);
   };
 
-  // 再生/一時停止 トグル
   const togglePlay = () => {
     if (isPlaying) {
       setIsPlaying(false);
@@ -637,7 +264,6 @@ export function HistoryView() {
     }
   };
 
-  // フルスクリーン切り替え
   const toggleFullscreen = () => {
     if (!containerRef.current) return;
     if (!document.fullscreenElement) {
@@ -647,96 +273,79 @@ export function HistoryView() {
     }
   };
 
-  // チャプターリスト (10個)
   const chaptersList = [
-    { num: "01", label: "01 START" },
+    { num: "01", label: "01 AUDITION" },
     { num: "02", label: "02 TRAINING" },
-    { num: "03", label: "03 CHALLENGE" },
+    { num: "03", label: "03 SASUKE" },
     { num: "04", label: "04 FIRST CENTER" },
     { num: "05", label: "05 ON STAGE" },
-    { num: "06", label: "06 RUN" },
+    { num: "06", label: "06 MARATHON" },
     { num: "07", label: "07 HEART" },
     { num: "08", label: "08 DOUBLE CENTER" },
     { num: "09", label: "09 YOKOHAMA" },
-    { num: "10", label: "10 NOW" },
+    { num: "10", label: "10 FILA" },
   ];
 
   return (
-    <div className="bg-[#050505] text-zinc-100 min-h-screen flex flex-col items-center justify-between font-sans selection:bg-[#F6C744] selection:text-[#191919]">
+    <div className="bg-[#000000] text-zinc-100 min-h-screen flex flex-col items-center justify-between font-sans selection:bg-[#F6C744] selection:text-[#191919]">
       
-      {/* ======================================================== */}
-      {/* 画面上部: 最小限のヘッダー */}
-      {/* ======================================================== */}
+      {/* 上部スリムヘッダー */}
       <header className="w-full max-w-[1400px] px-6 py-4 flex items-center justify-between z-30">
         <Link
           href="/"
-          className="text-xs font-mono font-bold text-zinc-400 hover:text-white transition-colors flex items-center gap-1.5"
+          className="text-xs font-mono font-bold text-zinc-400 hover:text-white transition-colors"
         >
-          <span>← しょこらの部屋</span>
+          ← しょこらの部屋
         </Link>
 
-        <div className="flex items-center gap-3 font-mono text-xs">
-          <span className="text-[#F6C744] font-extrabold tracking-widest flex items-center gap-1.5 uppercase">
-            <Film className="w-4 h-4 text-[#F6C744]" />
-            SHOKO TAKIWAKI HISTORY
-          </span>
+        <div className="flex items-center gap-2 font-mono text-xs text-[#F6C744] font-extrabold tracking-widest uppercase">
+          <Film className="w-4 h-4 text-[#F6C744]" />
+          <span>SHOKO TAKIWAKI HISTORY</span>
         </div>
 
         <Link
           href="/news"
-          className="text-xs font-mono font-bold text-zinc-400 hover:text-[#F6C744] transition-colors hidden sm:flex items-center gap-1"
+          className="text-xs font-mono font-bold text-zinc-400 hover:text-[#F6C744] transition-colors hidden sm:block"
         >
-          <span>最新ニュース ↗</span>
+          NEWS ↗
         </Link>
       </header>
 
-      {/* ======================================================== */}
-      {/* 画面中央: 1つの大画面 16:9 シネマプレイヤー (メイン領域) */}
-      {/* ======================================================== */}
+      {/* 画面中央: 1つの 16:9 シネマプレイヤー (メインスクリーン) */}
       <main className="w-full max-w-[1360px] px-4 sm:px-8 my-auto flex-1 flex flex-col justify-center py-2">
-        
         <div
           ref={containerRef}
-          className="relative w-full aspect-video bg-[#000000] border-2 border-zinc-800/80 rounded-2xl overflow-hidden shadow-2xl flex items-center justify-center transition-all duration-500"
+          className="relative w-full aspect-video bg-[#000000] border border-zinc-800/80 rounded-2xl overflow-hidden shadow-2xl flex items-center justify-center transition-all duration-500"
         >
           
-          {/* A. 再生開始前 オーバーレイ (「STORYを再生する」) */}
+          {/* 1. 再生開始前オーバーレイ */}
           {!hasStarted && (
-            <div className="absolute inset-0 z-30 bg-[#000000]/90 backdrop-blur-md flex flex-col items-center justify-center text-center p-6 space-y-6">
-              <div className="space-y-2">
-                <span className="text-xs font-mono font-bold text-[#F6C744] tracking-[0.3em] uppercase block">
-                  DOCUMENTARY FILM
-                </span>
-                <h1 className="text-4xl sm:text-6xl font-mono font-extrabold text-white tracking-wider">
+            <div className="absolute inset-0 z-30 bg-[#000000]/95 backdrop-blur-sm flex flex-col items-center justify-center text-center p-6 space-y-6">
+              <div className="space-y-3 font-mono">
+                <div className="text-4xl sm:text-6xl font-extrabold tracking-widest text-white">
                   SHOKO TAKIWAKI
-                </h1>
-                <p className="text-xs font-mono text-zinc-500 font-bold tracking-widest">
+                </div>
+                <div className="text-xl sm:text-3xl font-extrabold tracking-widest text-[#F6C744]">
+                  HISTORY
+                </div>
+                <div className="text-xs text-zinc-500 font-bold tracking-widest">
                   2017 — 2026
-                </p>
+                </div>
               </div>
-
-              <p className="text-lg sm:text-2xl font-maru font-extrabold text-[#F6C744] tracking-wide pt-2">
-                最初から、できたわけではない。
-              </p>
 
               <button
                 onClick={handleStartStory}
-                className="mt-4 px-10 py-4 bg-[#F6C744] hover:bg-[#E99A32] text-[#191919] font-maru font-extrabold text-lg sm:text-xl rounded-full transition-all transform hover:scale-105 shadow-xl flex items-center gap-3 cursor-pointer"
+                className="mt-6 px-10 py-4 bg-[#F6C744] hover:bg-[#E99A32] text-[#191919] font-mono font-black text-lg sm:text-xl rounded-full transition-all transform hover:scale-105 shadow-xl flex items-center gap-3 cursor-pointer"
               >
                 <Play className="w-5 h-5 fill-current" />
                 <span>STORYを再生する</span>
               </button>
-
-              <p className="text-[11px] font-sans text-zinc-400 max-w-[480px]">
-                画面の中央で動画と物語が自動進行します。<br />途中でのスキップや前後のチャプター移動も可能です。
-              </p>
             </div>
           )}
 
-          {/* B. 自動再生がブロックされた場合の「続きを再生」 */}
+          {/* 2. 自動再生補助ボタン */}
           {hasStarted && needUserResume && (
-            <div className="absolute inset-0 z-40 bg-black/80 backdrop-blur-xs flex flex-col items-center justify-center space-y-3">
-              <p className="text-sm font-maru text-white font-bold">次のシーンを開始します</p>
+            <div className="absolute inset-0 z-40 bg-black/80 flex flex-col items-center justify-center space-y-3">
               <button
                 onClick={() => {
                   setNeedUserResume(false);
@@ -744,7 +353,7 @@ export function HistoryView() {
                     playerRef.current.playVideo();
                   }
                 }}
-                className="px-6 py-2.5 bg-[#F6C744] text-[#191919] font-bold text-xs rounded-full flex items-center gap-2"
+                className="px-6 py-2.5 bg-[#F6C744] text-[#191919] font-mono font-bold text-xs rounded-full flex items-center gap-2"
               >
                 <Play className="w-4 h-4 fill-current" />
                 <span>続きを再生</span>
@@ -752,93 +361,36 @@ export function HistoryView() {
             </div>
           )}
 
-          {/* C. SCENE 1: OPENING */}
+          {/* 3. SCENE: OPENING */}
           {hasStarted && currentScene.type === "opening" && (
-            <div className="absolute inset-0 z-20 bg-black flex flex-col items-center justify-center text-center p-6 space-y-6 animate-fade-in">
-              <div className="text-xs font-mono font-bold text-zinc-500 tracking-widest uppercase">
-                {currentScene.year}
+            <div className="absolute inset-0 z-20 bg-black flex flex-col items-center justify-center text-center p-6 space-y-4 font-mono">
+              <div className="text-3xl sm:text-5xl font-extrabold tracking-widest text-white">
+                SHOKO TAKIWAKI
               </div>
-              <h2 className="text-4xl sm:text-6xl font-mono font-extrabold text-white tracking-widest">
-                {currentScene.titleEn}
-              </h2>
-              <p className="text-2xl sm:text-4xl font-maru font-extrabold text-[#F6C744] tracking-wide pt-2">
-                {currentScene.subText}
-              </p>
+              <div className="text-xl sm:text-3xl font-extrabold tracking-widest text-[#F6C744]">
+                HISTORY
+              </div>
+              <div className="text-xs text-zinc-500 font-bold tracking-widest">
+                2017 — 2026
+              </div>
             </div>
           )}
 
-          {/* D. SCENE 2: TITLE CARD (チャプター開始タイトル) */}
-          {hasStarted && currentScene.type === "title" && (
-            <div className="absolute inset-0 z-20 bg-black flex flex-col items-center justify-center text-center p-6 space-y-4 animate-fade-in">
-              <div className="text-xs font-mono font-bold text-[#F6C744] tracking-widest">
-                CHAPTER {currentScene.chapterNum} // {currentScene.year}
+          {/* 4. SCENE: CHAPTER TITLE CARD */}
+          {hasStarted && currentScene.type === "chapter" && (
+            <div className="absolute inset-0 z-20 bg-black flex flex-col items-center justify-center text-center p-6 font-mono space-y-2">
+              <div className="text-2xl sm:text-4xl font-extrabold tracking-widest text-[#F6C744]">
+                {currentScene.label}
               </div>
-
-              <h2 className="text-3xl sm:text-5xl font-mono font-extrabold text-white tracking-widest">
-                {currentScene.titleEn}
-              </h2>
-
-              {currentScene.subtitlePre && (
-                <div className="text-sm sm:text-base font-mono text-[#F6C744] font-bold pt-1">
-                  {currentScene.subtitlePre}
-                </div>
-              )}
-
-              <p className="text-xl sm:text-3xl font-maru font-extrabold text-zinc-100">
-                {currentScene.titleJa}
-              </p>
-
-              {currentScene.subtitlePost && (
-                <div className="text-base sm:text-xl font-maru text-[#F6C744] font-bold">
-                  {currentScene.subtitlePost}
-                </div>
-              )}
-
-              {currentScene.timeGapText && (
-                <div className="mt-2 px-4 py-1.5 bg-zinc-900 border border-zinc-800 text-xs font-mono text-[#F6C744] font-bold rounded-lg">
-                  {currentScene.timeGapText}
-                </div>
-              )}
-
-              {currentScene.specialStat && (
-                <div className="pt-3 space-y-1">
-                  <div className="text-4xl sm:text-6xl font-mono font-extrabold text-white tracking-wider">
-                    {currentScene.specialStat.value}
-                  </div>
-                  <div className="text-xs font-mono font-bold text-[#F6C744] uppercase tracking-widest">
-                    {currentScene.specialStat.label}
-                  </div>
-                </div>
-              )}
-
-              {currentScene.subText && (
-                <p className="text-xs sm:text-sm text-zinc-400 font-sans font-medium pt-2">
-                  {currentScene.subText}
-                </p>
-              )}
             </div>
           )}
 
-          {/* E. SCENE 3: INTERLUDE CARD (動画なし繋ぎ) */}
-          {hasStarted && currentScene.type === "interlude" && (
-            <div className="absolute inset-0 z-20 bg-[#0B0B0B] flex flex-col items-center justify-center text-center p-8 space-y-5 animate-fade-in max-w-[800px] mx-auto">
-              <div className="text-xs font-mono font-bold text-[#F6C744]">
-                INTERLUDE // {currentScene.year}
-              </div>
-              <h2 className="text-2xl sm:text-4xl font-maru font-extrabold text-white">
-                {currentScene.titleJa}
-              </h2>
-              {currentScene.cards && (
-                <div className="text-xs sm:text-base text-zinc-300 font-sans leading-relaxed space-y-2 max-w-[600px] font-medium pt-2">
-                  {currentScene.cards.map((c, idx) => (
-                    <p key={idx}>{c}</p>
-                  ))}
-                </div>
-              )}
-            </div>
+          {/* 5. SCENE: FADE (暗転 0.8〜1s) */}
+          {hasStarted && currentScene.type === "fade" && (
+            <div className="absolute inset-0 z-20 bg-black" />
           )}
 
-          {/* F. SCENE 4: YOUTUBE VIDEO PLAYER */}
+          {/* 6. SCENE: VIDEO (YouTube API) */}
           <div
             className={`w-full h-full ${
               hasStarted && currentScene.type === "video" ? "block" : "hidden"
@@ -847,87 +399,110 @@ export function HistoryView() {
             <div id="yt-player-slot" className="w-full h-full" />
           </div>
 
-          {/* G. SCENE 5: TEXT CARD (字幕・解説カード) */}
-          {hasStarted && currentScene.type === "text" && currentScene.cards && (
-            <div className="absolute inset-0 z-20 bg-black flex flex-col items-center justify-center text-center p-8 space-y-6 animate-fade-in">
-              <div className="text-xs font-mono font-bold text-zinc-500 tracking-wider">
-                CHAPTER {currentScene.chapterNum} // NARRATION
+          {/* 7. SCENE: CREDITS 1 */}
+          {hasStarted && currentScene.type === "credits_1" && (
+            <div className="absolute inset-0 z-20 bg-black flex flex-col items-center justify-center text-center p-6 font-mono space-y-4">
+              <div className="text-3xl sm:text-5xl font-extrabold tracking-widest text-white">
+                SHOKO TAKIWAKI
               </div>
-              <div className="max-w-[720px] mx-auto px-4 min-h-[120px] flex items-center justify-center">
-                <p className="text-lg sm:text-2xl font-maru font-extrabold text-zinc-100 leading-relaxed tracking-wide">
-                  {currentScene.cards[cardIndex] || currentScene.cards[0]}
-                </p>
+              <div className="text-xl sm:text-2xl font-bold tracking-widest text-[#F6C744]">
+                HISTORY
               </div>
-              <div className="flex gap-1.5 pt-4">
-                {currentScene.cards.map((_, idx) => (
-                  <div
-                    key={idx}
-                    className={`h-1.5 rounded-full transition-all ${
-                      idx === cardIndex ? "w-6 bg-[#F6C744]" : "w-1.5 bg-zinc-800"
-                    }`}
-                  />
+              <div className="text-xs text-zinc-500 font-bold tracking-widest">
+                2017 — 2026
+              </div>
+            </div>
+          )}
+
+          {/* 8. SCENE: CREDITS FILMS */}
+          {hasStarted && currentScene.type === "credits_films" && (
+            <div className="absolute inset-0 z-20 bg-black flex flex-col items-center justify-center text-center p-6 font-mono space-y-3">
+              <div className="text-xs text-[#F6C744] font-bold tracking-widest uppercase mb-1">
+                // FEATURED FILMS
+              </div>
+              <div className="text-[11px] sm:text-xs text-zinc-300 space-y-1.5 font-sans font-medium max-w-[700px] leading-snug">
+                {FEATURED_FILMS_LIST.map((f, idx) => (
+                  <p key={idx}>{f}</p>
                 ))}
               </div>
             </div>
           )}
 
-          {/* H. SCENE 6: ENDING CARD (エンディング) */}
-          {hasStarted && currentScene.type === "ending" && (
-            <div className="absolute inset-0 z-30 bg-black flex flex-col items-center justify-center text-center p-8 space-y-6 animate-fade-in">
-              <div className="text-xs font-mono text-zinc-500 font-bold tracking-widest">
-                2017 — 2026
+          {/* 9. SCENE: CREDITS FEATURING */}
+          {hasStarted && currentScene.type === "credits_featuring" && (
+            <div className="absolute inset-0 z-20 bg-black flex flex-col items-center justify-center text-center p-6 font-mono space-y-3">
+              <div className="text-xs text-[#F6C744] font-bold tracking-widest uppercase">
+                FEATURING
+              </div>
+              <div className="text-3xl sm:text-5xl font-maru font-extrabold text-white tracking-widest pt-1">
+                瀧脇 笙古
+              </div>
+            </div>
+          )}
+
+          {/* 10. SCENE: CREDITS CURATED */}
+          {hasStarted && currentScene.type === "credits_curated" && (
+            <div className="absolute inset-0 z-20 bg-black flex flex-col items-center justify-center text-center p-6 font-mono space-y-3">
+              <div className="text-xs text-[#F6C744] font-bold tracking-widest uppercase">
+                CURATED BY
+              </div>
+              <div className="text-3xl sm:text-5xl font-extrabold text-white tracking-widest">
+                IDEAL
+              </div>
+              <div className="text-xs text-zinc-400 font-bold tracking-widest pt-2">
+                SHOKORA NO HEYA
+              </div>
+            </div>
+          )}
+
+          {/* 11. SCENE: CREDITS DISCLAIMER */}
+          {hasStarted && currentScene.type === "credits_disclaimer" && (
+            <div className="absolute inset-0 z-20 bg-black flex flex-col items-center justify-center text-center p-6 font-mono space-y-3">
+              <div className="text-xs text-zinc-400 font-bold">
+                This is an unofficial fan project.
+              </div>
+              <div className="text-[11px] text-zinc-500 max-w-[500px] leading-relaxed">
+                All video content belongs to its respective rights holders.
+              </div>
+            </div>
+          )}
+
+          {/* 12. SCENE: LAST FRAME (IDEAL + REPLAY & LATEST NEWS) */}
+          {hasStarted && currentScene.type === "last_frame" && (
+            <div className="absolute inset-0 z-30 bg-black flex flex-col items-center justify-center text-center p-6 font-mono space-y-8">
+              <div className="text-3xl sm:text-5xl font-extrabold text-white tracking-widest">
+                IDEAL
               </div>
 
-              <div className="space-y-2 text-sm sm:text-base text-zinc-300 font-sans font-medium">
-                <p>できないところから始まりました。</p>
-                <p>それでも、挑戦を続けました。</p>
-                <p className="text-xs text-[#F6C744] font-mono font-bold pt-1">
-                  初センター / サブ4 / ダブルセンター / 横浜スタジアム / FILA
-                </p>
-              </div>
-
-              <div className="py-4 border-y border-zinc-800 my-2">
-                <h2 className="text-3xl sm:text-5xl font-maru font-extrabold text-[#F6C744] tracking-wider">
-                  物語は、まだ続いています。
-                </h2>
-              </div>
-
-              <div className="text-xs font-mono text-zinc-500 font-bold">
-                SHOKO TAKIWAKI HISTORY
-              </div>
-
-              <div className="pt-4 flex flex-wrap items-center justify-center gap-4 text-xs font-mono font-bold">
+              <div className="flex flex-wrap items-center justify-center gap-4 text-xs font-mono font-bold">
                 <button
                   onClick={() => {
                     setSceneIndex(0);
                     setIsPlaying(true);
                   }}
-                  className="px-6 py-3 bg-zinc-900 border border-zinc-800 text-zinc-200 hover:text-white rounded-full transition-colors flex items-center gap-2 cursor-pointer"
+                  className="px-8 py-3 bg-zinc-900 border border-zinc-800 text-zinc-200 hover:text-white rounded-full transition-colors flex items-center gap-2 cursor-pointer"
                 >
-                  <RotateCcw className="w-4 h-4" />
-                  <span>REPLAY (最初から見る)</span>
+                  <RotateCcw className="w-4 h-4 text-[#F6C744]" />
+                  <span>REPLAY</span>
                 </button>
                 <Link
                   href="/news"
-                  className="px-6 py-3 bg-[#F6C744] text-[#191919] font-bold rounded-full hover:bg-[#E99A32] transition-colors flex items-center gap-2"
+                  className="px-8 py-3 bg-[#F6C744] text-[#191919] font-bold rounded-full hover:bg-[#E99A32] transition-colors flex items-center gap-2"
                 >
                   <Newspaper className="w-4 h-4" />
-                  <span>LATEST NEWS (最新情報を見る ↗)</span>
+                  <span>LATEST NEWS ↗</span>
                 </Link>
               </div>
             </div>
           )}
 
         </div>
-
       </main>
 
-      {/* ======================================================== */}
-      {/* 画面下部: プレイヤーコントロール ＆ プログレスバー */}
-      {/* ======================================================== */}
+      {/* 画面下部: プログレスバー ＆ コントロール */}
       <footer className="w-full max-w-[1400px] px-6 py-4 space-y-3 z-30">
         
-        {/* 細いチャプタープログレスバー (01 ━━━ 02 ━━━ 03 ... 10) */}
+        {/* 細いチャプターバー (01 AUDITION ~ 10 FILA) */}
         <div className="flex items-center justify-between gap-1 sm:gap-2 text-[10px] font-mono font-bold">
           {chaptersList.map((ch) => {
             const isCurrent = currentScene.chapterNum === ch.num;
@@ -938,7 +513,7 @@ export function HistoryView() {
                 className={`flex-1 py-1.5 transition-all text-center rounded border ${
                   isCurrent
                     ? "bg-[#F6C744] text-[#191919] border-[#F6C744] font-black scale-105 shadow-md"
-                    : "bg-zinc-950/80 text-zinc-500 border-zinc-800/80 hover:text-white hover:border-zinc-700"
+                    : "bg-zinc-950/90 text-zinc-500 border-zinc-800/80 hover:text-white"
                 }`}
               >
                 <span className="hidden sm:inline">{ch.label}</span>
@@ -949,20 +524,17 @@ export function HistoryView() {
         </div>
 
         {/* コントロールバー */}
-        <div className="flex items-center justify-between bg-zinc-900/90 border border-zinc-800 rounded-xl px-4 py-2 text-xs font-mono">
-          
-          {/* 現在のステータス表示 */}
+        <div className="flex items-center justify-between bg-zinc-950/90 border border-zinc-800 rounded-xl px-4 py-2 text-xs font-mono">
           <div className="flex items-center gap-3">
             <span className="font-extrabold text-[#F6C744]">
               CHAPTER {currentScene.chapterNum || "01"} / 10
             </span>
-            <span className="text-zinc-500 hidden sm:inline">|</span>
-            <span className="text-zinc-300 font-bold truncate max-w-[200px] sm:max-w-[360px]">
-              {currentScene.titleEn} {currentScene.year ? `(${currentScene.year})` : ""}
+            <span className="text-zinc-600 hidden sm:inline">|</span>
+            <span className="text-zinc-300 font-bold">
+              {currentScene.label || "SHOKO TAKIWAKI HISTORY"}
             </span>
           </div>
 
-          {/* 再生ボタン類 */}
           <div className="flex items-center gap-3">
             <button
               onClick={prevScene}
@@ -998,7 +570,6 @@ export function HistoryView() {
               <Maximize2 className="w-4 h-4" />
             </button>
           </div>
-
         </div>
 
       </footer>
