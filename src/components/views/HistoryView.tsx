@@ -7,6 +7,7 @@ import {
   Pause,
   SkipBack,
   SkipForward,
+  RotateCcw,
   Maximize2,
   Minimize2,
   Film,
@@ -14,7 +15,8 @@ import {
   X,
   ChevronLeft,
   ChevronRight,
-  Tv
+  Tv,
+  Newspaper
 } from "lucide-react";
 
 declare global {
@@ -175,13 +177,29 @@ const CHAPTERS: ChapterData[] = [
   }
 ];
 
+const FEATURED_FILMS_LIST = [
+  "Documentary of =LOVE - Episode 0 - Audition -",
+  "Documentary of =LOVE - Episode 1 - Training Camp -",
+  "SASUKE 2020",
+  "『BPM170の君へ』 Making",
+  "『BPM170の君へ』 Live Performance",
+  "Tokyo Marathon 2023",
+  "突然ですが占ってもいいですか？",
+  "『木漏れ日メゾフォルテ』",
+  "横浜スタジアム セレモニアルピッチ",
+  "FILA 2026FW"
+];
+
+type FilmSubState = "start_screen" | "opening" | "chapter_title" | "video" | "fade" | "credits_1" | "credits_films" | "credits_featuring" | "credits_curated" | "credits_disclaimer" | "last_frame";
+
 export function HistoryView() {
   const [mode, setMode] = useState<"chapter" | "film">("chapter");
   const [currentChapterIndex, setCurrentChapterIndex] = useState<number>(0);
   const [isChapterDrawerOpen, setIsChapterDrawerOpen] = useState<boolean>(false);
   
-  // FILM MODE 内ステート
-  const [isPlayingFilm, setIsPlayingFilm] = useState<boolean>(true);
+  // FILM MODE ステート
+  const [filmSubState, setFilmSubState] = useState<FilmSubState>("start_screen");
+  const [isPlayingFilm, setIsPlayingFilm] = useState<boolean>(false);
   const [showControls, setShowControls] = useState<boolean>(true);
 
   const [isApiReady, setIsApiReady] = useState<boolean>(false);
@@ -190,6 +208,7 @@ export function HistoryView() {
   const playerRefFilm = useRef<any>(null);
   const filmStageRef = useRef<HTMLDivElement>(null);
   const hideTimerRef = useRef<NodeJS.Timeout | null>(null);
+  const filmStepTimerRef = useRef<NodeJS.Timeout | null>(null);
 
   const currentChapter = CHAPTERS[currentChapterIndex];
 
@@ -231,33 +250,133 @@ export function HistoryView() {
         controls: 1,
         rel: 0,
         modestbranding: 1,
+        playsinline: 1,
         start: currentChapter.start || 0,
       }
     });
 
   }, [currentChapterIndex, mode, isApiReady]);
 
-  // オートハイド（2.8秒無操作非表示）タイマーリセット
-  const resetHideTimer = () => {
-    if (hideTimerRef.current) {
-      clearTimeout(hideTimerRef.current);
+  // FILM MODE 用 YouTube Iframe API 初期化 & ENDED 監視
+  useEffect(() => {
+    if (!isApiReady || mode !== "film" || filmSubState !== "video") return;
+
+    if (playerRefFilm.current) {
+      try { playerRefFilm.current.destroy(); } catch (e) {}
+      playerRefFilm.current = null;
     }
+
+    const slotFilm = document.getElementById("yt-slot-film-cinema");
+    if (!slotFilm) return;
+
+    playerRefFilm.current = new window.YT.Player("yt-slot-film-cinema", {
+      height: "100%",
+      width: "100%",
+      videoId: currentChapter.videoId,
+      playerVars: {
+        autoplay: 1,
+        controls: 0, // YouTube標準コントロールは完全非表示
+        rel: 0,
+        modestbranding: 1,
+        playsinline: 1,
+        start: currentChapter.start || 0,
+      },
+      events: {
+        onReady: (event: any) => {
+          if (isPlayingFilm) {
+            try { event.target.playVideo(); } catch (err) {}
+          }
+        },
+        onStateChange: (event: any) => {
+          // 動画終了 (0) で自働的に暗転 ➔ 次のチャプタータイトルへ
+          if (event.data === window.YT.PlayerState.ENDED) {
+            handleVideoEnd();
+          }
+        },
+        onError: () => {
+          handleVideoEnd();
+        }
+      }
+    });
+  }, [filmSubState, currentChapterIndex, mode, isApiReady]);
+
+  // 動画終了時の自動進行処理
+  const handleVideoEnd = () => {
+    setFilmSubState("fade");
+    if (filmStepTimerRef.current) clearTimeout(filmStepTimerRef.current);
+
+    filmStepTimerRef.current = setTimeout(() => {
+      if (currentChapterIndex < CHAPTERS.length - 1) {
+        setCurrentChapterIndex((prev) => prev + 1);
+        setFilmSubState("chapter_title");
+      } else {
+        // 全10動画完走 ➔ エンドクレジットフェードへ
+        startEndingCredits();
+      }
+    }, 1000); // 1.0秒暗転
+  };
+
+  // チャプタータイトルの自動進行タイマー
+  useEffect(() => {
+    if (mode !== "film") return;
+
+    if (filmSubState === "opening") {
+      if (filmStepTimerRef.current) clearTimeout(filmStepTimerRef.current);
+      filmStepTimerRef.current = setTimeout(() => {
+        setFilmSubState("chapter_title");
+      }, 3500);
+    } else if (filmSubState === "chapter_title") {
+      if (filmStepTimerRef.current) clearTimeout(filmStepTimerRef.current);
+      filmStepTimerRef.current = setTimeout(() => {
+        setFilmSubState("video");
+      }, 3000);
+    }
+  }, [filmSubState, mode]);
+
+  // エンドクレジット進行
+  const startEndingCredits = () => {
+    setFilmSubState("credits_1");
+    if (filmStepTimerRef.current) clearTimeout(filmStepTimerRef.current);
+
+    const steps: { state: FilmSubState; duration: number }[] = [
+      { state: "credits_films", duration: 7000 },
+      { state: "credits_featuring", duration: 4000 },
+      { state: "credits_curated", duration: 4000 },
+      { state: "credits_disclaimer", duration: 4500 },
+      { state: "last_frame", duration: 0 }
+    ];
+
+    let stepIdx = 0;
+    const runNextCredit = () => {
+      if (stepIdx < steps.length) {
+        const item = steps[stepIdx];
+        stepIdx++;
+        setFilmSubState(item.state);
+        if (item.duration > 0) {
+          filmStepTimerRef.current = setTimeout(runNextCredit, item.duration);
+        }
+      }
+    };
+
+    filmStepTimerRef.current = setTimeout(runNextCredit, 4000);
+  };
+
+  // オートハイド（3秒無操作非表示）タイマー
+  const resetHideTimer = () => {
+    if (hideTimerRef.current) clearTimeout(hideTimerRef.current);
     setShowControls(true);
 
-    // 再生中のみ自動非表示タイマーをセット
-    if (isPlayingFilm) {
+    if (isPlayingFilm && filmSubState === "video") {
       hideTimerRef.current = setTimeout(() => {
         setShowControls(false);
-      }, 2800);
+      }, 3000);
     }
   };
 
-  // ユーザー操作イベントリスナー (mousemove, touchstart, click, keydown)
   useEffect(() => {
     if (mode !== "film") return;
 
     const handleUserActivity = (e: MouseEvent | TouchEvent | KeyboardEvent) => {
-      // マウス位置が画面下部 25% 以内なら即時表示
       if ("clientY" in e && typeof e.clientY === "number") {
         if (e.clientY > window.innerHeight * 0.75) {
           setShowControls(true);
@@ -280,29 +399,37 @@ export function HistoryView() {
       window.removeEventListener("keydown", handleUserActivity);
       if (hideTimerRef.current) clearTimeout(hideTimerRef.current);
     };
-  }, [mode, isPlayingFilm]);
+  }, [mode, isPlayingFilm, filmSubState]);
 
-  // チャプター切り替え時は UI を 1.8秒間明示表示
+  // ▶ 最初から再生 (START FROM BEGINNING) 実行
+  const startFromBeginning = () => {
+    if (filmStepTimerRef.current) clearTimeout(filmStepTimerRef.current);
+    setCurrentChapterIndex(0);
+    setFilmSubState("opening");
+    setIsPlayingFilm(true);
+    setShowControls(true);
+    resetHideTimer();
+  };
+
   const jumpChapter = (newIdx: number) => {
     if (newIdx >= 0 && newIdx < CHAPTERS.length) {
+      if (filmStepTimerRef.current) clearTimeout(filmStepTimerRef.current);
       setCurrentChapterIndex(newIdx);
       if (mode === "film") {
+        setFilmSubState("chapter_title");
+        setIsPlayingFilm(true);
         setShowControls(true);
-        if (hideTimerRef.current) clearTimeout(hideTimerRef.current);
-        hideTimerRef.current = setTimeout(() => {
-          if (isPlayingFilm) setShowControls(false);
-        }, 1800);
+        resetHideTimer();
       }
     }
     setIsChapterDrawerOpen(false);
   };
 
-  // FILM MODE 切り替え ＆ 退出
   const enterFilmMode = () => {
     setMode("film");
-    setIsPlayingFilm(true);
+    setFilmSubState("start_screen");
+    setIsPlayingFilm(false);
     setShowControls(true);
-    resetHideTimer();
 
     if (filmStageRef.current && filmStageRef.current.requestFullscreen) {
       filmStageRef.current.requestFullscreen().catch(() => {});
@@ -312,29 +439,32 @@ export function HistoryView() {
   const exitFilmMode = () => {
     setMode("chapter");
     setIsPlayingFilm(false);
+    if (filmStepTimerRef.current) clearTimeout(filmStepTimerRef.current);
     if (document.fullscreenElement) {
       document.exitFullscreen().catch(() => {});
     }
   };
 
-  // 再生 / 一時停止 トグル
   const toggleFilmPlay = () => {
     if (isPlayingFilm) {
       setIsPlayingFilm(false);
-      setShowControls(true); // PAUSE中は常時表示
-      if (hideTimerRef.current) clearTimeout(hideTimerRef.current);
+      setShowControls(true);
+      if (playerRefFilm.current && playerRefFilm.current.pauseVideo) {
+        try { playerRefFilm.current.pauseVideo(); } catch (e) {}
+      }
     } else {
       setIsPlayingFilm(true);
       resetHideTimer();
+      if (playerRefFilm.current && playerRefFilm.current.playVideo) {
+        try { playerRefFilm.current.playVideo(); } catch (e) {}
+      }
     }
   };
 
   return (
     <div className="bg-[#0A0A0A] text-zinc-100 min-h-screen font-sans selection:bg-[#F6C744] selection:text-[#191919] pb-12">
       
-      {/* ======================================================== */}
       {/* 1. ヘッダーナビゲーション */}
-      {/* ======================================================== */}
       <header className="sticky top-0 z-40 bg-[#0A0A0A]/95 backdrop-blur-md border-b border-zinc-800/80 px-6 py-3.5 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <Link
@@ -350,7 +480,6 @@ export function HistoryView() {
           </span>
         </div>
 
-        {/* 右上 FILM MODE 切替ボタン */}
         <div className="flex items-center gap-2">
           {mode === "chapter" ? (
             <button
@@ -372,13 +501,10 @@ export function HistoryView() {
         </div>
       </header>
 
-      {/* ======================================================== */}
       {/* 2. CHAPTER MODE (初期表示デフォルト: 資料＆動画 2カラム) */}
-      {/* ======================================================== */}
       {mode === "chapter" && (
         <main className="w-full max-w-[1360px] mx-auto px-5 sm:px-8 pt-6 space-y-8">
           
-          {/* オープニングヘッダー */}
           <div className="border-b border-zinc-800 pb-5 space-y-2 font-mono">
             <div className="flex items-center justify-between">
               <span className="text-xs font-bold text-[#F6C744] tracking-widest">
@@ -399,18 +525,15 @@ export function HistoryView() {
             </div>
           </div>
 
-          {/* PC 2カラム構造 (左: 65% 16:9動画 / 右: 35% ドキュメンタリー解説) */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             
-            {/* 左側: 65%〜70% 16:9 動画表示エリア */}
             <div className="lg:col-span-8 space-y-3">
               <div className="relative w-full aspect-video bg-black rounded-2xl overflow-hidden border border-zinc-800 shadow-2xl">
                 <div id="yt-slot-chapter" className="w-full h-full" />
                 
-                {/* プレイヤー右上の FILM MODE ショートカット */}
                 <button
                   onClick={enterFilmMode}
-                  className="absolute top-3 right-3 z-10 px-3 py-1.5 bg-black/80 hover:bg-[#F6C744] text-white hover:text-[#191919] font-mono font-bold text-[11px] rounded-lg transition-colors border border-zinc-700 flex items-center gap-1.5 backdrop-blur-xs"
+                  className="absolute top-3 right-3 z-10 px-3 py-1.5 bg-black/80 hover:bg-[#F6C744] text-white hover:text-[#191919] font-mono font-bold text-[11px] rounded-lg transition-colors border border-zinc-700 flex items-center gap-1.5 backdrop-blur-xs cursor-pointer"
                 >
                   <Maximize2 className="w-3.5 h-3.5" />
                   <span>⛶ FILM MODE</span>
@@ -423,9 +546,7 @@ export function HistoryView() {
               </div>
             </div>
 
-            {/* 右側: 30%〜35% ドキュメンタリー資料・解説テキスト */}
             <div className="lg:col-span-4 space-y-6 bg-zinc-900/60 border border-zinc-800 p-6 rounded-2xl">
-              
               <div className="space-y-2 border-b border-zinc-800 pb-4">
                 <div className="flex items-center gap-2 text-xs font-mono text-[#F6C744] font-bold">
                   <span>CHAPTER {currentChapter.num}</span>
@@ -443,7 +564,6 @@ export function HistoryView() {
                 )}
               </div>
 
-              {/* 特殊数字表示 (マラソン) */}
               {currentChapter.subStat && (
                 <div className="bg-zinc-950 p-4 rounded-xl border border-zinc-800 text-center space-y-0.5 font-mono">
                   <div className="text-3xl font-extrabold text-white tracking-widest">
@@ -455,25 +575,21 @@ export function HistoryView() {
                 </div>
               )}
 
-              {/* NHKドキュメンタリー風 自然で客観的な解説文 */}
               <div className="space-y-3 text-xs sm:text-sm text-zinc-300 font-sans leading-relaxed">
                 {currentChapter.desc.map((p, idx) => (
                   <p key={idx}>{p}</p>
                 ))}
               </div>
-
             </div>
 
           </div>
 
-          {/* CHAPTER MODE ナビゲーション */}
           <div className="border-t border-zinc-800 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs">
-            
             <div className="flex items-center gap-3">
               <button
                 onClick={() => jumpChapter(currentChapterIndex - 1)}
                 disabled={currentChapterIndex === 0}
-                className="px-4 py-2 bg-zinc-900 border border-zinc-800 text-zinc-300 hover:text-white rounded-lg transition-colors disabled:opacity-30 disabled:pointer-events-none flex items-center gap-1 font-bold"
+                className="px-4 py-2 bg-zinc-900 border border-zinc-800 text-zinc-300 hover:text-white rounded-lg transition-colors disabled:opacity-30 disabled:pointer-events-none flex items-center gap-1 font-bold cursor-pointer"
               >
                 <ChevronLeft className="w-4 h-4 text-[#F6C744]" />
                 <span>PREVIOUS</span>
@@ -486,7 +602,7 @@ export function HistoryView() {
               <button
                 onClick={() => jumpChapter(currentChapterIndex + 1)}
                 disabled={currentChapterIndex === CHAPTERS.length - 1}
-                className="px-4 py-2 bg-zinc-900 border border-zinc-800 text-zinc-300 hover:text-white rounded-lg transition-colors disabled:opacity-30 disabled:pointer-events-none flex items-center gap-1 font-bold"
+                className="px-4 py-2 bg-zinc-900 border border-zinc-800 text-zinc-300 hover:text-white rounded-lg transition-colors disabled:opacity-30 disabled:pointer-events-none flex items-center gap-1 font-bold cursor-pointer"
               >
                 <span>NEXT</span>
                 <ChevronRight className="w-4 h-4 text-[#F6C744]" />
@@ -496,7 +612,7 @@ export function HistoryView() {
             <div className="relative">
               <button
                 onClick={() => setIsChapterDrawerOpen(!isChapterDrawerOpen)}
-                className="px-4 py-2 bg-zinc-900 border border-zinc-800 text-zinc-300 hover:text-white rounded-lg transition-colors flex items-center gap-2 font-bold"
+                className="px-4 py-2 bg-zinc-900 border border-zinc-800 text-zinc-300 hover:text-white rounded-lg transition-colors flex items-center gap-2 font-bold cursor-pointer"
               >
                 <List className="w-4 h-4 text-[#F6C744]" />
                 <span>CHAPTERS INDEX ({CHAPTERS.length})</span>
@@ -511,7 +627,7 @@ export function HistoryView() {
                     <button
                       key={ch.num}
                       onClick={() => jumpChapter(idx)}
-                      className={`w-full text-left px-3 py-2 rounded text-xs transition-colors flex items-center justify-between ${
+                      className={`w-full text-left px-3 py-2 rounded text-xs transition-colors flex items-center justify-between cursor-pointer ${
                         idx === currentChapterIndex
                           ? "bg-[#F6C744] text-[#191919] font-black"
                           : "text-zinc-300 hover:bg-zinc-800"
@@ -524,26 +640,23 @@ export function HistoryView() {
                 </div>
               )}
             </div>
-
           </div>
 
         </main>
       )}
 
-      {/* ======================================================== */}
       {/* 3. FILM MODE (オートハイド対応 100% 映画没入シアター) */}
-      {/* ======================================================== */}
       {mode === "film" && (
         <div
           ref={filmStageRef}
           className={`fixed inset-0 z-50 w-screen h-screen bg-black text-white font-sans overflow-hidden select-none flex flex-col justify-between transition-all duration-300 ${
-            !showControls && isPlayingFilm ? "cursor-none" : "cursor-default"
+            !showControls && isPlayingFilm && filmSubState === "video" ? "cursor-none" : "cursor-default"
           }`}
         >
-          {/* 上部ヘッダー (オートハイド 200〜300ms フェード) */}
+          {/* 上部ヘッダー */}
           <header
             className={`absolute top-0 left-0 w-full z-40 bg-gradient-to-b from-black/90 via-black/50 to-transparent px-6 py-4 flex items-center justify-between transition-all duration-300 ${
-              showControls
+              showControls || filmSubState !== "video"
                 ? "opacity-100 pointer-events-auto"
                 : "opacity-0 pointer-events-none"
             }`}
@@ -561,28 +674,190 @@ export function HistoryView() {
             </div>
           </header>
 
-          {/* 中央 16:9 シネマステージ */}
+          {/* 中央シネマステージ */}
           <div className="relative w-full h-full flex-1 bg-black flex items-center justify-center overflow-hidden">
-            <div className="w-full h-full aspect-video max-w-full max-h-full">
-              <iframe
-                src={`https://www.youtube.com/embed/${currentChapter.videoId}?start=${currentChapter.start || 0}&autoplay=${isPlayingFilm ? 1 : 0}&controls=0&rel=0&modestbranding=1`}
-                title={currentChapter.titleJa}
-                className="w-full h-full border-0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-              />
+            
+            {/* A. START SCREEN (最初から再生ボタン) */}
+            {filmSubState === "start_screen" && (
+              <div className="absolute inset-0 z-30 bg-black flex flex-col items-center justify-center text-center p-6 space-y-6">
+                <div className="space-y-3 font-mono">
+                  <div className="text-4xl sm:text-7xl font-extrabold tracking-widest text-white">
+                    SHOKO TAKIWAKI
+                  </div>
+                  <div className="text-2xl sm:text-4xl font-extrabold tracking-widest text-[#F6C744]">
+                    HISTORY
+                  </div>
+                  <div className="text-xs sm:text-sm text-zinc-500 font-bold tracking-widest">
+                    2017 — 2026
+                  </div>
+                </div>
+
+                <button
+                  onClick={startFromBeginning}
+                  className="mt-6 px-10 py-4 bg-[#F6C744] hover:bg-[#E99A32] text-[#191919] font-mono font-black text-lg sm:text-xl rounded-full transition-all transform hover:scale-105 shadow-2xl flex items-center gap-3 cursor-pointer"
+                >
+                  <Play className="w-6 h-6 fill-current" />
+                  <span>▶ START FROM BEGINNING (最初から再生)</span>
+                </button>
+              </div>
+            )}
+
+            {/* B. OPENING (3.5秒) */}
+            {filmSubState === "opening" && (
+              <div className="absolute inset-0 z-20 bg-black flex flex-col items-center justify-center text-center p-6 space-y-4 font-mono animate-fade-in">
+                <div className="text-4xl sm:text-7xl font-extrabold tracking-widest text-white">
+                  SHOKO TAKIWAKI
+                </div>
+                <div className="text-2xl sm:text-4xl font-extrabold tracking-widest text-[#F6C744]">
+                  HISTORY
+                </div>
+                <div className="text-sm text-zinc-500 font-bold tracking-widest">
+                  2017 — 2026
+                </div>
+              </div>
+            )}
+
+            {/* C. CHAPTER TITLE CARD */}
+            {filmSubState === "chapter_title" && (
+              <div className="absolute inset-0 z-20 bg-black flex flex-col items-center justify-center text-center p-6 font-mono animate-fade-in">
+                <div className="text-3xl sm:text-6xl font-extrabold tracking-widest text-[#F6C744]">
+                  {currentChapter.num} / {currentChapter.year} / {currentChapter.titleEn}
+                </div>
+              </div>
+            )}
+
+            {/* D. FADE (静かな暗転 1s) */}
+            {filmSubState === "fade" && (
+              <div className="absolute inset-0 z-20 bg-black" />
+            )}
+
+            {/* E. YOUTUBE VIDEO (controls=0 独自層) */}
+            <div
+              className={`w-full h-full max-w-full max-h-full flex items-center justify-center ${
+                filmSubState === "video" ? "block" : "hidden"
+              }`}
+            >
+              <div className="relative w-full h-full aspect-video max-w-full max-h-full">
+                <div id="yt-slot-film-cinema" className="w-full h-full" />
+                {/* 独自クリックレイヤー (規約に抵触しない透明な制御用インターフェース) */}
+                <div
+                  className="absolute inset-0 z-10 cursor-pointer"
+                  onClick={toggleFilmPlay}
+                />
+              </div>
             </div>
+
+            {/* F. CREDITS 1 */}
+            {filmSubState === "credits_1" && (
+              <div className="absolute inset-0 z-20 bg-black flex flex-col items-center justify-center text-center p-6 font-mono space-y-4 animate-fade-in">
+                <div className="text-4xl sm:text-7xl font-extrabold tracking-widest text-white">
+                  SHOKO TAKIWAKI
+                </div>
+                <div className="text-2xl sm:text-4xl font-bold tracking-widest text-[#F6C744]">
+                  HISTORY
+                </div>
+                <div className="text-sm text-zinc-500 font-bold tracking-widest">
+                  2017 — 2026
+                </div>
+              </div>
+            )}
+
+            {/* G. CREDITS FILMS */}
+            {filmSubState === "credits_films" && (
+              <div className="absolute inset-0 z-20 bg-black flex flex-col items-center justify-center text-center p-6 font-mono space-y-4 animate-fade-in">
+                <div className="text-xs text-[#F6C744] font-bold tracking-widest uppercase mb-2">
+                  // FEATURED FILMS
+                </div>
+                <div className="text-xs sm:text-sm text-zinc-300 space-y-2 font-sans font-medium max-w-[800px] leading-relaxed">
+                  {FEATURED_FILMS_LIST.map((f, idx) => (
+                    <p key={idx}>{f}</p>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* H. CREDITS FEATURING */}
+            {filmSubState === "credits_featuring" && (
+              <div className="absolute inset-0 z-20 bg-black flex flex-col items-center justify-center text-center p-6 font-mono space-y-4 animate-fade-in">
+                <div className="text-xs text-[#F6C744] font-bold tracking-widest uppercase">
+                  FEATURING
+                </div>
+                <div className="text-4xl sm:text-6xl font-maru font-extrabold text-white tracking-widest pt-2">
+                  瀧脇 笙古
+                </div>
+              </div>
+            )}
+
+            {/* I. CREDITS CURATED BY */}
+            {filmSubState === "credits_curated" && (
+              <div className="absolute inset-0 z-20 bg-black flex flex-col items-center justify-center text-center p-6 font-mono space-y-3 animate-fade-in">
+                <div className="text-xs text-[#F6C744] font-bold tracking-widest uppercase">
+                  CURATED BY
+                </div>
+                <div className="text-4xl sm:text-6xl font-extrabold text-white tracking-widest">
+                  IDEAL
+                </div>
+                <div className="text-xs text-zinc-400 font-bold tracking-widest pt-2">
+                  SHOKORA NO HEYA
+                </div>
+              </div>
+            )}
+
+            {/* J. CREDITS DISCLAIMER */}
+            {filmSubState === "credits_disclaimer" && (
+              <div className="absolute inset-0 z-20 bg-black flex flex-col items-center justify-center text-center p-6 font-mono space-y-3 animate-fade-in">
+                <div className="text-sm text-zinc-400 font-bold">
+                  This is an unofficial fan project.
+                </div>
+                <div className="text-xs text-zinc-500 max-w-[600px] leading-relaxed">
+                  All video content belongs to its respective rights holders.
+                </div>
+              </div>
+            )}
+
+            {/* K. LAST FRAME (IDEAL + 最初から再生 & CHAPTER MODEへ戻る & LATEST NEWS) */}
+            {filmSubState === "last_frame" && (
+              <div className="absolute inset-0 z-30 bg-black flex flex-col items-center justify-center text-center p-6 font-mono space-y-10 animate-fade-in">
+                <div className="text-4xl sm:text-6xl font-extrabold text-white tracking-widest">
+                  IDEAL
+                </div>
+
+                <div className="flex flex-wrap items-center justify-center gap-4 text-xs font-mono font-bold">
+                  <button
+                    onClick={startFromBeginning}
+                    className="px-8 py-3.5 bg-[#F6C744] hover:bg-[#E99A32] text-[#191919] font-black rounded-full transition-colors flex items-center gap-2 cursor-pointer shadow-lg"
+                  >
+                    <RotateCcw className="w-4 h-4" />
+                    <span>▶ 最初から再生 (START FROM BEGINNING)</span>
+                  </button>
+                  <button
+                    onClick={exitFilmMode}
+                    className="px-8 py-3.5 bg-zinc-900 border border-zinc-800 text-zinc-200 hover:text-white rounded-full transition-colors flex items-center gap-2 cursor-pointer"
+                  >
+                    <X className="w-4 h-4 text-[#F6C744]" />
+                    <span>CHAPTER MODEへ戻る</span>
+                  </button>
+                  <Link
+                    href="/news"
+                    className="px-8 py-3.5 bg-zinc-900 border border-zinc-800 text-zinc-200 hover:text-white rounded-full transition-colors flex items-center gap-2"
+                  >
+                    <Newspaper className="w-4 h-4" />
+                    <span>LATEST NEWS ↗</span>
+                  </Link>
+                </div>
+              </div>
+            )}
+
           </div>
 
-          {/* 下部プログレス ＆ コントロールバー (オートハイド 200〜300ms フェード) */}
+          {/* 下部プログレス ＆ コントロールバー */}
           <footer
             className={`absolute bottom-0 left-0 w-full z-40 bg-gradient-to-t from-black/95 via-black/70 to-transparent px-6 py-4 space-y-3 transition-all duration-300 ${
-              showControls
+              showControls || filmSubState !== "video"
                 ? "opacity-100 pointer-events-auto"
                 : "opacity-0 pointer-events-none"
             }`}
           >
-            {/* チャプターバー */}
             <div className="flex items-center justify-between gap-1 sm:gap-2 text-[10px] font-mono font-bold">
               {CHAPTERS.map((ch, idx) => (
                 <button
@@ -600,15 +875,18 @@ export function HistoryView() {
               ))}
             </div>
 
-            {/* 再生コントロールバー */}
             <div className="flex items-center justify-between bg-black/80 border border-zinc-800/80 rounded-xl px-4 py-2 text-xs font-mono backdrop-blur-xs">
               <div className="flex items-center gap-3">
+                <button
+                  onClick={startFromBeginning}
+                  className="px-3 py-1 bg-[#F6C744] hover:bg-[#E99A32] text-[#191919] font-black rounded text-[11px] flex items-center gap-1 cursor-pointer"
+                >
+                  <RotateCcw className="w-3 h-3" />
+                  <span>最初から再生</span>
+                </button>
+                <span className="text-zinc-600 hidden sm:inline">|</span>
                 <span className="font-extrabold text-[#F6C744]">
                   CHAPTER {currentChapter.num} / 10
-                </span>
-                <span className="text-zinc-600 hidden sm:inline">|</span>
-                <span className="text-zinc-300 font-bold truncate max-w-[180px] sm:max-w-[400px]">
-                  {currentChapter.titleJa} ({currentChapter.year})
                 </span>
               </div>
 
