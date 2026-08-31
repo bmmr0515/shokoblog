@@ -231,7 +231,7 @@ export function HistoryView() {
     };
   }, []);
 
-  // CHAPTER MODE 用 プレイヤー初期化
+  // CHAPTER MODE 用 プレイヤー初期化 (cc_load_policy: 0 追加)
   useEffect(() => {
     if (!isApiReady || mode !== "chapter") return;
 
@@ -250,6 +250,7 @@ export function HistoryView() {
       playerVars: {
         autoplay: 0,
         controls: 1,
+        cc_load_policy: 0, // 自動字幕OFF
         rel: 0,
         modestbranding: 1,
         playsinline: 1,
@@ -259,7 +260,7 @@ export function HistoryView() {
 
   }, [currentChapterIndex, mode, isApiReady]);
 
-  // FILM MODE 用 YouTube Iframe API 初期化 & ENDED 監視
+  // FILM MODE 用 YouTube Iframe API 初期化 (cc_load_policy: 0 追加)
   useEffect(() => {
     if (!isApiReady || mode !== "film" || filmSubState !== "video") return;
 
@@ -277,7 +278,8 @@ export function HistoryView() {
       videoId: currentChapter.videoId,
       playerVars: {
         autoplay: 1,
-        controls: 0, // YouTube標準コントロールは完全非表示
+        controls: 0,
+        cc_load_policy: 0, // 自動字幕OFF
         rel: 0,
         modestbranding: 1,
         playsinline: 1,
@@ -290,7 +292,6 @@ export function HistoryView() {
           }
         },
         onStateChange: (event: any) => {
-          // 動画終了 (0) で自働的に暗転 ➔ 次のチャプタータイトルへ
           if (event.data === window.YT.PlayerState.ENDED) {
             handleVideoEnd();
           }
@@ -302,7 +303,6 @@ export function HistoryView() {
     });
   }, [filmSubState, currentChapterIndex, mode, isApiReady]);
 
-  // 動画終了時の自動進行処理
   const handleVideoEnd = () => {
     setFilmSubState("fade");
     if (filmStepTimerRef.current) clearTimeout(filmStepTimerRef.current);
@@ -312,13 +312,11 @@ export function HistoryView() {
         setCurrentChapterIndex((prev) => prev + 1);
         setFilmSubState("chapter_title");
       } else {
-        // 全10動画完走 ➔ エンドクレジットフェードへ
         startEndingCredits();
       }
-    }, 1000); // 1.0秒暗転
+    }, 1000);
   };
 
-  // チャプタータイトルの自動進行タイマー
   useEffect(() => {
     if (mode !== "film") return;
 
@@ -335,7 +333,6 @@ export function HistoryView() {
     }
   }, [filmSubState, mode]);
 
-  // エンドクレジット進行
   const startEndingCredits = () => {
     setFilmSubState("credits_1");
     if (filmStepTimerRef.current) clearTimeout(filmStepTimerRef.current);
@@ -363,7 +360,6 @@ export function HistoryView() {
     filmStepTimerRef.current = setTimeout(runNextCredit, 4000);
   };
 
-  // オートハイド（3秒無操作非表示）タイマー
   const resetHideTimer = () => {
     if (hideTimerRef.current) clearTimeout(hideTimerRef.current);
     setShowControls(true);
@@ -403,7 +399,6 @@ export function HistoryView() {
     };
   }, [mode, isPlayingFilm, filmSubState]);
 
-  // ▶ 最初から再生 (START FROM BEGINNING) 実行
   const startFromBeginning = () => {
     if (filmStepTimerRef.current) clearTimeout(filmStepTimerRef.current);
     setCurrentChapterIndex(0);
@@ -679,7 +674,7 @@ export function HistoryView() {
           {/* 中央シネマステージ */}
           <div className="relative w-full h-full flex-1 bg-black flex items-center justify-center overflow-hidden">
             
-            {/* A. START SCREEN (最初から再生ボタン) */}
+            {/* A. START SCREEN */}
             {filmSubState === "start_screen" && (
               <div className="absolute inset-0 z-30 bg-black flex flex-col items-center justify-center text-center p-6 space-y-6">
                 <div className="space-y-3 font-mono">
@@ -733,7 +728,7 @@ export function HistoryView() {
               <div className="absolute inset-0 z-20 bg-black" />
             )}
 
-            {/* E. YOUTUBE VIDEO (controls=0 独自層) */}
+            {/* E. YOUTUBE VIDEO (controls=0 & cc_load_policy=0) */}
             <div
               className={`w-full h-full max-w-full max-h-full flex items-center justify-center ${
                 filmSubState === "video" ? "block" : "hidden"
@@ -741,7 +736,6 @@ export function HistoryView() {
             >
               <div className="relative w-full h-full aspect-video max-w-full max-h-full">
                 <div id="yt-slot-film-cinema" className="w-full h-full" />
-                {/* 独自クリックレイヤー (規約に抵触しない透明な制御用インターフェース) */}
                 <div
                   className="absolute inset-0 z-10 cursor-pointer"
                   onClick={toggleFilmPlay}
@@ -817,7 +811,7 @@ export function HistoryView() {
               </div>
             )}
 
-            {/* K. LAST FRAME (IDEAL + 最初から再生 & CHAPTER MODEへ戻る & LATEST NEWS) */}
+            {/* K. LAST FRAME */}
             {filmSubState === "last_frame" && (
               <div className="absolute inset-0 z-30 bg-black flex flex-col items-center justify-center text-center p-6 font-mono space-y-10 animate-fade-in">
                 <div className="text-4xl sm:text-6xl font-extrabold text-white tracking-widest">
