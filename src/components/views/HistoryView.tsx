@@ -7,16 +7,13 @@ import {
   Pause,
   SkipBack,
   SkipForward,
-  RotateCcw,
   Maximize2,
   Minimize2,
   Film,
-  Newspaper,
-  ChevronLeft,
-  ChevronRight,
   List,
   X,
-  Volume2,
+  ChevronLeft,
+  ChevronRight,
   Tv
 } from "lucide-react";
 
@@ -178,37 +175,21 @@ const CHAPTERS: ChapterData[] = [
   }
 ];
 
-const FEATURED_FILMS_LIST = [
-  "Documentary of =LOVE - Episode 0 - Audition -",
-  "Documentary of =LOVE - Episode 1 - Training Camp -",
-  "SASUKE 2020",
-  "『BPM170の君へ』 Making",
-  "『BPM170の君へ』 Live Performance",
-  "Tokyo Marathon 2023",
-  "突然ですが占ってもいいですか？",
-  "『木漏れ日メゾフォルテ』",
-  "横浜スタジアム セレモニアルピッチ",
-  "FILA 2026FW"
-];
-
 export function HistoryView() {
-  // モード: "chapter" (初期デフォルト / ドキュメンタリー資料) | "film" (全自動シネマシアター)
   const [mode, setMode] = useState<"chapter" | "film">("chapter");
   const [currentChapterIndex, setCurrentChapterIndex] = useState<number>(0);
   const [isChapterDrawerOpen, setIsChapterDrawerOpen] = useState<boolean>(false);
   
   // FILM MODE 内ステート
-  const [filmSceneIndex, setFilmSceneIndex] = useState<number>(0);
-  const [isPlayingFilm, setIsPlayingFilm] = useState<boolean>(false);
+  const [isPlayingFilm, setIsPlayingFilm] = useState<boolean>(true);
   const [showControls, setShowControls] = useState<boolean>(true);
 
   const [isApiReady, setIsApiReady] = useState<boolean>(false);
-  const [needUserResume, setNeedUserResume] = useState<boolean>(false);
 
   const playerRefChapter = useRef<any>(null);
   const playerRefFilm = useRef<any>(null);
   const filmStageRef = useRef<HTMLDivElement>(null);
-  const timerRef = useRef<NodeJS.Timeout | null>(null);
+  const hideTimerRef = useRef<NodeJS.Timeout | null>(null);
 
   const currentChapter = CHAPTERS[currentChapterIndex];
 
@@ -256,14 +237,73 @@ export function HistoryView() {
 
   }, [currentChapterIndex, mode, isApiReady]);
 
-  // FILM MODE 切り替え時 & 退出時の同期
+  // オートハイド（2.8秒無操作非表示）タイマーリセット
+  const resetHideTimer = () => {
+    if (hideTimerRef.current) {
+      clearTimeout(hideTimerRef.current);
+    }
+    setShowControls(true);
+
+    // 再生中のみ自動非表示タイマーをセット
+    if (isPlayingFilm) {
+      hideTimerRef.current = setTimeout(() => {
+        setShowControls(false);
+      }, 2800);
+    }
+  };
+
+  // ユーザー操作イベントリスナー (mousemove, touchstart, click, keydown)
+  useEffect(() => {
+    if (mode !== "film") return;
+
+    const handleUserActivity = (e: MouseEvent | TouchEvent | KeyboardEvent) => {
+      // マウス位置が画面下部 25% 以内なら即時表示
+      if ("clientY" in e && typeof e.clientY === "number") {
+        if (e.clientY > window.innerHeight * 0.75) {
+          setShowControls(true);
+        }
+      }
+      resetHideTimer();
+    };
+
+    window.addEventListener("mousemove", handleUserActivity);
+    window.addEventListener("touchstart", handleUserActivity);
+    window.addEventListener("click", handleUserActivity);
+    window.addEventListener("keydown", handleUserActivity);
+
+    resetHideTimer();
+
+    return () => {
+      window.removeEventListener("mousemove", handleUserActivity);
+      window.removeEventListener("touchstart", handleUserActivity);
+      window.removeEventListener("click", handleUserActivity);
+      window.removeEventListener("keydown", handleUserActivity);
+      if (hideTimerRef.current) clearTimeout(hideTimerRef.current);
+    };
+  }, [mode, isPlayingFilm]);
+
+  // チャプター切り替え時は UI を 1.8秒間明示表示
+  const jumpChapter = (newIdx: number) => {
+    if (newIdx >= 0 && newIdx < CHAPTERS.length) {
+      setCurrentChapterIndex(newIdx);
+      if (mode === "film") {
+        setShowControls(true);
+        if (hideTimerRef.current) clearTimeout(hideTimerRef.current);
+        hideTimerRef.current = setTimeout(() => {
+          if (isPlayingFilm) setShowControls(false);
+        }, 1800);
+      }
+    }
+    setIsChapterDrawerOpen(false);
+  };
+
+  // FILM MODE 切り替え ＆ 退出
   const enterFilmMode = () => {
     setMode("film");
     setIsPlayingFilm(true);
-    // 全チャプターシーン ＋ チャプターカード ＋ エンドクレジット構造にマッピング
-    setFilmSceneIndex(currentChapterIndex * 3); // 各チャプター: card ➔ video ➔ fade
-    
-    // 可能であれば Fullscreen API 実行
+    setShowControls(true);
+    resetHideTimer();
+
     if (filmStageRef.current && filmStageRef.current.requestFullscreen) {
       filmStageRef.current.requestFullscreen().catch(() => {});
     }
@@ -277,22 +317,23 @@ export function HistoryView() {
     }
   };
 
-  // FILM MODE 用チャプターナビゲーション
-  const jumpChapter = (newIdx: number) => {
-    if (newIdx >= 0 && newIdx < CHAPTERS.length) {
-      setCurrentChapterIndex(newIdx);
-      if (mode === "film") {
-        setFilmSceneIndex(newIdx * 3);
-      }
+  // 再生 / 一時停止 トグル
+  const toggleFilmPlay = () => {
+    if (isPlayingFilm) {
+      setIsPlayingFilm(false);
+      setShowControls(true); // PAUSE中は常時表示
+      if (hideTimerRef.current) clearTimeout(hideTimerRef.current);
+    } else {
+      setIsPlayingFilm(true);
+      resetHideTimer();
     }
-    setIsChapterDrawerOpen(false);
   };
 
   return (
     <div className="bg-[#0A0A0A] text-zinc-100 min-h-screen font-sans selection:bg-[#F6C744] selection:text-[#191919] pb-12">
       
       {/* ======================================================== */}
-      {/* 1. 全ページ共通 ヘッダーナビゲーション */}
+      {/* 1. ヘッダーナビゲーション */}
       {/* ======================================================== */}
       <header className="sticky top-0 z-40 bg-[#0A0A0A]/95 backdrop-blur-md border-b border-zinc-800/80 px-6 py-3.5 flex items-center justify-between">
         <div className="flex items-center gap-3">
@@ -332,7 +373,7 @@ export function HistoryView() {
       </header>
 
       {/* ======================================================== */}
-      {/* 2. 初期表示デフォルト: CHAPTER MODE (資料＆動画2カラム) */}
+      {/* 2. CHAPTER MODE (初期表示デフォルト: 資料＆動画 2カラム) */}
       {/* ======================================================== */}
       {mode === "chapter" && (
         <main className="w-full max-w-[1360px] mx-auto px-5 sm:px-8 pt-6 space-y-8">
@@ -428,7 +469,6 @@ export function HistoryView() {
           {/* CHAPTER MODE ナビゲーション */}
           <div className="border-t border-zinc-800 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs">
             
-            {/* 前後移動 */}
             <div className="flex items-center gap-3">
               <button
                 onClick={() => jumpChapter(currentChapterIndex - 1)}
@@ -453,7 +493,6 @@ export function HistoryView() {
               </button>
             </div>
 
-            {/* チャプター一覧ポップアップボタン */}
             <div className="relative">
               <button
                 onClick={() => setIsChapterDrawerOpen(!isChapterDrawerOpen)}
@@ -463,7 +502,6 @@ export function HistoryView() {
                 <span>CHAPTERS INDEX ({CHAPTERS.length})</span>
               </button>
 
-              {/* チャプター一覧メニュー */}
               {isChapterDrawerOpen && (
                 <div className="absolute right-0 bottom-12 z-30 w-72 bg-zinc-900 border border-zinc-800 p-3 rounded-xl shadow-2xl space-y-1 max-h-80 overflow-y-auto">
                   <div className="text-[10px] font-bold text-zinc-500 px-2 py-1 uppercase border-b border-zinc-800 mb-1">
@@ -493,23 +531,26 @@ export function HistoryView() {
       )}
 
       {/* ======================================================== */}
-      {/* 3. FILM MODE (完全フルスクリーンシアター全自動モード) */}
+      {/* 3. FILM MODE (オートハイド対応 100% 映画没入シアター) */}
       {/* ======================================================== */}
       {mode === "film" && (
         <div
           ref={filmStageRef}
-          className="fixed inset-0 z-50 w-screen h-screen bg-black text-white font-sans overflow-hidden select-none flex flex-col justify-between"
-          onMouseMove={() => {
-            setShowControls(true);
-            if (timerRef.current) clearTimeout(timerRef.current);
-            timerRef.current = setTimeout(() => setShowControls(false), 3500);
-          }}
+          className={`fixed inset-0 z-50 w-screen h-screen bg-black text-white font-sans overflow-hidden select-none flex flex-col justify-between transition-all duration-300 ${
+            !showControls && isPlayingFilm ? "cursor-none" : "cursor-default"
+          }`}
         >
-          {/* 退出オーバーレイボタン */}
-          <header className={`absolute top-0 left-0 w-full z-40 bg-gradient-to-b from-black/90 via-black/40 to-transparent px-6 py-4 flex items-center justify-between transition-opacity duration-300 ${showControls ? "opacity-100" : "opacity-0"}`}>
+          {/* 上部ヘッダー (オートハイド 200〜300ms フェード) */}
+          <header
+            className={`absolute top-0 left-0 w-full z-40 bg-gradient-to-b from-black/90 via-black/50 to-transparent px-6 py-4 flex items-center justify-between transition-all duration-300 ${
+              showControls
+                ? "opacity-100 pointer-events-auto"
+                : "opacity-0 pointer-events-none"
+            }`}
+          >
             <button
               onClick={exitFilmMode}
-              className="text-xs font-mono font-bold text-zinc-400 hover:text-white transition-colors flex items-center gap-1.5 bg-black/60 px-3 py-1.5 rounded-lg border border-zinc-800"
+              className="text-xs font-mono font-bold text-zinc-400 hover:text-white transition-colors flex items-center gap-1.5 bg-black/70 px-3.5 py-1.5 rounded-lg border border-zinc-800 backdrop-blur-xs cursor-pointer"
             >
               <X className="w-4 h-4 text-[#F6C744]" />
               <span>EXIT FILM MODE</span>
@@ -520,11 +561,11 @@ export function HistoryView() {
             </div>
           </header>
 
-          {/* FILM MODE シネマ領域 */}
+          {/* 中央 16:9 シネマステージ */}
           <div className="relative w-full h-full flex-1 bg-black flex items-center justify-center overflow-hidden">
             <div className="w-full h-full aspect-video max-w-full max-h-full">
               <iframe
-                src={`https://www.youtube.com/embed/${currentChapter.videoId}?start=${currentChapter.start || 0}&autoplay=1&controls=0&rel=0&modestbranding=1`}
+                src={`https://www.youtube.com/embed/${currentChapter.videoId}?start=${currentChapter.start || 0}&autoplay=${isPlayingFilm ? 1 : 0}&controls=0&rel=0&modestbranding=1`}
                 title={currentChapter.titleJa}
                 className="w-full h-full border-0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -533,19 +574,24 @@ export function HistoryView() {
             </div>
           </div>
 
-          {/* 操作時のみ表示される下部バー */}
-          <footer className={`absolute bottom-0 left-0 w-full z-40 bg-gradient-to-t from-black/95 via-black/60 to-transparent px-6 py-4 space-y-3 transition-opacity duration-300 ${showControls ? "opacity-100" : "opacity-0"}`}>
-            
-            {/* チャプター切り替えバー */}
+          {/* 下部プログレス ＆ コントロールバー (オートハイド 200〜300ms フェード) */}
+          <footer
+            className={`absolute bottom-0 left-0 w-full z-40 bg-gradient-to-t from-black/95 via-black/70 to-transparent px-6 py-4 space-y-3 transition-all duration-300 ${
+              showControls
+                ? "opacity-100 pointer-events-auto"
+                : "opacity-0 pointer-events-none"
+            }`}
+          >
+            {/* チャプターバー */}
             <div className="flex items-center justify-between gap-1 sm:gap-2 text-[10px] font-mono font-bold">
               {CHAPTERS.map((ch, idx) => (
                 <button
                   key={ch.num}
                   onClick={() => jumpChapter(idx)}
-                  className={`flex-1 py-1.5 transition-all text-center rounded border ${
+                  className={`flex-1 py-1.5 transition-all text-center rounded border cursor-pointer ${
                     idx === currentChapterIndex
                       ? "bg-[#F6C744] text-[#191919] border-[#F6C744] font-black scale-105 shadow-md"
-                      : "bg-black/60 text-zinc-500 border-zinc-800/80 hover:text-white"
+                      : "bg-black/70 text-zinc-500 border-zinc-800/80 hover:text-white"
                   }`}
                 >
                   <span className="hidden sm:inline">{ch.num} {ch.titleEn}</span>
@@ -554,13 +600,14 @@ export function HistoryView() {
               ))}
             </div>
 
-            <div className="flex items-center justify-between bg-black/80 border border-zinc-800/80 rounded-xl px-4 py-2 text-xs font-mono">
+            {/* 再生コントロールバー */}
+            <div className="flex items-center justify-between bg-black/80 border border-zinc-800/80 rounded-xl px-4 py-2 text-xs font-mono backdrop-blur-xs">
               <div className="flex items-center gap-3">
                 <span className="font-extrabold text-[#F6C744]">
                   CHAPTER {currentChapter.num} / 10
                 </span>
                 <span className="text-zinc-600 hidden sm:inline">|</span>
-                <span className="text-zinc-300 font-bold">
+                <span className="text-zinc-300 font-bold truncate max-w-[180px] sm:max-w-[400px]">
                   {currentChapter.titleJa} ({currentChapter.year})
                 </span>
               </div>
@@ -569,16 +616,24 @@ export function HistoryView() {
                 <button
                   onClick={() => jumpChapter(currentChapterIndex - 1)}
                   disabled={currentChapterIndex === 0}
-                  className="p-1.5 text-zinc-400 hover:text-white transition-colors disabled:opacity-30"
+                  className="p-1.5 text-zinc-400 hover:text-white transition-colors disabled:opacity-30 cursor-pointer"
                   title="前へ"
                 >
                   <SkipBack className="w-4 h-4" />
                 </button>
 
                 <button
+                  onClick={toggleFilmPlay}
+                  className="p-2 bg-[#F6C744] text-[#191919] rounded-full hover:bg-[#E99A32] transition-colors cursor-pointer"
+                  title={isPlayingFilm ? "一時停止" : "再生"}
+                >
+                  {isPlayingFilm ? <Pause className="w-4 h-4 fill-current" /> : <Play className="w-4 h-4 fill-current" />}
+                </button>
+
+                <button
                   onClick={() => jumpChapter(currentChapterIndex + 1)}
                   disabled={currentChapterIndex === CHAPTERS.length - 1}
-                  className="p-1.5 text-zinc-400 hover:text-white transition-colors disabled:opacity-30"
+                  className="p-1.5 text-zinc-400 hover:text-white transition-colors disabled:opacity-30 cursor-pointer"
                   title="次へ"
                 >
                   <SkipForward className="w-4 h-4" />
@@ -586,7 +641,7 @@ export function HistoryView() {
 
                 <button
                   onClick={exitFilmMode}
-                  className="p-1.5 text-zinc-400 hover:text-white transition-colors ml-2"
+                  className="p-1.5 text-zinc-400 hover:text-white transition-colors ml-2 cursor-pointer"
                   title="EXIT FILM MODE"
                 >
                   <Minimize2 className="w-4 h-4" />
