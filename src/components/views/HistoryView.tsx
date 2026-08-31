@@ -38,6 +38,7 @@ export interface ChapterData {
   start?: number;
 }
 
+// 敬体から常体（ドキュメンタリーのナレーション調）へ全10チャプター統一
 const CHAPTERS: ChapterData[] = [
   {
     num: "01",
@@ -45,12 +46,12 @@ const CHAPTERS: ChapterData[] = [
     titleEn: "AUDITION",
     titleJa: "2017 / AUDITION",
     desc: [
-      "本人は、まさか自分が合格するとは思っていなかったそうです。",
-      "「指原莉乃さんにタダで会える」くらいの気持ちで会場へ向かい、エレベーターに最後に乗り込んだ結果、受付では逆に一番最初になりました。",
-      "そのままオーディションも一番手に。緊張で震えながら、長渕剛さんの楽曲を披露しました。",
-      "その歌が指原莉乃さんの目に留まり、合格。",
-      "さらに会場では、当時推していた矢吹奈子さんにも会うことができ、そのことをすぐ家族に報告したそうです。",
-      "こうして、瀧脇笙古ちゃんの＝LOVEでの活動が始まりました。"
+      "本人は、自分が合格するとは思っていなかったという。",
+      "「指原莉乃さんにタダで会える」くらいの気持ちで会場へ向かい、エレベーターに最後に乗り込んだ結果、受付では一番最初になった。",
+      "そのままオーディションも一番手となり、緊張で震えながら長渕剛さんの楽曲を披露。",
+      "その歌が指原莉乃さんの目に留まり、合格した。",
+      "さらに会場では、当時推していた矢吹奈子さんにも会うことができ、そのことをすぐ家族に報告したという。",
+      "ここから、瀧脇笙古の＝LOVEでの活動が始まった。"
     ],
     videoId: "zXR_xhihDOQ",
     start: 1
@@ -61,10 +62,10 @@ const CHAPTERS: ChapterData[] = [
     titleEn: "TRAINING CAMP",
     titleJa: "2017 / TRAINING CAMP",
     desc: [
-      "＝LOVE加入時、しょこちゃんはダンス未経験でした。",
-      "結成直後の合宿では、牧野アンナ先生による厳しいレッスンを受けています。",
-      "振り付けや表現を一から学び、グループとしてステージに立つための準備を重ねていた時期です。",
-      "後年のパフォーマンスと見比べると、加入当初からの変化がよく分かる映像でもあります。"
+      "＝LOVE加入時、瀧脇笙古はダンス未経験だった。",
+      "結成直後の合宿では、牧野アンナ先生による厳しいレッスンを受けている。",
+      "振り付けや表現を一から学び、グループとしてステージに立つための準備を重ねていた時期だ。",
+      "後年のパフォーマンスと見比べると、加入当初からの変化がよく分かる映像でもある。"
     ],
     videoId: "RPlkP-5jP44",
     start: 756 // 厳守!
@@ -75,10 +76,10 @@ const CHAPTERS: ChapterData[] = [
     titleEn: "SASUKE",
     titleJa: "2020 / SASUKE",
     desc: [
-      "活動を続ける中で、スポーツも瀧脇笙古ちゃんを特徴づける分野のひとつになっていきます。",
+      "活動を続ける中で、スポーツも瀧脇笙古を特徴づける分野のひとつになっていった。",
       "2020年にはTBS「SASUKE」に出演。",
-      "＝LOVEとしてのステージ活動とは異なる場所でも、運動能力を生かした仕事が増えていきました。",
-      "マラソンをはじめ、後のスポーツ関連の活動にもつながっていく時期です。"
+      "＝LOVEとしてのステージ活動とは異なる場所でも、運動能力を生かした仕事が増えていく。",
+      "マラソンをはじめ、その後のスポーツ関連の活動にもつながっていった。"
     ],
     videoId: "zUeSRsheJC8",
     start: 0
@@ -89,10 +90,10 @@ const CHAPTERS: ChapterData[] = [
     titleEn: "FIRST CENTER",
     titleJa: "2021 / FIRST CENTER",
     desc: [
-      "2021年、「BPM170の君へ」で自身初のセンターを担当しました。",
-      "ランニングをテーマにした楽曲で、瀧脇笙古ちゃん自身の個性とも結びついた一曲です。",
-      "この章ではMVではなく、センター曲の制作過程を記録したメイキング映像を使用します。",
-      "本人がセンターという役割を受け止める様子も残されています。"
+      "2021年、「BPM170の君へ」で自身初のセンターを担当。",
+      "ランニングをテーマにした楽曲で、瀧脇笙古自身の個性とも深く結びついた一曲となった。",
+      "この章ではMVではなく、センター曲の制作過程を記録したメイキング映像を使用。",
+      "本人がセンターという役割を受け止める様子も残されている。"
     ],
     videoId: "ei0BtXWrVb4",
     start: 1065 // 厳守!
@@ -103,9 +104,9 @@ const CHAPTERS: ChapterData[] = [
     titleEn: "ON STAGE",
     titleJa: "2021 / ON STAGE",
     desc: [
-      "「BPM170の君へ」は、ライブでも披露されました。",
-      "メイキングで見る制作過程と、完成したステージを続けて見ることで、初センターという出来事を違う角度から見ることができます。",
-      "加入当初の合宿映像から約4年。ステージ中央で楽曲を届ける姿へと変化しています。"
+      "「BPM170の君へ」はライブでも披露された。",
+      "メイキングで見る制作過程と、完成したステージを続けて見ることで、初センターという出来事を違う角度から見ることができる。",
+      "加入当初の合宿映像から約4年。ステージ中央で楽曲を届ける姿へと変化している。"
     ],
     videoId: "8Jtyt23R-jg",
     start: 0
@@ -117,9 +118,9 @@ const CHAPTERS: ChapterData[] = [
     titleJa: "2023 / TOKYO MARATHON",
     subStat: { value: "03:57:06", label: "SUB 4" },
     desc: [
-      "ランニングは、しょこちゃんが長く続けてきた活動のひとつです。",
-      "東京マラソン2023では、3時間57分06秒で完走。4時間を切る「サブ4」を達成しました。",
-      "「BPM170の君へ」のような楽曲だけでなく、実際の競技でも継続して結果を残していることが分かります。"
+      "ランニングは、瀧脇笙古が長く続けてきた活動のひとつだ。",
+      "東京マラソン2023では、3時間57分06秒で完走。4時間を切る「サブ4」を達成した。",
+      "「BPM170の君へ」のような楽曲だけでなく、実際の競技でも継続して結果を残している。"
     ],
     videoId: "RoVAmDAGej8",
     start: 0
@@ -131,9 +132,9 @@ const CHAPTERS: ChapterData[] = [
     titleJa: "HEART / INTERVIEW",
     programName: "突然ですが占ってもいいですか？",
     desc: [
-      "活動の実績だけではなく、本人が自分自身について語る映像もHISTORYに残します。",
-      "「突然ですが占ってもいいですか？」出演時には、普段の活動では見えにくい考えや気持ちについて語る場面があります。",
-      "ここでは、その一部から再生します。"
+      "活動の実績だけでなく、本人が自分自身について語る映像もHISTORYに残す。",
+      "「突然ですが占ってもいいですか？」出演時には、普段の活動では見えにくい考えや気持ちについて語る場面がある。",
+      "ここでは、その一部から再生する。"
     ],
     videoId: "-syTHUFdQyk",
     start: 1678 // 厳守!
@@ -144,9 +145,9 @@ const CHAPTERS: ChapterData[] = [
     titleEn: "DOUBLE CENTER",
     titleJa: "2025 / DOUBLE CENTER",
     desc: [
-      "2025年、「木漏れ日メゾフォルテ」で音嶋莉沙ちゃんとのダブルセンターを担当しました。",
-      "「BPM170の君へ」での初センターから約4年後のセンター楽曲です。",
-      "活動を重ねる中で、歌やダンスでも担当する役割が増えてきた時期のひとつとして紹介してください。"
+      "2025年、「木漏れ日メゾフォルテ」で音嶋莉沙ちゃんとのダブルセンターを担当。",
+      "「BPM170の君へ」での初センターから約4年後のセンター楽曲となった。",
+      "活動を重ねる中で、歌やダンスでも担当する役割が増えてきた時期のひとつだ。"
     ],
     videoId: "4xBmuiQNGdc",
     start: 0
@@ -157,9 +158,9 @@ const CHAPTERS: ChapterData[] = [
     titleEn: "YOKOHAMA",
     titleJa: "2025 / YOKOHAMA",
     desc: [
-      "神奈川県出身で、横浜DeNAベイスターズを応援してきたしょこちゃん。",
-      "野球に関する発信や仕事を続ける中で、横浜スタジアムでのセレモニアルピッチも実現しました。",
-      "横浜やベイスターズに関する活動は、現在では瀧脇笙古ちゃんを紹介するうえで欠かせないテーマのひとつになっています。"
+      "神奈川県出身で、横浜DeNAベイスターズを応援してきた瀧脇笙古。",
+      "野球に関する発信や仕事を続ける中で、横浜スタジアムでのセレモニアルピッチも実現した。",
+      "横浜やベイスターズに関する活動は、現在では瀧脇笙古を紹介するうえで欠かせないテーマのひとつとなっている。"
     ],
     videoId: "fe_nGoGe9DQ",
     start: 0
@@ -170,9 +171,9 @@ const CHAPTERS: ChapterData[] = [
     titleEn: "FILA",
     titleJa: "2026 / FILA",
     desc: [
-      "2026年、FILA 2026FWシーズンのスタイリングパートナーに就任しました。",
-      "これまでのアイドル活動やスポーツ関連とはまた異なる、ファッションの分野へ活動が広がっています。",
-      "2017年のオーディションから約9年。このHISTORYでは、現在地点としてこの映像を最後に配置します。"
+      "2026年、FILA 2026FWシーズンのスタイリングパートナーに就任。",
+      "これまでのアイドル活動やスポーツ関連とは異なる、ファッションの分野へ活動が広がった。",
+      "2017年のオーディションから約9年。このHISTORYでは、現在地点としてこの映像を最後に配置する。"
     ],
     videoId: "0dJb1WGsK2Q",
     start: 0
@@ -231,7 +232,7 @@ export function HistoryView() {
     };
   }, []);
 
-  // CHAPTER MODE 用 プレイヤー初期化 (cc_load_policy: 0 追加)
+  // CHAPTER MODE 用 プレイヤー初期化
   useEffect(() => {
     if (!isApiReady || mode !== "chapter") return;
 
@@ -250,7 +251,7 @@ export function HistoryView() {
       playerVars: {
         autoplay: 0,
         controls: 1,
-        cc_load_policy: 0, // 自動字幕OFF
+        cc_load_policy: 0,
         rel: 0,
         modestbranding: 1,
         playsinline: 1,
@@ -260,7 +261,7 @@ export function HistoryView() {
 
   }, [currentChapterIndex, mode, isApiReady]);
 
-  // FILM MODE 用 YouTube Iframe API 初期化 (cc_load_policy: 0 追加)
+  // FILM MODE 用 YouTube Iframe API 初期化
   useEffect(() => {
     if (!isApiReady || mode !== "film" || filmSubState !== "video") return;
 
@@ -279,7 +280,7 @@ export function HistoryView() {
       playerVars: {
         autoplay: 1,
         controls: 0,
-        cc_load_policy: 0, // 自動字幕OFF
+        cc_load_policy: 0,
         rel: 0,
         modestbranding: 1,
         playsinline: 1,
@@ -543,6 +544,7 @@ export function HistoryView() {
               </div>
             </div>
 
+            {/* ドキュメンタリーナレーション調の常体解説テキスト */}
             <div className="lg:col-span-4 space-y-6 bg-zinc-900/60 border border-zinc-800 p-6 rounded-2xl">
               <div className="space-y-2 border-b border-zinc-800 pb-4">
                 <div className="flex items-center gap-2 text-xs font-mono text-[#F6C744] font-bold">
@@ -642,7 +644,7 @@ export function HistoryView() {
         </main>
       )}
 
-      {/* 3. FILM MODE (オートハイド対応 100% 映画没入シアター) */}
+      {/* 3. FILM MODE (100% 映画没入シアター) */}
       {mode === "film" && (
         <div
           ref={filmStageRef}
@@ -650,7 +652,6 @@ export function HistoryView() {
             !showControls && isPlayingFilm && filmSubState === "video" ? "cursor-none" : "cursor-default"
           }`}
         >
-          {/* 上部ヘッダー */}
           <header
             className={`absolute top-0 left-0 w-full z-40 bg-gradient-to-b from-black/90 via-black/50 to-transparent px-6 py-4 flex items-center justify-between transition-all duration-300 ${
               showControls || filmSubState !== "video"
@@ -671,10 +672,8 @@ export function HistoryView() {
             </div>
           </header>
 
-          {/* 中央シネマステージ */}
           <div className="relative w-full h-full flex-1 bg-black flex items-center justify-center overflow-hidden">
             
-            {/* A. START SCREEN */}
             {filmSubState === "start_screen" && (
               <div className="absolute inset-0 z-30 bg-black flex flex-col items-center justify-center text-center p-6 space-y-6">
                 <div className="space-y-3 font-mono">
@@ -699,7 +698,6 @@ export function HistoryView() {
               </div>
             )}
 
-            {/* B. OPENING (3.5秒) */}
             {filmSubState === "opening" && (
               <div className="absolute inset-0 z-20 bg-black flex flex-col items-center justify-center text-center p-6 space-y-4 font-mono animate-fade-in">
                 <div className="text-4xl sm:text-7xl font-extrabold tracking-widest text-white">
@@ -714,7 +712,6 @@ export function HistoryView() {
               </div>
             )}
 
-            {/* C. CHAPTER TITLE CARD */}
             {filmSubState === "chapter_title" && (
               <div className="absolute inset-0 z-20 bg-black flex flex-col items-center justify-center text-center p-6 font-mono animate-fade-in">
                 <div className="text-3xl sm:text-6xl font-extrabold tracking-widest text-[#F6C744]">
@@ -723,12 +720,10 @@ export function HistoryView() {
               </div>
             )}
 
-            {/* D. FADE (静かな暗転 1s) */}
             {filmSubState === "fade" && (
               <div className="absolute inset-0 z-20 bg-black" />
             )}
 
-            {/* E. YOUTUBE VIDEO (controls=0 & cc_load_policy=0) */}
             <div
               className={`w-full h-full max-w-full max-h-full flex items-center justify-center ${
                 filmSubState === "video" ? "block" : "hidden"
@@ -743,7 +738,6 @@ export function HistoryView() {
               </div>
             </div>
 
-            {/* F. CREDITS 1 */}
             {filmSubState === "credits_1" && (
               <div className="absolute inset-0 z-20 bg-black flex flex-col items-center justify-center text-center p-6 font-mono space-y-4 animate-fade-in">
                 <div className="text-4xl sm:text-7xl font-extrabold tracking-widest text-white">
@@ -758,7 +752,6 @@ export function HistoryView() {
               </div>
             )}
 
-            {/* G. CREDITS FILMS */}
             {filmSubState === "credits_films" && (
               <div className="absolute inset-0 z-20 bg-black flex flex-col items-center justify-center text-center p-6 font-mono space-y-4 animate-fade-in">
                 <div className="text-xs text-[#F6C744] font-bold tracking-widest uppercase mb-2">
@@ -772,7 +765,6 @@ export function HistoryView() {
               </div>
             )}
 
-            {/* H. CREDITS FEATURING */}
             {filmSubState === "credits_featuring" && (
               <div className="absolute inset-0 z-20 bg-black flex flex-col items-center justify-center text-center p-6 font-mono space-y-4 animate-fade-in">
                 <div className="text-xs text-[#F6C744] font-bold tracking-widest uppercase">
@@ -784,7 +776,6 @@ export function HistoryView() {
               </div>
             )}
 
-            {/* I. CREDITS CURATED BY */}
             {filmSubState === "credits_curated" && (
               <div className="absolute inset-0 z-20 bg-black flex flex-col items-center justify-center text-center p-6 font-mono space-y-3 animate-fade-in">
                 <div className="text-xs text-[#F6C744] font-bold tracking-widest uppercase">
@@ -799,7 +790,6 @@ export function HistoryView() {
               </div>
             )}
 
-            {/* J. CREDITS DISCLAIMER */}
             {filmSubState === "credits_disclaimer" && (
               <div className="absolute inset-0 z-20 bg-black flex flex-col items-center justify-center text-center p-6 font-mono space-y-3 animate-fade-in">
                 <div className="text-sm text-zinc-400 font-bold">
@@ -811,7 +801,6 @@ export function HistoryView() {
               </div>
             )}
 
-            {/* K. LAST FRAME */}
             {filmSubState === "last_frame" && (
               <div className="absolute inset-0 z-30 bg-black flex flex-col items-center justify-center text-center p-6 font-mono space-y-10 animate-fade-in">
                 <div className="text-4xl sm:text-6xl font-extrabold text-white tracking-widest">
@@ -846,7 +835,6 @@ export function HistoryView() {
 
           </div>
 
-          {/* 下部プログレス ＆ コントロールバー */}
           <footer
             className={`absolute bottom-0 left-0 w-full z-40 bg-gradient-to-t from-black/95 via-black/70 to-transparent px-6 py-4 space-y-3 transition-all duration-300 ${
               showControls || filmSubState !== "video"
