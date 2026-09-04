@@ -40,6 +40,76 @@ export const INITIAL_YEARS = [2026, 2025, 2024, 2023, 2022, 2021, 2020, 2019, 20
 
 export const INITIAL_LINK_ITEMS: LinkItem[] = [
   {
+    "id": "link-buzzrhythm02-tv-20260904",
+    "title": "本日深夜「バズリズム02」出演",
+    "sourceName": "日本テレビ / ＝LOVE Official",
+    "sourceURL": "https://equal-love.jp/schedule/",
+    "publishedDate": "2026-09-04",
+    "year": 2026,
+    "category": "テレビ・ラジオ",
+    "tags": [
+      "瀧脇笙古",
+      "＝LOVE",
+      "バズリズム02",
+      "日本テレビ",
+      "テレビ・ラジオ"
+    ],
+    "description": "＝LOVEが日本テレビ「バズリズム02」に出演予定（深夜24:59〜）。瀧脇笙古も出演メンバーとして掲載されています。",
+    "contentType": "tv",
+    "thumbnailURL": "/images/logo.png",
+    "verified": true,
+    "lastCheckedAt": "2026-09-04T12:26:00.000Z",
+    "isFeatured": true,
+    "isHighlight": true
+  },
+  {
+    "id": "link-shibuya-21st-campaign-20260904",
+    "title": "「恋、はじめました。」渋谷応援キャンペーン開催中（9月7日まで）",
+    "sourceName": "タワーレコード渋谷 / ＝LOVE Official",
+    "sourceURL": "https://equal-love.jp/news/detail/11864",
+    "publishedDate": "2026-09-04",
+    "year": 2026,
+    "category": "イベント",
+    "tags": [
+      "瀧脇笙古",
+      "齋藤樹愛羅",
+      "野口衣織",
+      "＝LOVE",
+      "タワーレコード渋谷",
+      "キャンペーン"
+    ],
+    "description": "タワーレコード渋谷では、齋藤樹愛羅・瀧脇笙古・野口衣織を対象に、撮り下ろしコメント映像、直筆POPパネル展示・抽選、渋谷3店舗スタンプラリーを実施中（2026年8月25日〜9月7日）。",
+    "contentType": "news",
+    "thumbnailURL": "/images/logo.png",
+    "verified": true,
+    "lastCheckedAt": "2026-09-04T12:26:00.000Z",
+    "isFeatured": true,
+    "isHighlight": true
+  },
+  {
+    "id": "link-yokohama-vivre-pop-pickup-20260904",
+    "title": "瀧脇笙古 直筆コメント入りPOP 当選者引き換え期間（タワーレコード横浜ビブレ店）",
+    "sourceName": "タワーレコード横浜ビブレ店 / ＝LOVE Official",
+    "sourceURL": "https://equal-love.jp/news/detail/11864",
+    "publishedDate": "2026-09-04",
+    "year": 2026,
+    "category": "公式情報",
+    "tags": [
+      "瀧脇笙古",
+      "＝LOVE",
+      "タワーレコード横浜ビブレ",
+      "当選POP引き換え",
+      "公式情報"
+    ],
+    "description": "タワーレコード横浜ビブレ店で実施された瀧脇笙古応援キャンペーンの当選POP引き換え期間は9月23日まで。（※抽選受付終了済み）",
+    "contentType": "news",
+    "thumbnailURL": "/images/logo.png",
+    "verified": true,
+    "lastCheckedAt": "2026-09-04T12:26:00.000Z",
+    "isFeatured": true,
+    "isHighlight": false
+  },
+  {
     "id": "link-fila-hankyu-popup-lastday-20260901",
     "title": "FILA 2026FW POP UP 本日最終日（阪急うめだ本店）",
     "sourceName": "FILA / 阪急うめだ本店",
