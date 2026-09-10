@@ -40,6 +40,99 @@ export const INITIAL_YEARS = [2026, 2025, 2024, 2023, 2022, 2021, 2020, 2019, 20
 
 export const INITIAL_LINK_ITEMS: LinkItem[] = [
   {
+    "id": "link-fila-popup-shibuya-solamachi-20260910",
+    "title": "FILA × 瀧脇笙古 POP UP 開催中（渋谷PARCO / ソラマチ / ONLINE）",
+    "sourceName": "FILA Japan Official",
+    "sourceURL": "https://www.fila.jp/contents/feature/fila_takiwaki/",
+    "publishedDate": "2026-09-10",
+    "year": 2026,
+    "category": "イベント",
+    "tags": [
+      "瀧脇笙古",
+      "FILA",
+      "POP UP",
+      "渋谷PARCO",
+      "ソラマチ",
+      "公式情報"
+    ],
+    "description": "瀧脇笙古スタイリングパートナー就任記念キャンペーンを実施中。渋谷PARCO：2026年8月28日〜9月23日、東京スカイツリータウン・ソラマチ：2026年9月2日〜10月5日。FILA公式オンラインストアでもノベルティキャンペーンを実施中。",
+    "contentType": "news",
+    "thumbnailURL": "/images/logo.png",
+    "verified": true,
+    "lastCheckedAt": "2026-09-10T12:39:00.000Z",
+    "isFeatured": true,
+    "isHighlight": true
+  },
+  {
+    "id": "link-eqlove-2shot-photo-20260912",
+    "title": "21stシングル発売記念 ツーショット撮影会",
+    "sourceName": "＝LOVE Official",
+    "sourceURL": "https://equal-love.jp/schedule/",
+    "publishedDate": "2026-09-12",
+    "year": 2026,
+    "category": "イベント",
+    "tags": [
+      "瀧脇笙古",
+      "＝LOVE",
+      "撮影会",
+      "幕張メッセ",
+      "イベント"
+    ],
+    "description": "＝LOVE 21stシングル発売記念のツーショット撮影会を幕張メッセで開催。瀧脇笙古も参加予定。",
+    "contentType": "news",
+    "thumbnailURL": "/images/logo.png",
+    "verified": true,
+    "lastCheckedAt": "2026-09-10T12:39:00.000Z",
+    "isFeatured": true,
+    "isHighlight": true
+  },
+  {
+    "id": "link-eqlove-3shot-photo-20260913",
+    "title": "21stシングル発売記念 スリーショット撮影会",
+    "sourceName": "＝LOVE Official",
+    "sourceURL": "https://equal-love.jp/schedule/",
+    "publishedDate": "2026-09-13",
+    "year": 2026,
+    "category": "イベント",
+    "tags": [
+      "瀧脇笙古",
+      "＝LOVE",
+      "撮影会",
+      "幕張メッセ",
+      "イベント"
+    ],
+    "description": "＝LOVE 21stシングル発売記念のスリーショット撮影会を幕張メッセで開催。瀧脇笙古も参加予定。",
+    "contentType": "news",
+    "thumbnailURL": "/images/logo.png",
+    "verified": true,
+    "lastCheckedAt": "2026-09-10T12:39:00.000Z",
+    "isFeatured": true,
+    "isHighlight": true
+  },
+  {
+    "id": "link-myojo-202611-takiwaki-20260924",
+    "title": "「MYOJO 11月号」瀧脇笙古 掲載",
+    "sourceName": "集英社 / MYOJO",
+    "sourceURL": "https://equal-love.jp/schedule/",
+    "publishedDate": "2026-09-24",
+    "year": 2026,
+    "category": "テレビ・ラジオ",
+    "tags": [
+      "瀧脇笙古",
+      "MYOJO",
+      "集英社",
+      "雑誌",
+      "掲載情報"
+    ],
+    "description": "集英社「MYOJO 11月号」に瀧脇笙古が掲載予定。",
+    "contentType": "news",
+    "thumbnailURL": "/images/logo.png",
+    "verified": true,
+    "lastCheckedAt": "2026-09-10T12:39:00.000Z",
+    "isFeatured": true,
+    "isHighlight": false
+  },
+  {
     "id": "link-buzzrhythm02-tv-20260904",
     "title": "本日深夜「バズリズム02」出演",
     "sourceName": "日本テレビ / ＝LOVE Official",
