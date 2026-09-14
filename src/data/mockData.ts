@@ -40,6 +40,53 @@ export const INITIAL_YEARS = [2026, 2025, 2024, 2023, 2022, 2021, 2020, 2019, 20
 
 export const INITIAL_LINK_ITEMS: LinkItem[] = [
   {
+    "id": "link-nikkansports-hamasta-20260911",
+    "title": "土砂降りのハマスタに瀧脇笙古　DeNA勝利を現地観戦",
+    "sourceName": "日刊スポーツ",
+    "sourceURL": "https://www.nikkansports.com/entertainment/news/202609100001009.html",
+    "publishedDate": "2026-09-11",
+    "year": 2026,
+    "category": "ニュース",
+    "tags": [
+      "瀧脇笙古",
+      "横浜DeNAベイスターズ",
+      "横浜スタジアム",
+      "DeNA",
+      "ハマスタ観戦",
+      "ニュース"
+    ],
+    "description": "瀧脇笙古が9月9日のDeNA対ヤクルト戦を横浜スタジアムで現地観戦。雨天コールドでDeNAが9-2で勝利した。本人は観戦後、「木漏れ日メゾフォルテ」「夢の続き」がハマスタで流れたことや、石田裕太郎投手の登板を現地で見られたことにも触れている。",
+    "contentType": "news",
+    "thumbnailURL": "/images/logo.png",
+    "verified": true,
+    "lastCheckedAt": "2026-09-14T09:10:00.000Z",
+    "isFeatured": true,
+    "isHighlight": true
+  },
+  {
+    "id": "link-oshikatsu-lab-takiwaki-profile-20260908",
+    "title": "【＝LOVE】瀧脇笙古プロフィール＆最新活動まとめ",
+    "sourceName": "オシカツLAB",
+    "sourceURL": "https://oshikatsu.co.jp/equal-love/takiwaki-shoko/",
+    "publishedDate": "2026-09-08",
+    "year": 2026,
+    "category": "過去記事",
+    "tags": [
+      "瀧脇笙古",
+      "＝LOVE",
+      "プロフィール",
+      "紹介記事",
+      "オシカツLAB"
+    ],
+    "description": "オシカツLABによる瀧脇笙古のプロフィールおよび経歴・最新活動をまとめた特集ページ（2026年9月8日更新）。",
+    "contentType": "news",
+    "thumbnailURL": "/images/logo.png",
+    "verified": true,
+    "lastCheckedAt": "2026-09-14T09:10:00.000Z",
+    "isFeatured": false,
+    "isHighlight": false
+  },
+  {
     "id": "link-fila-popup-shibuya-solamachi-20260910",
     "title": "FILA × 瀧脇笙古 POP UP 開催中（渋谷PARCO / ソラマチ / ONLINE）",
     "sourceName": "FILA Japan Official",

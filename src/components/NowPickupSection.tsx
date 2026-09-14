@@ -34,7 +34,7 @@ export const NowPickupSection: React.FC = () => {
             <span className="px-2 py-0.5 bg-[#F6C744] text-[#191919] font-mono font-black text-[10px] rounded-full uppercase">
               NOW / PICK UP
             </span>
-            <span>現在開催中・重要トピック (2026.09.10時点)</span>
+            <span>現在開催中・重要トピック (2026.09.14時点)</span>
           </div>
           <h2 className="text-xl sm:text-2xl font-extrabold tracking-wider font-mono text-[#191919]">
             NOW / PICK UP
