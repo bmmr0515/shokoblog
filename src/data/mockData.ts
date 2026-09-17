@@ -40,6 +40,52 @@ export const INITIAL_YEARS = [2026, 2025, 2024, 2023, 2022, 2021, 2020, 2019, 20
 
 export const INITIAL_LINK_ITEMS: LinkItem[] = [
   {
+    "id": "link-buzzrhythm02-chukyo-20260917",
+    "title": "「バズリズム02」放送予定（中京テレビ 深夜2:12〜）",
+    "sourceName": "中京テレビ / ＝LOVE Official",
+    "sourceURL": "https://equal-love.jp/schedule/",
+    "publishedDate": "2026-09-17",
+    "year": 2026,
+    "category": "テレビ・ラジオ",
+    "tags": [
+      "瀧脇笙古",
+      "＝LOVE",
+      "バズリズム02",
+      "中京テレビ",
+      "テレビ・ラジオ"
+    ],
+    "description": "瀧脇笙古出演回の「バズリズム02」が中京テレビにて放送予定（深夜2:12〜）。（※地域遅れ放送）",
+    "contentType": "tv",
+    "thumbnailURL": "/images/logo.png",
+    "verified": true,
+    "lastCheckedAt": "2026-09-17T09:03:00.000Z",
+    "isFeatured": true,
+    "isHighlight": true
+  },
+  {
+    "id": "link-fila-online-hankyu-campaign-20260917",
+    "title": "FILA × 瀧脇笙古 キャンペーン継続中（阪急WEB / FILA ONLINE）",
+    "sourceName": "PR TIMES / FILA Japan",
+    "sourceURL": "https://prtimes.jp/main/html/rd/p/000000100.000022172.html",
+    "publishedDate": "2026-09-17",
+    "year": 2026,
+    "category": "公式情報",
+    "tags": [
+      "瀧脇笙古",
+      "FILA",
+      "阪急百貨店",
+      "オンラインストア",
+      "公式情報"
+    ],
+    "description": "瀧脇笙古スタイリングパートナー就任記念キャンペーンを継続中。阪急百貨店オンラインストア（2026年10月31日まで）およびFILA公式オンラインストアでノベルティキャンペーン実施中。",
+    "contentType": "official",
+    "thumbnailURL": "/images/logo.png",
+    "verified": true,
+    "lastCheckedAt": "2026-09-17T09:03:00.000Z",
+    "isFeatured": true,
+    "isHighlight": true
+  },
+  {
     "id": "link-nikkansports-hamasta-20260911",
     "title": "土砂降りのハマスタに瀧脇笙古　DeNA勝利を現地観戦",
     "sourceName": "日刊スポーツ",
