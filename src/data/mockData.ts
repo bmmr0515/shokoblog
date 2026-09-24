@@ -40,6 +40,123 @@ export const INITIAL_YEARS = [2026, 2025, 2024, 2023, 2022, 2021, 2020, 2019, 20
 
 export const INITIAL_LINK_ITEMS: LinkItem[] = [
   {
+    "id": "link-pro-yakyu-news-20260924",
+    "title": "フジテレビONE「プロ野球ニュース」出演",
+    "sourceName": "フジテレビONE / ＝LOVE Official",
+    "sourceURL": "https://equal-love.jp/schedule/",
+    "publishedDate": "2026-09-24",
+    "year": 2026,
+    "category": "テレビ・ラジオ",
+    "tags": [
+      "瀧脇笙古",
+      "山本杏奈",
+      "＝LOVE",
+      "プロ野球ニュース",
+      "フジテレビONE",
+      "テレビ・ラジオ"
+    ],
+    "description": "フジテレビONE「プロ野球ニュース」に瀧脇笙古、山本杏奈が出演予定。",
+    "contentType": "tv",
+    "thumbnailURL": "/images/logo.png",
+    "verified": true,
+    "lastCheckedAt": "2026-09-24T23:20:00.000Z",
+    "isFeatured": true,
+    "isHighlight": true
+  },
+  {
+    "id": "link-myojo-202611-takiwaki-20260924",
+    "title": "「Myojo 11月号」瀧脇笙古 掲載",
+    "sourceName": "集英社 / Myojo",
+    "sourceURL": "https://dmagazine.docomo.ne.jp/item/f19bfd22d643183b8a3e3546bab270d70dcf6c2f461aec35fdce5e3833c20860/1000/",
+    "publishedDate": "2026-09-24",
+    "year": 2026,
+    "category": "テレビ・ラジオ",
+    "tags": [
+      "瀧脇笙古",
+      "Myojo",
+      "集英社",
+      "雑誌",
+      "掲載情報"
+    ],
+    "description": "2026年9月24日発売の「Myojo 11月号」に瀧脇笙古が掲載。企画名は「＝LOVEとヒミツのGIRL’S TALK 瀧脇笙古」。",
+    "contentType": "magazine",
+    "thumbnailURL": "/images/logo.png",
+    "verified": true,
+    "lastCheckedAt": "2026-09-24T23:20:00.000Z",
+    "isFeatured": true,
+    "isHighlight": true
+  },
+  {
+    "id": "link-rock-in-japan-2026-report-20260921",
+    "title": "＝LOVE「ROCK IN JAPAN FESTIVAL 2026」ライブレポート公開",
+    "sourceName": "Mikiki by TOWER RECORDS",
+    "sourceURL": "https://mikiki.tokyo.jp/articles/-/46165",
+    "publishedDate": "2026-09-21",
+    "year": 2026,
+    "category": "音楽・ライブ",
+    "tags": [
+      "＝LOVE",
+      "瀧脇笙古",
+      "ROCK IN JAPAN FESTIVAL 2026",
+      "ロッキン",
+      "ライブレポート",
+      "Mikiki"
+    ],
+    "description": "＝LOVEが9月20日に「ROCK IN JAPAN FESTIVAL 2026」へ出演。当日の写真とセットリストを含むライブレポートが公開された。",
+    "contentType": "news",
+    "thumbnailURL": "/images/logo.png",
+    "verified": true,
+    "lastCheckedAt": "2026-09-24T23:20:00.000Z",
+    "isFeatured": true,
+    "isHighlight": false
+  },
+  {
+    "id": "link-hochi-seifuku-instagram-20260920",
+    "title": "瀧脇笙古の制服姿をスポーツ報知が紹介",
+    "sourceName": "スポーツ報知 / ライブドアニュース",
+    "sourceURL": "https://news.livedoor.com/article/detail/32375906/",
+    "publishedDate": "2026-09-20",
+    "year": 2026,
+    "category": "ニュース",
+    "tags": [
+      "瀧脇笙古",
+      "スポーツ報知",
+      "ライブドアニュース",
+      "Instagram",
+      "ニュース"
+    ],
+    "description": "瀧脇笙古がInstagramで公開した、青空の下での制服姿が記事に。投稿に寄せられたファンの反応も紹介されている。",
+    "contentType": "news",
+    "thumbnailURL": "/images/logo.png",
+    "verified": true,
+    "lastCheckedAt": "2026-09-24T23:20:00.000Z",
+    "isFeatured": true,
+    "isHighlight": false
+  },
+  {
+    "id": "link-takiwaki-birthday-fc-interview-20260918",
+    "title": "瀧脇笙古 バースデーインタビュー公開・生誕記念コンテンツ更新",
+    "sourceName": "＝LOVE Official Fan Club",
+    "sourceURL": "https://equal-love.jp/news/detail/11963",
+    "publishedDate": "2026-09-18",
+    "year": 2026,
+    "category": "公式情報",
+    "tags": [
+      "瀧脇笙古",
+      "生誕祭",
+      "バースデーインタビュー",
+      "＝LOVE FC",
+      "公式情報"
+    ],
+    "description": "瀧脇笙古の生誕記念特設サイトで、バースデーインタビューが新たに公開。生誕祭の集合写真とイベントのダイジェストムービーも案内されている。（※閲覧にはスマートフォンとFC会員ログインが必要です）",
+    "contentType": "official",
+    "thumbnailURL": "/images/logo.png",
+    "verified": true,
+    "lastCheckedAt": "2026-09-24T23:20:00.000Z",
+    "isFeatured": true,
+    "isHighlight": false
+  },
+  {
     "id": "link-buzzrhythm02-chukyo-20260917",
     "title": "「バズリズム02」放送予定（中京テレビ 深夜2:12〜）",
     "sourceName": "中京テレビ / ＝LOVE Official",
@@ -202,29 +319,7 @@ export const INITIAL_LINK_ITEMS: LinkItem[] = [
     "isFeatured": true,
     "isHighlight": true
   },
-  {
-    "id": "link-myojo-202611-takiwaki-20260924",
-    "title": "「MYOJO 11月号」瀧脇笙古 掲載",
-    "sourceName": "集英社 / MYOJO",
-    "sourceURL": "https://equal-love.jp/schedule/",
-    "publishedDate": "2026-09-24",
-    "year": 2026,
-    "category": "テレビ・ラジオ",
-    "tags": [
-      "瀧脇笙古",
-      "MYOJO",
-      "集英社",
-      "雑誌",
-      "掲載情報"
-    ],
-    "description": "集英社「MYOJO 11月号」に瀧脇笙古が掲載予定。",
-    "contentType": "news",
-    "thumbnailURL": "/images/logo.png",
-    "verified": true,
-    "lastCheckedAt": "2026-09-10T12:39:00.000Z",
-    "isFeatured": true,
-    "isHighlight": false
-  },
+
   {
     "id": "link-buzzrhythm02-tv-20260904",
     "title": "本日深夜「バズリズム02」出演",
