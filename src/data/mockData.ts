@@ -102,13 +102,14 @@ export const INITIAL_LINK_ITEMS: LinkItem[] = [
       "9th ANNIVERSARY",
       "TOYOTA ARENA TOKYO",
       "コンサート",
+      "ライブ",
       "音楽・ライブ"
     ],
-    "description": "＝LOVE 9周年コンサート「＝LOVE 9th ANNIVERSARY PREMIUM CONCERT」DAY2をTOYOTA ARENA TOKYOにて開催（開場 16:30 / 開演 18:00）。瀧脇笙古も出演。",
+    "description": "＝LOVEの9周年コンサート「＝LOVE 9th ANNIVERSARY PREMIUM CONCERT」DAY2をTOYOTA ARENA TOKYOにて開催（開場 16:30 / 開演 18:00）。瀧脇笙古も出演。",
     "contentType": "event",
     "thumbnailURL": "/images/logo.png",
     "verified": true,
-    "lastCheckedAt": "2026-10-14T19:20:00.000Z",
+    "lastCheckedAt": "2026-10-16T10:00:00.000Z",
     "isFeatured": true,
     "isHighlight": true
   },

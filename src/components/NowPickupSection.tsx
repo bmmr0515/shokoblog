@@ -34,7 +34,7 @@ export const NowPickupSection: React.FC = () => {
             <span className="px-2 py-0.5 bg-[#F6C744] text-[#191919] font-mono font-black text-[10px] rounded-full uppercase">
               NOW / PICK UP
             </span>
-            <span>現在開催中・重要トピック (2026.10.14時点)</span>
+            <span>現在開催中・重要トピック (2026.10.16時点)</span>
           </div>
           <h2 className="text-xl sm:text-2xl font-extrabold tracking-wider font-mono text-[#191919]">
             NOW / PICK UP
@@ -55,16 +55,16 @@ export const NowPickupSection: React.FC = () => {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         
         {/* ======================================================== */}
-        {/* トピック 1: 10/15–16 9th ANNIVERSARY PREMIUM CONCERT */}
+        {/* トピック 1: ＝LOVE 9th ANNIVERSARY PREMIUM CONCERT DAY 2 */}
         {/* ======================================================== */}
         <div className="bg-[#FFF9ED] border-2 border-[#F6C744] p-4 rounded-xl space-y-2.5 shadow-2xs flex flex-col justify-between">
           <div className="space-y-2">
             <div className="flex items-center justify-between">
-              <span className="px-2.5 py-0.5 bg-[#F6C744] text-[#191919] font-mono font-black text-[10px] rounded-full flex items-center gap-1">
+              <span className="px-2.5 py-0.5 bg-[#F6C744] text-[#191919] font-mono font-black text-[10px] rounded-full flex items-center gap-1 animate-pulse">
                 <Sparkles className="w-3 h-3 text-[#191919]" />
-                <span>10.15 — 10.16</span>
+                <span>DAY 2 / TODAY</span>
               </span>
-              <span className="text-[10px] font-mono font-bold text-[#8C694D]">TOYOTA ARENA</span>
+              <span className="text-[10px] font-mono font-bold text-[#8C694D]">2026.10.16</span>
             </div>
 
             <h3 className="font-maru font-extrabold text-sm sm:text-base text-[#191919] leading-snug">
@@ -72,12 +72,12 @@ export const NowPickupSection: React.FC = () => {
             </h3>
 
             <p className="text-xs text-[#5C4533] font-bold leading-relaxed font-sans">
-              TOYOTA ARENA TOKYOにて＝LOVE 9周年コンサートを開催（開場 16:30 / 開演 18:00）。瀧脇笙古も両日出演。
+              ＝LOVEの9周年コンサート「＝LOVE 9th ANNIVERSARY PREMIUM CONCERT」がTOYOTA ARENA TOKYOで2DAYS開催。10月15日のDAY1に続き、本日10月16日はDAY2（開場 16:30 / 開演 18:00）。瀧脇笙古も出演。
             </p>
           </div>
 
           <div className="pt-2 border-t border-[#F0E4CE] flex items-center justify-between text-xs font-mono font-bold">
-            <span className="text-[10px] text-[#8C694D]">DAY1 & DAY2</span>
+            <span className="text-[10px] text-[#8C694D]">TOYOTA ARENA TOKYO</span>
             <a
               href="https://equal-love.jp/schedule/"
               target="_blank"
