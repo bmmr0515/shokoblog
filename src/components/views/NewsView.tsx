@@ -9,6 +9,8 @@ import { Sidebar } from "@/components/Sidebar";
 import { Newspaper } from "lucide-react";
 import { sortItemsByDate } from "@/lib/date-sort";
 
+import { AdSenseAd } from "@/components/ads/AdSenseAd";
+
 export function NewsView() {
   const [items, setItems] = useState<LinkItem[]>([]);
 
@@ -50,12 +52,22 @@ export function NewsView() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
         
         {/* メインカラム (720px〜800px 相当) */}
-        <div className="lg:col-span-8 space-y-2">
+        <div className="lg:col-span-8 space-y-4">
           <div className="divide-y divide-[#F0E4CE] bg-white border border-[#F0E4CE] rounded-2xl px-6 sm:px-8 shadow-2xs">
-            {items.map((item) => (
-              <FashionArticleRow key={item.id} item={item} />
+            {items.map((item, index) => (
+              <React.Fragment key={item.id}>
+                <FashionArticleRow item={item} />
+                {index === 5 && (
+                  <div className="py-2">
+                    <AdSenseAd slot={process.env.NEXT_PUBLIC_ADSENSE_SLOT_NEWS} />
+                  </div>
+                )}
+              </React.Fragment>
             ))}
           </div>
+
+          {/* 一覧末尾の広告スロット */}
+          <AdSenseAd slot={process.env.NEXT_PUBLIC_ADSENSE_SLOT_NEWS} />
         </div>
 
         {/* サイドバー (280px〜340px 相当) */}

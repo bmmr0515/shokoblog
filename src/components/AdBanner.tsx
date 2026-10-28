@@ -2,17 +2,19 @@
 
 import React from "react";
 import { AdSettings } from "@/types/blog";
+import { AdSenseAd } from "./ads/AdSenseAd";
 
 interface AdBannerProps {
   type?: keyof Omit<AdSettings, "enabled">;
+  slot?: string;
   className?: string;
 }
 
 /**
- * 広告表示コンポーネント
- * 現在はユーザー方針に従い、サイト内に一切の広告・広告枠・プレースホルダー・余白を表示しません。
+ * 広告表示ラッパーコンポーネント
+ * スロットIDが設定されていない場合は何も描画しません（return null）。
  */
-export const AdBanner: React.FC<AdBannerProps> = () => {
-  // 現段階では完全に広告を非表示 (null) に統一
-  return null;
+export const AdBanner: React.FC<AdBannerProps> = ({ type, slot, className }) => {
+  const targetSlot = slot || process.env.NEXT_PUBLIC_ADSENSE_SLOT_ARTICLES || process.env.NEXT_PUBLIC_ADSENSE_SLOT_HOME;
+  return <AdSenseAd slot={targetSlot} className={className} />;
 };

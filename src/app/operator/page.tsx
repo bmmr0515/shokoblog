@@ -34,7 +34,7 @@ export default function OperatorPage() {
                   サイトURL
                 </th>
                 <td className="py-3 px-4 text-shoko-text-sub border-b border-shoko-beige-border">
-                  https://shokoblog.example.com/
+                  https://shokoblog.vercel.app/
                 </td>
               </tr>
               <tr className="bg-shoko-beige/40">

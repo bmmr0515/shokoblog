@@ -5,7 +5,7 @@ export function getBaseUrl(): string {
   if (process.env.VERCEL_URL) {
     return `https://${process.env.VERCEL_URL.replace(/\/$/, "")}`;
   }
-  return "https://shokora-room.vercel.app";
+  return "https://shokoblog.vercel.app";
 }
 
 export const SITE_NAME = "しょこらの部屋";

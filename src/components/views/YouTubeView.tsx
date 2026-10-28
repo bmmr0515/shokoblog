@@ -9,6 +9,7 @@ import { Sidebar } from "@/components/Sidebar";
 import { Video, ArrowUpDown } from "lucide-react";
 import { getUnifiedCategory } from "@/lib/youtube";
 import { sortItemsByDate } from "@/lib/date-sort";
+import { AdSenseAd } from "@/components/ads/AdSenseAd";
 
 export function YouTubeView() {
   const [items, setItems] = useState<LinkItem[]>([]);
@@ -113,10 +114,20 @@ export function YouTubeView() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
         <div className="lg:col-span-8 space-y-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {filteredAndSortedItems.map((item) => (
-              <YouTubeEmbedCard key={item.id} item={item} />
+            {filteredAndSortedItems.map((item, index) => (
+              <React.Fragment key={item.id}>
+                <YouTubeEmbedCard item={item} />
+                {index === 5 && (
+                  <div className="col-span-full">
+                    <AdSenseAd slot={process.env.NEXT_PUBLIC_ADSENSE_SLOT_MOVIE} />
+                  </div>
+                )}
+              </React.Fragment>
             ))}
           </div>
+
+          {/* 一覧末尾の広告スロット */}
+          <AdSenseAd slot={process.env.NEXT_PUBLIC_ADSENSE_SLOT_MOVIE} />
         </div>
 
         <div className="lg:col-span-4 sticky top-24">

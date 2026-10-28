@@ -15,6 +15,7 @@ import { HeroVideoPlayer } from "@/components/HeroVideoPlayer";
 import { FashionArticleRow } from "@/components/FashionArticleRow";
 import { InitialOpeningLoader } from "@/components/InitialOpeningLoader";
 import { NowPickupSection } from "@/components/NowPickupSection";
+import { AdSenseAd } from "@/components/ads/AdSenseAd";
 
 export function HomeView() {
   const [items, setItems] = useState<LinkItem[]>([]);
@@ -234,6 +235,9 @@ export function HomeView() {
         </div>
       </Reveal>
 
+      {/* NEWSセクション終了後 広告スロット */}
+      <AdSenseAd slot={process.env.NEXT_PUBLIC_ADSENSE_SLOT_HOME} />
+
       {/* ======================================================== */}
       {/* 4. MOVIE (動画コレクション ＋ 右上統一CTA) */}
       {/* ======================================================== */}
@@ -402,7 +406,8 @@ export function HomeView() {
               ))}
             </div>
 
-            <AdBanner type="listMiddleAd" />
+            {/* ARTICLESセクション終了後 広告スロット */}
+            <AdSenseAd slot={process.env.NEXT_PUBLIC_ADSENSE_SLOT_HOME} />
           </Reveal>
 
           {/* ======================================================== */}
@@ -534,6 +539,9 @@ export function HomeView() {
         </div>
 
       </div>
+
+      {/* フッター前 広告スロット */}
+      <AdSenseAd slot={process.env.NEXT_PUBLIC_ADSENSE_SLOT_HOME} />
 
     </div>
   );

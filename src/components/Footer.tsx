@@ -35,17 +35,21 @@ export const Footer: React.FC = () => {
               <Link href="/history" className="hover:text-[#F6C744] text-[#F6C744] transition-colors">HISTORY (歴史)</Link>
               <Link href="/profile" className="hover:text-white transition-colors">PROFILE (人物)</Link>
               <Link href="/about" className="hover:text-white transition-colors">ABOUT (当サイトについて)</Link>
+              <Link href="/operator" className="hover:text-white transition-colors">OPERATOR (運営者情報)</Link>
               <Link href="/contact" className="hover:text-white transition-colors">CONTACT (お問い合わせ)</Link>
             </div>
           </div>
 
-          {/* Disclaimer Note */}
+          {/* Disclaimer & Operator Note */}
           <div className="md:col-span-3 space-y-2">
             <div className="text-[10px] font-bold text-[#F6C744] uppercase tracking-widest">
-              // DISCLAIMER
+              // DISCLAIMER & OPERATOR
             </div>
-            <p className="text-[11px] text-zinc-500 font-sans leading-relaxed">
-              当サイトはファン有志が個人で運営する非公式ファンサイトであり、＝LOVE公式、株式会社代々木アニメーション学院、ソニー・ミュージックレーベルズとは一切関係ございません。
+            <p className="text-[11px] text-zinc-400 font-sans leading-relaxed">
+              当サイト「しょこらの部屋」はファン有志（個人）により運営される非公式ファンサイトです。＝LOVE公式、所属事務所、関係各社とは一切関係ございません。
+            </p>
+            <p className="text-[10px] text-zinc-500 font-sans">
+              運営主体：しょこらの部屋 運営チーム ／ ご連絡は<Link href="/contact" className="text-zinc-300 underline hover:text-[#F6C744] ml-1">お問い合わせフォーム</Link>より承ります。
             </p>
           </div>
 
@@ -56,9 +60,11 @@ export const Footer: React.FC = () => {
           <div>
             &copy; {new Date().getFullYear()} しょこらの部屋 // TAKIWAKI SHOKO UNOFFICIAL FAN SITE
           </div>
-          <div className="flex gap-4">
+          <div className="flex flex-wrap gap-4">
+            <Link href="/operator" className="hover:text-zinc-300">OPERATOR</Link>
             <Link href="/privacy" className="hover:text-zinc-300">PRIVACY POLICY</Link>
             <Link href="/disclaimer" className="hover:text-zinc-300">DISCLAIMER</Link>
+            <Link href="/contact" className="hover:text-zinc-300">CONTACT</Link>
           </div>
         </div>
 
