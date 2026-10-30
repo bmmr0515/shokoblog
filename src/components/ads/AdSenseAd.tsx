@@ -59,12 +59,15 @@ export const AdSenseAd: React.FC<AdSenseAdProps> = ({
   }
 
   return (
-    <div className={`my-6 text-center overflow-hidden ${className}`}>
-      {label && (
-        <span className="block text-[10px] text-zinc-400 font-mono tracking-widest mb-1 select-none">
-          {label}
+    <div className={`my-8 py-4 px-2 text-center bg-[#FCFAF6] border-y border-zinc-200/70 rounded-md overflow-hidden ${className}`}>
+      <div className="flex items-center justify-center gap-2 mb-2 select-none">
+        <span className="text-[10px] text-zinc-400 font-mono tracking-widest uppercase">
+          {label || "広告"}
         </span>
-      )}
+        <span className="text-[9px] text-zinc-300 font-mono tracking-wider uppercase">
+          / ADVERTISEMENT
+        </span>
+      </div>
       <ins
         className="adsbygoogle block"
         style={{ display: "block" }}

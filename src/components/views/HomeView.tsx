@@ -235,9 +235,6 @@ export function HomeView() {
         </div>
       </Reveal>
 
-      {/* NEWSセクション終了後 広告スロット */}
-      <AdSenseAd slot={process.env.NEXT_PUBLIC_ADSENSE_SLOT_HOME} />
-
       {/* ======================================================== */}
       {/* 4. MOVIE (動画コレクション ＋ 右上統一CTA) */}
       {/* ======================================================== */}

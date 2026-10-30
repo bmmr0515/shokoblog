@@ -5680,19 +5680,19 @@ export const INITIAL_LINK_ITEMS: LinkItem[] = [
 export const INITIAL_AD_SETTINGS: AdSettings = {
   enabled: true,
   titleUnderAd: `<div style="padding: 12px; text-align: center; background: #FFF0ED; border: 1px dashed #FF885B; border-radius: 8px; color: #E56B3E; font-size: 0.85rem; font-weight: 500;">
-    [スポンサーリンク / 広告スペース (タイトル下)]
+    [広告スペース (タイトル下)]
   </div>`,
   contentMiddleAd: `<div style="padding: 16px; margin: 20px 0; text-align: center; background: #FFF9E6; border: 1px dashed #FFC857; border-radius: 8px; color: #D4AC0D; font-size: 0.85rem; font-weight: 500;">
-    [スポンサーリンク / 広告スペース (リスト中央)]
+    [広告スペース (リスト中央)]
   </div>`,
   contentEndAd: `<div style="padding: 16px; margin: 20px 0; text-align: center; background: #FFF0ED; border: 1px dashed #FF885B; border-radius: 8px; color: #E56B3E; font-size: 0.85rem; font-weight: 500;">
-    [スポンサーリンク / 広告スペース (ページ下部)]
+    [広告スペース (ページ下部)]
   </div>`,
   sidebarAd: `<div style="padding: 24px 12px; text-align: center; background: #FBF7F4; border: 1px dashed #EADFD5; border-radius: 8px; color: #718096; font-size: 0.85rem; font-weight: 500;">
-    [スポンサーリンク / 広告スペース (サイドバー)]
+    [広告スペース (サイドバー)]
   </div>`,
   listMiddleAd: `<div style="padding: 12px; margin: 16px 0; text-align: center; background: #FFF0ED; border: 1px dashed #FF885B; border-radius: 8px; color: #E56B3E; font-size: 0.85rem; font-weight: 500;">
-    [スポンサーリンク / 広告スペース (コンテンツ間)]
+    [広告スペース (コンテンツ間)]
   </div>`
 };
 
