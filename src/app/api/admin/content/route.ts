@@ -21,8 +21,8 @@ function savePendingItems(items: PendingContentItem[]) {
 }
 
 // 候補一覧取得
-export async function GET() {
-  if (!isLocalEnvironment()) {
+export async function GET(req: NextRequest) {
+  if (!isLocalEnvironment(req)) {
     return createLocalOnlyApiResponse();
   }
   const items = loadPendingItems();
@@ -31,7 +31,7 @@ export async function GET() {
 
 // クローラー実行 または ステータス更新
 export async function POST(req: NextRequest) {
-  if (!isLocalEnvironment()) {
+  if (!isLocalEnvironment(req)) {
     return createLocalOnlyApiResponse();
   }
 

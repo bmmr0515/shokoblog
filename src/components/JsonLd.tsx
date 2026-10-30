@@ -31,10 +31,13 @@ export const JsonLd: React.FC<JsonLdProps> = ({ item }) => {
     }
   };
 
+  // </script> タグの早期終了によるインジェクションを防止するために < をユニコードエスケープ
+  const safeJson = JSON.stringify(jsonLdData).replace(/</g, "\\u003c");
+
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdData) }}
+      dangerouslySetInnerHTML={{ __html: safeJson }}
     />
   );
 };

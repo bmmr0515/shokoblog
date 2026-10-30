@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import fs from "fs";
 import path from "path";
 import { execSync } from "child_process";
@@ -9,8 +9,8 @@ import { extractYouTubeVideoId, getYouTubeThumbnailUrl } from "@/lib/youtube";
 const PENDING_FILE_PATH = path.resolve(process.cwd(), "src/data/pending-content.json");
 const MOCK_DATA_PATH = path.resolve(process.cwd(), "src/data/mockData.ts");
 
-export async function POST() {
-  if (!isLocalEnvironment()) {
+export async function POST(req: NextRequest) {
+  if (!isLocalEnvironment(req)) {
     return createLocalOnlyApiResponse();
   }
 

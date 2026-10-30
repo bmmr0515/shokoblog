@@ -4,7 +4,7 @@ import axios from "axios";
 
 export async function GET(req: NextRequest) {
   // 本番環境遮断ガード
-  if (!isLocalEnvironment()) {
+  if (!isLocalEnvironment(req)) {
     return createLocalOnlyApiResponse();
   }
 
