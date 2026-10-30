@@ -18,11 +18,19 @@ export const YouTubeEmbedCard: React.FC<YouTubeEmbedCardProps> = ({ item }) => {
   if (!videoId || videoId.length !== 11 || !targetUrl) return null;
 
   const channel = item.channelName || item.sourceName;
+  const isShorts =
+    item.isShorts ||
+    targetUrl.includes("/shorts/") ||
+    (item.tags && item.tags.some((t) => t.toLowerCase() === "shorts"));
 
   return (
-    <div className="border border-gray-200 p-3.5 space-y-3 bg-white rounded-lg shadow-sm">
-      {/* 1. YouTube 公式 iframe 埋め込み (16:9 アスペクト比 & loading="lazy" 必須) */}
-      <div className="aspect-video relative rounded overflow-hidden bg-black block w-full">
+    <div className="border border-gray-200 p-3.5 space-y-3 bg-white rounded-lg shadow-sm flex flex-col justify-between">
+      {/* 1. YouTube 公式 iframe 埋め込み (Shortsは9:16縦型 / 通常動画は16:9) */}
+      <div
+        className={`relative rounded overflow-hidden bg-black block w-full ${
+          isShorts ? "aspect-[9/16] max-h-[440px] mx-auto" : "aspect-video"
+        }`}
+      >
         <iframe
           src={`https://www.youtube.com/embed/${videoId}`}
           title={item.title}
@@ -37,9 +45,16 @@ export const YouTubeEmbedCard: React.FC<YouTubeEmbedCardProps> = ({ item }) => {
       <div className="space-y-1.5 text-xs">
         <div className="flex items-center justify-between text-[11px] text-gray-500 font-medium">
           <span className="font-mono text-gray-700">{item.publishedDate}</span>
-          <span className="px-2 py-0.5 bg-red-50 text-red-700 font-bold rounded text-[10px]">
-            {item.category}
-          </span>
+          <div className="flex items-center gap-1.5">
+            {isShorts && (
+              <span className="px-1.5 py-0.5 bg-red-600 text-white font-mono font-bold rounded text-[9px] uppercase tracking-wider">
+                SHORTS
+              </span>
+            )}
+            <span className="px-2 py-0.5 bg-red-50 text-red-700 font-bold rounded text-[10px]">
+              {item.category}
+            </span>
+          </div>
         </div>
 
         <h3 className="font-bold text-sm text-gray-900 line-clamp-2 leading-snug">

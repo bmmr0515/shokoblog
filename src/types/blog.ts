@@ -64,6 +64,8 @@ export interface LinkItem {
   lastCheckedAt: string;
   isFeatured?: boolean;
   isHighlight?: boolean;
+  isShorts?: boolean;
+  videoStatus?: "available" | "unavailable";
 }
 
 export interface AdSettings {

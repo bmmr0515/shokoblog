@@ -17,7 +17,12 @@ export function YouTubeView() {
 
   useEffect(() => {
     const all = getLinkItems();
-    const ytList = all.filter((i) => i.contentType === "youtube" || !!i.youtubeURL || i.category === "YouTube" || i.category === "ライブ映像");
+    const ytList = all.filter(
+      (i) =>
+        (i.contentType === "youtube" || !!i.youtubeURL || i.category === "YouTube" || i.category === "ライブ映像") &&
+        i.videoStatus !== "unavailable" &&
+        i.verified !== false
+    );
     setItems(ytList);
   }, []);
 

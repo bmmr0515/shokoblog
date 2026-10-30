@@ -27,36 +27,48 @@ export function HomeView() {
   const latestItems = [...items].sort((a, b) => (a.publishedDate < b.publishedDate ? 1 : -1));
 
   // 1. YouTube動画アイテムの抽出
+  // 1. YouTube動画アイテムの抽出（非公開・リンク切れ除外）
   const youtubeItems = latestItems.filter(
-    (i) => i.contentType === "youtube" || !!i.youtubeURL || i.category === "YouTube" || i.category === "ライブ映像"
+    (i) =>
+      (i.contentType === "youtube" || !!i.youtubeURL || i.category === "YouTube" || i.category === "ライブ映像") &&
+      i.videoStatus !== "unavailable" &&
+      i.verified !== false
   );
 
-  // ヒーロー動画ID (FILA 2026FW POP-UP 瀧脇笙古スタイリングパートナー動画)
+  // ヒーロー動画ID (最上部ヘッダー FILA 2026FW POP-UP 瀧脇笙古スタイリングパートナー動画)
   const HERO_VIDEO_ID = "0dJb1WGsK2Q";
 
-  // LATEST MOVIE 用動画オブジェクト
-  const latestMovieObj =
+  // セクション02: LATEST MOVIE 用動画（横型ワイド動画の最新）
+  const latestWideMovie =
     youtubeItems.find(
       (i) =>
-        i.videoId === HERO_VIDEO_ID ||
-        extractYouTubeVideoId(i.youtubeURL || i.sourceURL) === HERO_VIDEO_ID
-    ) || {
-      id: "latest-hero-video",
-      title: "＝LOVE 瀧脇笙古が魅せる「FILA」2026 FW 秋冬最新コレクション POP-UP",
-      publishedDate: "2026.08.18",
-      channelName: "FILA OFFICIAL",
-      sourceURL: `https://www.youtube.com/watch?v=${HERO_VIDEO_ID}`,
-      youtubeURL: `https://www.youtube.com/watch?v=${HERO_VIDEO_ID}`,
-    };
+        !i.isShorts &&
+        !(i.youtubeURL || i.sourceURL || "").includes("/shorts/") &&
+        !(i.tags && i.tags.some((t) => t.toLowerCase() === "shorts"))
+    ) || youtubeItems[0];
 
-  // MOVIE PICKUP 用 (HERO_VIDEO_ID を除外した 4件)
+  const LATEST_MOVIE_ID =
+    latestWideMovie?.videoId ||
+    extractYouTubeVideoId(latestWideMovie?.youtubeURL || latestWideMovie?.sourceURL) ||
+    "2kJxIQQqraY";
+
+  const latestMovieObj = latestWideMovie || {
+    id: "latest-movie-bts",
+    title: "FILA 2026FW｜Behind the Scenes｜瀧脇笙古",
+    publishedDate: "2026-09-02",
+    channelName: "FILA Japan Official / フィラジャパン公式",
+    sourceURL: `https://www.youtube.com/watch?v=${LATEST_MOVIE_ID}`,
+    youtubeURL: `https://www.youtube.com/watch?v=${LATEST_MOVIE_ID}`,
+  };
+
+  // MOVIE PICKUP 用 (LATEST_MOVIE_ID を除外した最新 3件。Shortsも含む)
   const moviePickups = youtubeItems
     .filter(
       (i) =>
-        i.videoId !== HERO_VIDEO_ID &&
-        extractYouTubeVideoId(i.youtubeURL || i.sourceURL) !== HERO_VIDEO_ID
+        i.videoId !== LATEST_MOVIE_ID &&
+        extractYouTubeVideoId(i.youtubeURL || i.sourceURL) !== LATEST_MOVIE_ID
     )
-    .slice(0, 4);
+    .slice(0, 3);
 
   // 2. NEWS (最新情報 4件)
   const newsItems = latestItems
@@ -267,7 +279,7 @@ export function HomeView() {
           </Link>
         </div>
 
-        {/* 大画面 FILA 動画 0dJb1WGsK2Q */}
+        {/* 大画面 最新動画 LATEST */}
         <div className="space-y-3">
           <div className="text-xs font-bold text-[#5C4533] flex items-center gap-2">
             <span className="px-2 py-0.5 bg-[#F6C744] text-[#191919] text-[10px] rounded-full font-mono">LATEST</span>
@@ -275,7 +287,7 @@ export function HomeView() {
           </div>
 
           <div className="bg-[#191919] p-2.5 sm:p-4 rounded-xl border border-[#F0E4CE] shadow-2xs space-y-3">
-            <HeroVideoPlayer videoId={HERO_VIDEO_ID} />
+            <HeroVideoPlayer videoId={LATEST_MOVIE_ID} />
 
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 p-2 text-xs text-zinc-300">
               <div className="flex items-center gap-2">
@@ -288,7 +300,7 @@ export function HomeView() {
               </div>
 
               <a
-                href={latestMovieObj.youtubeURL || `https://www.youtube.com/watch?v=${HERO_VIDEO_ID}`}
+                href={latestMovieObj.youtubeURL || `https://www.youtube.com/watch?v=${LATEST_MOVIE_ID}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-zinc-400 hover:text-white font-bold inline-flex items-center gap-1 shrink-0 transition-colors"
@@ -312,6 +324,7 @@ export function HomeView() {
                 const vId = video.videoId || extractYouTubeVideoId(video.youtubeURL || video.sourceURL);
                 const thumb = video.thumbnailURL || (vId ? `https://img.youtube.com/vi/${vId}/hqdefault.jpg` : "/images/logo.png");
                 const target = video.youtubeURL || video.sourceURL || "#";
+                const isShort = video.isShorts || (video.youtubeURL || video.sourceURL || "").includes("/shorts/");
 
                 return (
                   <a
@@ -327,11 +340,19 @@ export function HomeView() {
                         alt={video.title}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 opacity-90 group-hover:opacity-100"
                       />
+                      {isShort && (
+                        <div className="absolute top-2 left-2 px-1.5 py-0.5 bg-red-600 text-white font-mono font-bold rounded text-[9px] uppercase tracking-wider shadow">
+                          SHORTS
+                        </div>
+                      )}
                     </div>
 
                     <div className="space-y-1">
-                      <div className="text-[10px] font-mono text-[#8C694D] font-bold">
-                        {video.publishedDate}
+                      <div className="flex items-center justify-between text-[10px] font-mono text-[#8C694D] font-bold">
+                        <span>{video.publishedDate}</span>
+                        {isShort && (
+                          <span className="text-red-600 font-bold">Shorts</span>
+                        )}
                       </div>
                       <h4 className="text-xs sm:text-sm font-bold text-[#191919] group-hover:text-[#E99A32] transition-colors line-clamp-2 leading-snug font-sans">
                         {video.title}
