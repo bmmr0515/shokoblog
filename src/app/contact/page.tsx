@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
-import { Mail, Send, CheckCircle2, ShieldAlert, FileText } from "lucide-react";
+import { Mail, Send, CheckCircle2, ShieldAlert, Loader2, AlertCircle } from "lucide-react";
 import Link from "next/link";
 
 export default function ContactPage() {
@@ -11,11 +11,48 @@ export default function ContactPage() {
   const [email, setEmail] = useState("");
   const [targetUrl, setTargetUrl] = useState("");
   const [message, setMessage] = useState("");
+  const [hpField, setHpField] = useState(""); // ハニーポット（スパムボット対策）
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    if (isSubmitting) return;
+
+    setIsSubmitting(true);
+    setErrorMessage(null);
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          category,
+          name,
+          email,
+          targetUrl: targetUrl.trim() || undefined,
+          message,
+          hp_field: hpField,
+        }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok || !data.success) {
+        throw new Error(data.error || "お問い合わせの送信に失敗しました。");
+      }
+
+      setSubmitted(true);
+    } catch (err: any) {
+      setErrorMessage(
+        err.message || "送信中にエラーが発生しました。通信環境をご確認のうえ、再度お試しください。"
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -73,6 +110,8 @@ export default function ContactPage() {
                 setEmail("");
                 setTargetUrl("");
                 setMessage("");
+                setHpField("");
+                setErrorMessage(null);
               }}
               className="mt-4 px-5 py-2 rounded-xl bg-shoko-orange text-white text-xs font-bold hover:bg-shoko-orange-deep transition-colors"
             >
@@ -81,6 +120,27 @@ export default function ContactPage() {
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-5 text-xs sm:text-sm font-sans">
+            {/* エラーメッセージ */}
+            {errorMessage && (
+              <div className="bg-red-50 text-red-700 p-4 rounded-2xl border border-red-200 flex items-start gap-2.5">
+                <AlertCircle className="w-5 h-5 shrink-0 text-red-500 mt-0.5" />
+                <div className="text-xs leading-relaxed font-sans">{errorMessage}</div>
+              </div>
+            )}
+
+            {/* スパムボット対策ハニーポット（ブラウザ上は非表示） */}
+            <div className="hidden" aria-hidden="true" style={{ display: "none" }}>
+              <label htmlFor="hp_field">お名前の確認</label>
+              <input
+                id="hp_field"
+                type="text"
+                name="hp_field"
+                tabIndex={-1}
+                autoComplete="off"
+                value={hpField}
+                onChange={(e) => setHpField(e.target.value)}
+              />
+            </div>
             
             {/* お問い合わせ種別 */}
             <div className="space-y-1.5">
@@ -168,10 +228,22 @@ export default function ContactPage() {
 
             <button
               type="submit"
-              className="px-8 py-3 bg-shoko-orange text-white font-bold rounded-xl hover:bg-shoko-orange-deep transition-colors shadow-md flex items-center gap-2"
+              disabled={isSubmitting}
+              className={`px-8 py-3 bg-shoko-orange text-white font-bold rounded-xl hover:bg-shoko-orange-deep transition-colors shadow-md flex items-center gap-2 ${
+                isSubmitting ? "opacity-60 cursor-not-allowed" : ""
+              }`}
             >
-              <Send className="w-4 h-4" />
-              <span>送信する</span>
+              {isSubmitting ? (
+                <>
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                  <span>送信中...</span>
+                </>
+              ) : (
+                <>
+                  <Send className="w-4 h-4" />
+                  <span>送信する</span>
+                </>
+              )}
             </button>
           </form>
         )}
