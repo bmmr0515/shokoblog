@@ -41,9 +41,9 @@ export const INITIAL_YEARS = [2026, 2025, 2024, 2023, 2022, 2021, 2020, 2019, 20
 export const INITIAL_LINK_ITEMS: LinkItem[] = [
   {
     "id": "link-mtv-vmaj-20261029",
-    "title": "MTV VMAJ 2026",
+    "title": "＝LOVE「MTV VMAJ 2026」で3冠達成！瀧脇笙古も受賞の喜びと感謝を報告",
     "sourceName": "MTV Japan / ＝LOVE Official",
-    "sourceURL": "https://equal-love.jp/schedule/",
+    "sourceURL": "https://equal-love.jp/news/detail/11829",
     "publishedDate": "2026-10-29",
     "year": 2026,
     "category": "音楽・ライブ",
@@ -52,16 +52,17 @@ export const INITIAL_LINK_ITEMS: LinkItem[] = [
       "瀧脇笙古",
       "MTV VMAJ 2026",
       "東京ドーム",
-      "イベント",
+      "とくべチュ、して",
+      "劇薬中毒",
       "音楽・ライブ"
     ],
-    "description": "東京ドームにて開催される音楽アワード「MTV VMAJ 2026」に＝LOVEが出演予定。",
+    "description": "2026年10月29日、東京ドームで開催された「MTV VMAJ 2026」にて＝LOVEが『とくべチュ、して』（Best Idol Video）、『劇薬中毒』（Best Direction）、『Best Family Choice Artist』の3冠を達成！センターステージでは『劇薬中毒』『お姫様の作り方』『恋、はじめました。』『とくべチュ、して』の4曲スペシャルメドレーを披露。瀧脇笙古も自身のXで、大舞台でのパフォーマンスと受賞への深い感謝を報告しました。",
     "contentType": "event",
     "thumbnailURL": "/images/logo.png",
     "verified": true,
-    "lastCheckedAt": "2026-10-14T19:20:00.000Z",
+    "lastCheckedAt": "2026-10-30T10:00:00.000Z",
     "isFeatured": true,
-    "isHighlight": false
+    "isHighlight": true
   },
   {
     "id": "link-eqlove-21st-special-live-nagoya-20261028",

@@ -8,7 +8,8 @@ import {
   Clock,
   AlertCircle,
   Tv,
-  ShoppingBag
+  ShoppingBag,
+  Trophy
 } from "lucide-react";
 
 export const NowPickupSection: React.FC = () => {
@@ -130,36 +131,36 @@ export const NowPickupSection: React.FC = () => {
         </div>
 
         {/* ======================================================== */}
-        {/* トピック 3: 直近ライブ予定（本日 名古屋 / 明日 東京ドーム） */}
+        {/* トピック 3: MTV VMAJ 2026 3冠受賞速報 */}
         {/* ======================================================== */}
         <div className="bg-white border border-[#F0E4CE] hover:border-[#F6C744] p-4 rounded-xl space-y-2.5 shadow-2xs flex flex-col justify-between transition-colors">
           <div className="space-y-2">
             <div className="flex items-center justify-between">
               <span className="px-2 py-0.5 bg-[#FFF4C7] text-[#5C4533] font-mono font-bold text-[10px] rounded-full flex items-center gap-1 border border-[#F6C744]/40">
-                <Clock className="w-3 h-3 text-[#E99A32]" />
-                <span>直近ライブ予定</span>
+                <Trophy className="w-3 h-3 text-[#E99A32]" />
+                <span>受賞速報</span>
               </span>
-              <span className="text-[10px] font-mono font-bold text-[#8C694D]">10.28 名古屋 / 10.29 東京D</span>
+              <span className="text-[10px] font-mono font-bold text-[#8C694D]">2026.10.29 東京ドーム</span>
             </div>
 
             <h3 className="font-maru font-extrabold text-sm sm:text-base text-[#191919] leading-snug">
-              21st 名古屋ライブ &<br />MTV VMAJ 2026
+              MTV VMAJ 2026<br />＝LOVE 堂々の3冠達成！
             </h3>
 
             <p className="text-xs text-[#5C4533] font-bold leading-relaxed font-sans">
-              本日10/28中日ホールにて名古屋スペシャルライブ開催。明日10/29は東京ドームにて「MTV VMAJ 2026」に出演予定。
+              東京ドーム「MTV VMAJ 2026」にて＝LOVEが3冠を受賞！4曲メドレーを披露し、瀧脇笙古もファンへ感謝のメッセージを報告。
             </p>
           </div>
 
           <div className="pt-2 border-t border-[#F0E4CE] flex items-center justify-between text-xs font-mono font-bold">
-            <span className="text-[10px] text-[#8C694D]">＝LOVE Official</span>
+            <span className="text-[10px] text-[#8C694D]">瀧脇笙古 公式X</span>
             <a
-              href="https://equal-love.jp/schedule/"
+              href="https://x.com/shoko_takiwaki/status/2115797342905602396"
               target="_blank"
               rel="noopener noreferrer"
               className="text-[#5C4533] hover:text-[#191919] inline-flex items-center gap-0.5"
             >
-              <span>公式スケジュール ↗</span>
+              <span>本人の投稿を見る ↗</span>
             </a>
           </div>
         </div>
