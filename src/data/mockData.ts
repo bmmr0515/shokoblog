@@ -40,6 +40,102 @@ export const INITIAL_YEARS = [2026, 2025, 2024, 2023, 2022, 2021, 2020, 2019, 20
 
 export const INITIAL_LINK_ITEMS: LinkItem[] = [
   {
+    "id": "link-nhk-kouhaku-20261113",
+    "title": "＝LOVE、第77回NHK紅白歌合戦への初出場が決定！記者会見に瀧脇笙古も登壇",
+    "sourceName": "＝LOVE Official / NHK",
+    "sourceURL": "https://equal-love.jp/news/detail/12408",
+    "publishedDate": "2026-11-13",
+    "year": 2026,
+    "category": "公式情報",
+    "tags": [
+      "＝LOVE",
+      "瀧脇笙古",
+      "NHK紅白歌合戦",
+      "紅白初出場",
+      "公式情報",
+      "音楽・ライブ"
+    ],
+    "description": "＝LOVEが『第77回NHK紅白歌合戦』への初出場を果たすことが決定！NHK放送センターで行われた初出場歌手発表記者会見に瀧脇笙古も登壇し、SNSでも「みんなで夢を叶えることができてとっても嬉しいです」と喜びと感謝を報告しました。",
+    "contentType": "official",
+    "thumbnailURL": "/images/logo.png",
+    "verified": true,
+    "lastCheckedAt": "2026-11-16T14:00:00.000Z",
+    "isFeatured": true,
+    "isHighlight": true
+  },
+  {
+    "id": "link-ntv-best-artist-20261108",
+    "title": "日本テレビ系「ベストアーティスト2026」に＝LOVEの生出演が決定！",
+    "sourceName": "日本テレビ / ＝LOVE Official",
+    "sourceURL": "https://equal-love.jp/news/detail/12394",
+    "publishedDate": "2026-11-08",
+    "year": 2026,
+    "category": "テレビ・ラジオ",
+    "tags": [
+      "＝LOVE",
+      "瀧脇笙古",
+      "ベストアーティスト",
+      "日本テレビ",
+      "音楽番組",
+      "テレビ・ラジオ"
+    ],
+    "description": "2026年11月28日（土）放送の日本テレビ系大型音楽特番『ベストアーティスト2026』に＝LOVEの出演が決定。第1弾出演アーティストとして発表され、当日は生パフォーマンスを披露する予定です。",
+    "contentType": "tv",
+    "thumbnailURL": "/images/logo.png",
+    "verified": true,
+    "lastCheckedAt": "2026-11-16T14:00:00.000Z",
+    "isFeatured": true,
+    "isHighlight": false
+  },
+  {
+    "id": "link-hochi-coordinate-20261105",
+    "title": "瀧脇笙古、三つ編み×パーカーのキュートな私服コーデを披露",
+    "sourceName": "スポーツ報知 / ライブドアニュース",
+    "sourceURL": "https://news.livedoor.com/article/detail/32737992/",
+    "publishedDate": "2026-11-05",
+    "year": 2026,
+    "category": "ニュース",
+    "tags": [
+      "瀧脇笙古",
+      "スポーツ報知",
+      "私服コーデ",
+      "Instagram",
+      "ファッション",
+      "ニュース"
+    ],
+    "description": "瀧脇笙古が自身のInstagramで公開した、三つ編みヘアにパーカーを合わせた秋の私服カジュアルコーディネートがスポーツ報知（ライブドアニュース）で紹介。「可愛すぎる」「雰囲気が変わって素敵」とファンからも大きな反響を集めています。",
+    "contentType": "news",
+    "thumbnailURL": "/images/logo.png",
+    "verified": true,
+    "lastCheckedAt": "2026-11-16T14:00:00.000Z",
+    "isFeatured": false,
+    "isHighlight": false
+  },
+  {
+    "id": "link-cx-fns-20261103",
+    "title": "フジテレビ系列「2026 FNS歌謡祭 第1夜」に＝LOVEの出演が決定！",
+    "sourceName": "フジテレビ / ＝LOVE Official",
+    "sourceURL": "https://equal-love.jp/news/detail/12385",
+    "publishedDate": "2026-11-03",
+    "year": 2026,
+    "category": "テレビ・ラジオ",
+    "tags": [
+      "＝LOVE",
+      "瀧脇笙古",
+      "FNS歌謡祭",
+      "フジテレビ",
+      "音楽番組",
+      "テレビ・ラジオ"
+    ],
+    "description": "2026年12月2日（水）生放送のフジテレビ系列大型音楽特番『2026 FNS歌謡祭 第1夜』に＝LOVEの出演が決定。年末を彩る華やかなステージでパフォーマンスを披露します。",
+    "contentType": "tv",
+    "thumbnailURL": "/images/logo.png",
+    "verified": true,
+    "lastCheckedAt": "2026-11-16T14:00:00.000Z",
+    "isFeatured": false,
+    "isHighlight": false
+  },
+  {
     "id": "link-mtv-vmaj-20261029",
     "title": "＝LOVE「MTV VMAJ 2026」で3冠達成！瀧脇笙古も受賞の喜びと感謝を報告",
     "sourceName": "MTV Japan / ＝LOVE Official",
