@@ -40,6 +40,31 @@ export const INITIAL_YEARS = [2026, 2025, 2024, 2023, 2022, 2021, 2020, 2019, 20
 
 export const INITIAL_LINK_ITEMS: LinkItem[] = [
   {
+    "id": "link-baysta-43-20261118",
+    "title": "瀧脇笙古、サンスポ「BAY☆スタ」第43号に登場！連載コラムは15回目",
+    "sourceName": "サンケイスポーツ / ＝LOVE Official",
+    "sourceURL": "https://equal-love.jp/news/detail/12406",
+    "publishedDate": "2026-11-18",
+    "year": 2026,
+    "category": "公式情報",
+    "tags": [
+      "瀧脇笙古",
+      "ベイスターズ",
+      "BAY☆スタ",
+      "横浜DeNAベイスターズ",
+      "連載コラム",
+      "サンスポ",
+      "公式情報"
+    ],
+    "description": "2026年11月18日発売のサンケイスポーツ特別版「BAY☆スタ」第43号に、＝LOVEの瀧脇笙古さんが登場。連載コラム「BAYSTARS=LOVE」は今回で15回目を迎え、2026年シーズンの「個人的MVP」や来季に期待する選手などが取り上げられています。",
+    "contentType": "magazine",
+    "thumbnailURL": "/images/logo.png",
+    "verified": true,
+    "lastCheckedAt": "2026-11-20T08:00:00.000Z",
+    "isFeatured": true,
+    "isHighlight": true
+  },
+  {
     "id": "link-nhk-kouhaku-20261113",
     "title": "＝LOVE、第77回NHK紅白歌合戦への初出場が決定！記者会見に瀧脇笙古も登壇",
     "sourceName": "＝LOVE Official / NHK",
