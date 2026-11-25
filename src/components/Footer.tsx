@@ -32,6 +32,7 @@ export const Footer: React.FC = () => {
               <Link href="/news" className="hover:text-white transition-colors">NEWS (最新情報)</Link>
               <Link href="/articles" className="hover:text-white transition-colors">ARTICLES (記事)</Link>
               <Link href="/youtube" className="hover:text-white transition-colors">MOVIE (動画)</Link>
+              <Link href="/quiz" className="hover:text-[#F6C744] text-[#F6C744] transition-colors">QUIZ (しょこら検定)</Link>
               <Link href="/history" className="hover:text-[#F6C744] text-[#F6C744] transition-colors">HISTORY (歴史)</Link>
               <Link href="/profile" className="hover:text-white transition-colors">PROFILE (人物)</Link>
               <Link href="/about" className="hover:text-white transition-colors">ABOUT (当サイトについて)</Link>

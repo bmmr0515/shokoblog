@@ -71,6 +71,28 @@ export const Sidebar: React.FC<SidebarProps> = ({ items: propItems }) => {
         </div>
       </div>
 
+      {/* しょこら検定 導線バナー */}
+      <div className="border-2 border-[#F6C744] p-5 space-y-2.5 bg-[#FFF9ED] rounded-2xl shadow-2xs">
+        <div className="flex items-center justify-between">
+          <span className="px-2 py-0.5 bg-[#F6C744] text-[#191919] font-mono font-bold text-[10px] rounded-full">
+            QUIZ
+          </span>
+          <span className="text-[10px] text-[#8C694D] font-mono font-bold">全問4択 / 10問</span>
+        </div>
+        <h4 className="font-maru font-extrabold text-sm text-[#191919] leading-snug">
+          しょこら検定 開催中！
+        </h4>
+        <p className="text-[11px] text-[#5C4533] font-sans font-medium leading-relaxed">
+          あなたのファン度を診断！初級・中級・上級の3コース。全問正解で「しょこら神」の称号をGETしよう！
+        </p>
+        <Link
+          href="/quiz"
+          className="block w-full py-2 px-3 bg-[#E99A32] hover:bg-[#D97706] text-white text-center rounded-xl font-maru font-bold text-xs transition-colors shadow-2xs"
+        >
+          検定に挑戦する →
+        </Link>
+      </div>
+
       {/* Category Nav */}
       <div className="border border-[#F0E4CE] p-5 sm:p-6 space-y-3 bg-white rounded-2xl shadow-2xs">
         <h3 className="font-extrabold text-[#191919] border-b border-[#F0E4CE] pb-2 text-xs tracking-widest uppercase">

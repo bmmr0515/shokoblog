@@ -7,7 +7,7 @@ import { getLinkItems } from "@/lib/store";
 import { Sidebar } from "@/components/Sidebar";
 import { AdBanner } from "@/components/AdBanner";
 import { DiscoverRandomModal } from "@/components/DiscoverRandomModal";
-import { ExternalLink, ArrowRight, Film, User, ArrowUpRight } from "lucide-react";
+import { ExternalLink, ArrowRight, Film, User, ArrowUpRight, Sparkles, Trophy, HelpCircle } from "lucide-react";
 import { extractYouTubeVideoId } from "@/lib/youtube";
 import { Reveal } from "@/components/Reveal";
 import { HeroReveal } from "@/components/HeroReveal";
@@ -244,6 +244,52 @@ export function HomeView() {
           {newsItems.map((item) => (
             <FashionArticleRow key={item.id} item={item} />
           ))}
+        </div>
+      </Reveal>
+
+      {/* ======================================================== */}
+      {/* 特設バナー: しょこら検定 (新コンテンツ導線) */}
+      {/* ======================================================== */}
+      <Reveal id="quiz-banner">
+        <div className="relative overflow-hidden bg-gradient-to-r from-[#FFF9ED] via-[#FFF4C7] to-[#FFF9ED] border-2 border-[#F6C744] rounded-2xl p-6 sm:p-8 shadow-xs">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 relative z-10">
+            <div className="space-y-2.5 max-w-[680px]">
+              <div className="flex items-center gap-2">
+                <span className="px-2.5 py-0.5 bg-[#E99A32] text-white font-mono font-black text-[10px] rounded-full uppercase tracking-wider">
+                  NEW CONTENT
+                </span>
+                <span className="text-xs font-mono font-bold text-[#8C694D]">
+                  瀧脇笙古ファン度診断クイズ
+                </span>
+              </div>
+
+              <h3 className="text-2xl sm:text-3xl font-maru font-extrabold text-[#191919] leading-tight">
+                「しょこら検定」OPEN！
+              </h3>
+
+              <p className="text-xs sm:text-sm text-[#5C4533] font-sans font-bold leading-relaxed">
+                プロフィール、マラソンサブ4、ベイスターズ愛、料理、楽曲の軌跡まで！<br className="hidden sm:inline" />
+                初級・中級・上級の3コース（全92問からランダム10問出題）。全問正解で「しょこら神」の認定証画像をGETしよう！
+              </p>
+
+              <div className="flex items-center gap-2 pt-1 flex-wrap text-[11px] font-mono font-bold text-[#8C694D]">
+                <span className="px-2 py-0.5 bg-white rounded border border-[#F0E4CE]">初級コース</span>
+                <span className="px-2 py-0.5 bg-white rounded border border-[#F0E4CE]">中級コース</span>
+                <span className="px-2 py-0.5 bg-white rounded border border-[#F0E4CE]">上級コース</span>
+                <span className="text-[#E99A32]">※画像保存＆Xシェア対応</span>
+              </div>
+            </div>
+
+            <div className="shrink-0">
+              <Link
+                href="/quiz"
+                className="inline-flex items-center justify-center gap-2 px-7 py-4 bg-[#191919] hover:bg-[#5C4533] text-[#F6C744] hover:text-white font-maru font-extrabold text-base rounded-xl transition-all shadow-md group cursor-pointer"
+              >
+                <span>検定に挑戦する</span>
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </div>
+          </div>
         </div>
       </Reveal>
 

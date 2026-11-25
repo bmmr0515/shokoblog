@@ -7,6 +7,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const routes = [
     "",
+    "/quiz",
     "/news",
     "/articles",
     "/youtube",
@@ -22,7 +23,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return routes.map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified,
-    changeFrequency: route === "" || route === "/news" ? "daily" : "weekly",
-    priority: route === "" ? 1.0 : 0.8,
+    changeFrequency: route === "" || route === "/news" || route === "/quiz" ? "daily" : "weekly",
+    priority: route === "" ? 1.0 : route === "/quiz" ? 0.9 : 0.8,
   }));
 }
