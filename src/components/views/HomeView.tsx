@@ -35,39 +35,34 @@ export function HomeView() {
       i.verified !== false
   );
 
-  // ヒーロー動画ID (最上部ヘッダー FILA 2026FW POP-UP 瀧脇笙古スタイリングパートナー動画)
-  const HERO_VIDEO_ID = "0dJb1WGsK2Q";
+  // ヒーロー動画ID (最上部ヘッダー ＝LOVE『木漏れ日メゾフォルテ』公式MV)
+  const HERO_VIDEO_ID = "4xBmuiQNGdc";
 
-  // セクション02: LATEST MOVIE 用動画（横型ワイド動画の最新）
-  const latestWideMovie =
-    youtubeItems.find(
-      (i) =>
-        !i.isShorts &&
-        !(i.youtubeURL || i.sourceURL || "").includes("/shorts/") &&
-        !(i.tags && i.tags.some((t) => t.toLowerCase() === "shorts"))
-    ) || youtubeItems[0];
+  // セクション02: LATEST MOVIE 用動画（『木漏れ日メゾフォルテ』公式ライブ映像）
+  const LATEST_MOVIE_ID = "11eHOTF0rTg";
 
-  const LATEST_MOVIE_ID =
-    latestWideMovie?.videoId ||
-    extractYouTubeVideoId(latestWideMovie?.youtubeURL || latestWideMovie?.sourceURL) ||
-    "2kJxIQQqraY";
+  const featuredMovieItem = youtubeItems.find(
+    (i) =>
+      i.videoId === LATEST_MOVIE_ID ||
+      extractYouTubeVideoId(i.youtubeURL || i.sourceURL) === LATEST_MOVIE_ID
+  );
 
-  const latestMovieObj = latestWideMovie || {
-    id: "latest-movie-bts",
-    title: "FILA 2026FW｜Behind the Scenes｜瀧脇笙古",
-    publishedDate: "2026-09-02",
-    channelName: "FILA Japan Official / フィラジャパン公式",
+  const latestMovieObj = {
+    ...(featuredMovieItem || {}),
+    id: "movie-88",
+    title: "『木漏れ日メゾフォルテ』公式ライブ映像",
+    publishedDate: "2025-11-16",
+    channelName: "＝LOVE（イコールラブ）公式チャンネル",
     sourceURL: `https://www.youtube.com/watch?v=${LATEST_MOVIE_ID}`,
     youtubeURL: `https://www.youtube.com/watch?v=${LATEST_MOVIE_ID}`,
   };
 
-  // MOVIE PICKUP 用 (LATEST_MOVIE_ID を除外した最新 3件。Shortsも含む)
+  // MOVIE PICKUP 用 (HERO動画およびLATEST動画を除外した最新 3件。Shortsも含む)
   const moviePickups = youtubeItems
-    .filter(
-      (i) =>
-        i.videoId !== LATEST_MOVIE_ID &&
-        extractYouTubeVideoId(i.youtubeURL || i.sourceURL) !== LATEST_MOVIE_ID
-    )
+    .filter((i) => {
+      const vId = i.videoId || extractYouTubeVideoId(i.youtubeURL || i.sourceURL);
+      return vId !== LATEST_MOVIE_ID && vId !== HERO_VIDEO_ID;
+    })
     .slice(0, 3);
 
   // 2. NEWS (最新情報 4件)
@@ -163,7 +158,7 @@ export function HomeView() {
                     <span className="px-2.5 py-0.5 bg-[#FFF4C7] border border-[#F6C744]/40 text-[#5C4533] text-[10px] rounded-full">
                       注目動画
                     </span>
-                    <span>FILA 2026FW POP-UP</span>
+                    <span>＝LOVE『木漏れ日メゾフォルテ』公式MV</span>
                   </div>
                   <span className="text-[10px] font-mono text-zinc-400">[AUTOPLAY ON]</span>
                 </div>

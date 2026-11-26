@@ -40,6 +40,78 @@ export const INITIAL_YEARS = [2026, 2025, 2024, 2023, 2022, 2021, 2020, 2019, 20
 
 export const INITIAL_LINK_ITEMS: LinkItem[] = [
   {
+    "id": "link-mstation-20261127",
+    "title": "＝LOVE、11月27日放送『Mステ』に出演！AKB48とのスペシャルコラボも",
+    "sourceName": "テレビ朝日 / ＝LOVE Official",
+    "sourceURL": "https://equal-love.jp/news/detail/12476",
+    "publishedDate": "2026-11-26",
+    "year": 2026,
+    "category": "テレビ・ラジオ",
+    "tags": [
+      "＝LOVE",
+      "瀧脇笙古",
+      "Mステ",
+      "ミュージックステーション",
+      "絶対アイドル辞めないで",
+      "AKB48",
+      "GIFT",
+      "テレビ・ラジオ"
+    ],
+    "description": "2026年11月27日（金）21:00〜21:54放送のテレビ朝日系「ミュージックステーション」に＝LOVEの生出演が決定。SGCホール有明で開催されるアイドルフェス「GIFT ～Girls Idol Festival Tokyo～」の会場から生中継で、『絶対アイドル辞めないで』を披露予定。さらにAKB48の名曲『ヘビーローテーション』でのスペシャルコラボレーションも予定されています。",
+    "contentType": "tv",
+    "thumbnailURL": "/images/logo.png",
+    "verified": true,
+    "lastCheckedAt": "2026-11-26T18:00:00.000Z",
+    "isFeatured": true,
+    "isHighlight": true
+  },
+  {
+    "id": "link-tokyodome-goods-20261125",
+    "title": "＝LOVE東京ドーム公演『全ては＝LOVE』公式グッズラインナップ公開！",
+    "sourceName": "＝LOVE Official",
+    "sourceURL": "https://equal-love.jp/news/detail/12499",
+    "publishedDate": "2026-11-25",
+    "year": 2026,
+    "category": "公式情報",
+    "tags": [
+      "＝LOVE",
+      "瀧脇笙古",
+      "東京ドーム",
+      "全ては＝LOVE",
+      "グッズ",
+      "公式情報"
+    ],
+    "description": "2027年1月19日・20日に開催される＝LOVE初の東京ドーム単独公演『＝LOVE in TOKYO DOME「全ては＝LOVE」』の公式グッズラインナップが公開！瀧脇笙古さんの個別マフラータオル、個別うちわ、個別生写真セットなどの個別アイテムも充実。事前配送受付は11月25日(水)18:30〜12月1日(火)23:59まで（15,000円以上購入で限定ミニフォトカード特典）。2027年1月8日〜11日には池袋サンシャインシティでの事前販売も実施されます。",
+    "contentType": "news",
+    "thumbnailURL": "/images/logo.png",
+    "verified": true,
+    "lastCheckedAt": "2026-11-26T18:00:00.000Z",
+    "isFeatured": true,
+    "isHighlight": false
+  },
+  {
+    "id": "link-fc-9th-anniversary-clip-20261125",
+    "title": "＝LOVE Official Fan Club 9周年記念「オリジナルラバーコードクリップ」プレゼント企画実施",
+    "sourceName": "＝LOVE Official Fan Club",
+    "sourceURL": "https://equal-love.jp/news/detail/12482",
+    "publishedDate": "2026-11-25",
+    "year": 2026,
+    "category": "公式情報",
+    "tags": [
+      "＝LOVE",
+      "ファンクラブ",
+      "特典",
+      "公式情報"
+    ],
+    "description": "＝LOVE Official Fan Club 9周年を記念し、1年以上継続会員を対象とした「＝LOVE オリジナルラバーコードクリップ」のプレゼント企画が発表されました。2026年11月末時点で1年以上継続し、12月10日時点で550円コース会員の方が対象（申し込み不要、2027年2月下旬以降発送予定）。MY PAGEでの登録情報確認期限は12月10日(木)23:59までです。",
+    "contentType": "news",
+    "thumbnailURL": "/images/logo.png",
+    "verified": true,
+    "lastCheckedAt": "2026-11-26T18:00:00.000Z",
+    "isFeatured": false,
+    "isHighlight": false
+  },
+  {
     "id": "link-baysta-43-20261118",
     "title": "瀧脇笙古、サンスポ「BAY☆スタ」第43号に登場！連載コラムは15回目",
     "sourceName": "サンケイスポーツ / ＝LOVE Official",
@@ -90,9 +162,9 @@ export const INITIAL_LINK_ITEMS: LinkItem[] = [
   },
   {
     "id": "link-ntv-best-artist-20261108",
-    "title": "日本テレビ系「ベストアーティスト2026」に＝LOVEの生出演が決定！",
+    "title": "日本テレビ系「ベストアーティスト2026」に＝LOVE生出演！披露曲は『恋、はじめました。』＆ディズニー企画『雪だるまつくろう』",
     "sourceName": "日本テレビ / ＝LOVE Official",
-    "sourceURL": "https://equal-love.jp/news/detail/12394",
+    "sourceURL": "https://equal-love.jp/news/detail/12486",
     "publishedDate": "2026-11-08",
     "year": 2026,
     "category": "テレビ・ラジオ",
@@ -101,16 +173,18 @@ export const INITIAL_LINK_ITEMS: LinkItem[] = [
       "瀧脇笙古",
       "ベストアーティスト",
       "日本テレビ",
+      "恋、はじめました。",
+      "雪だるまつくろう",
       "音楽番組",
       "テレビ・ラジオ"
     ],
-    "description": "2026年11月28日（土）放送の日本テレビ系大型音楽特番『ベストアーティスト2026』に＝LOVEの出演が決定。第1弾出演アーティストとして発表され、当日は生パフォーマンスを披露する予定です。",
+    "description": "2026年11月28日（土）19:00〜22:54放送の日本テレビ系大型音楽特番『ベストアーティスト2026』に＝LOVEが出演。11月25日の追加発表により、披露曲が『恋、はじめました。』に決定！さらに東京ディズニーシー25周年特別企画として『雪だるまつくろう』を披露するスペシャルパフォーマンスも予定されています。",
     "contentType": "tv",
     "thumbnailURL": "/images/logo.png",
     "verified": true,
-    "lastCheckedAt": "2026-11-16T14:00:00.000Z",
+    "lastCheckedAt": "2026-11-26T18:00:00.000Z",
     "isFeatured": true,
-    "isHighlight": false
+    "isHighlight": true
   },
   {
     "id": "link-hochi-coordinate-20261105",

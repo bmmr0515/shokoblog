@@ -35,7 +35,7 @@ export const NowPickupSection: React.FC = () => {
             <span className="px-2 py-0.5 bg-[#F6C744] text-[#191919] font-mono font-black text-[10px] rounded-full uppercase">
               NOW / PICK UP
             </span>
-            <span>現在開催中・重要トピック (2026.11.20時点)</span>
+            <span>現在開催中・重要トピック (2026.11.26時点)</span>
           </div>
           <h2 className="text-xl sm:text-2xl font-extrabold tracking-wider font-mono text-[#191919]">
             NOW / PICK UP
@@ -91,24 +91,24 @@ export const NowPickupSection: React.FC = () => {
         </div>
 
         {/* ======================================================== */}
-        {/* トピック 2: 年末大型音楽特番出演決定（ベストアーティスト & FNS歌謡祭） */}
+        {/* トピック 2: 年末大型音楽特番出演（Mステ・ベストアーティスト・FNS歌謡祭） */}
         {/* ======================================================== */}
         <div className="bg-white border-2 border-[#E99A32] p-4 rounded-xl space-y-2.5 shadow-2xs flex flex-col justify-between">
           <div className="space-y-2">
             <div className="flex items-center justify-between">
               <span className="px-2.5 py-0.5 bg-[#191919] text-[#F6C744] font-mono font-extrabold text-[10px] rounded-full flex items-center gap-1">
                 <Tv className="w-3 h-3 text-[#F6C744]" />
-                <span>大型特番出演</span>
+                <span>大型特番出演ラッシュ</span>
               </span>
-              <span className="text-[10px] font-mono font-bold text-[#8C694D]">11.28 日テレ / 12.02 フジ</span>
+              <span className="text-[10px] font-mono font-bold text-[#8C694D]">11.27 Mステ / 11.28 日テレ</span>
             </div>
 
             <h3 className="font-maru font-extrabold text-sm sm:text-base text-[#191919] leading-snug">
-              日テレ「ベストアーティスト」&<br />フジ「FNS歌謡祭 第1夜」出演！
+              Mステ（11/27中継コラボ）＆<br />ベストアーティスト（11/28）出演！
             </h3>
 
             <p className="text-xs text-[#5C4533] font-bold leading-relaxed font-sans">
-              日本テレビ系『ベストアーティスト2026』（11/28）およびフジテレビ系『2026 FNS歌謡祭 第1夜』（12/2）への生出演が決定。年末を彩る音楽特番でパフォーマンスを披露します。
+              11/27のMステはフェス会場から生中継でAKB48コラボ披露！11/28の『ベストアーティスト2026』では『恋、はじめました。』＆ディズニー企画、12/2の『FNS歌謡祭』と出演が続きます。
             </p>
           </div>
 
@@ -126,36 +126,36 @@ export const NowPickupSection: React.FC = () => {
         </div>
 
         {/* ======================================================== */}
-        {/* トピック 3: 東京ドーム単独公演 */}
+        {/* トピック 3: 東京ドーム単独公演 ＆ 公式グッズ事前販売中 */}
         {/* ======================================================== */}
         <div className="bg-white border border-[#F0E4CE] hover:border-[#F6C744] p-4 rounded-xl space-y-2.5 shadow-2xs flex flex-col justify-between transition-colors">
           <div className="space-y-2">
             <div className="flex items-center justify-between">
               <span className="px-2 py-0.5 bg-[#FFF4C7] text-[#5C4533] font-mono font-bold text-[10px] rounded-full flex items-center gap-1 border border-[#F6C744]/40">
                 <Disc className="w-3 h-3 text-[#E99A32]" />
-                <span>2027年1月開催</span>
+                <span>グッズ事前受付中</span>
               </span>
-              <span className="text-[10px] font-mono font-bold text-[#8C694D]">2027.01.16 — 01.17</span>
+              <span className="text-[10px] font-mono font-bold text-[#8C694D]">2027.01.19 — 01.20</span>
             </div>
 
             <h3 className="font-maru font-extrabold text-sm sm:text-base text-[#191919] leading-snug">
-              ＝LOVE in TOKYO DOME<br />「全ては＝LOVE」
+              東京ドーム「全ては＝LOVE」<br />公式グッズ事前配送受付スタート！
             </h3>
 
             <p className="text-xs text-[#5C4533] font-bold leading-relaxed font-sans">
-              グループ結成以来の大きな目標であった東京ドーム単独公演の開催が決定。瀧脇笙古を含むメンバー全員で立つ憧れのステージに向けて期待が高まっています。
+              初の東京ドーム単独公演の公式グッズラインナップが公開！瀧脇笙古さんの個別マフラータオルやうちわ等が登場。事前配送受付は11/25〜12/1まで受付中です。
             </p>
           </div>
 
           <div className="pt-2 border-t border-[#F0E4CE] flex items-center justify-between text-xs font-mono font-bold">
-            <span className="text-[10px] text-[#8C694D]">東京ドーム公演</span>
+            <span className="text-[10px] text-[#8C694D]">東京ドーム公演グッズ</span>
             <a
-              href="https://equal-love.jp/news/detail/12299"
+              href="https://equal-love.jp/news/detail/12499"
               target="_blank"
               rel="noopener noreferrer"
               className="text-[#5C4533] hover:text-[#191919] inline-flex items-center gap-0.5"
             >
-              <span>公式ニュース ↗</span>
+              <span>グッズ詳細 ↗</span>
             </a>
           </div>
         </div>
