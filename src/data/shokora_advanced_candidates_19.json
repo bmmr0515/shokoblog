@@ -1,0 +1,350 @@
+{
+  "title": "しょこら検定 上級 採用候補19問",
+  "generatedAt": "2026-11-26",
+  "policy": "AIによる問題の新規生成・加筆修正・自動公開を禁止。運営者が個別に承認した問題のみ公開可能。",
+  "note": "運営者承認済みの12問を公開中。未承認7問は一次資料確認中につき非公開維持。",
+  "questions": [
+    {
+      "id": "SHOKO-ADV-02",
+      "originalQuestionNumber": 2,
+      "difficulty": "advanced",
+      "question": "2022年のインタビューで、加入初期に美容について教わっていたと話したメンバーは？",
+      "options": [
+        "音嶋莉沙",
+        "大谷映美里",
+        "諸橋沙夏",
+        "齋藤樹愛羅"
+      ],
+      "correctAnswerIndex": 1,
+      "explanation": "美容に詳しい大谷映美里さんから教わっていたと話しています。",
+      "sourceUrl": "https://townwork.net/magazine/job/workstyle/134308/",
+      "evidenceStatus": "primary_verified",
+      "operatorApproved": true,
+      "publish": true
+    },
+    {
+      "id": "SHOKO-ADV-03",
+      "originalQuestionNumber": 3,
+      "difficulty": "advanced",
+      "question": "2022年当時、笙古ちゃんが家で育てていると明かした植物は？",
+      "options": [
+        "バジル",
+        "ミント",
+        "シソ",
+        "パセリ"
+      ],
+      "correctAnswerIndex": 2,
+      "explanation": "家でシソを育て、梅シソ肉巻き作りにハマっていると話しています。",
+      "sourceUrl": "https://townwork.net/magazine/job/workstyle/134308/",
+      "evidenceStatus": "primary_verified",
+      "operatorApproved": true,
+      "publish": true
+    },
+    {
+      "id": "SHOKO-ADV-05",
+      "originalQuestionNumber": 5,
+      "difficulty": "advanced",
+      "question": "2022年のインタビューで、SASUKE出演決定後に自宅で頑張ったと話した運動は？",
+      "options": [
+        "スクワット",
+        "腕立て伏せ",
+        "懸垂",
+        "腹筋"
+      ],
+      "correctAnswerIndex": 1,
+      "explanation": "収録の約1週間前に出演を知り、腕立て伏せを頑張ったと話しています。",
+      "sourceUrl": "https://townwork.net/magazine/job/workstyle/134308/",
+      "evidenceStatus": "primary_verified",
+      "operatorApproved": true,
+      "publish": true
+    },
+    {
+      "id": "SHOKO-ADV-06",
+      "originalQuestionNumber": 6,
+      "difficulty": "advanced",
+      "question": "「Be Selfish」の英語の歌詞を覚えるため、笙古ちゃんが行った方法は？",
+      "options": [
+        "先生に発音を教わる",
+        "英語部分をカタカナで書く",
+        "何度も録音して聴く",
+        "英語の歌詞をローマ字に直す"
+      ],
+      "correctAnswerIndex": 1,
+      "explanation": "英語の部分をカタカナにしてノートに書き、自分なりの言い方で歌っていました。",
+      "sourceUrl": "https://townwork.net/magazine/job/workstyle/134308/",
+      "evidenceStatus": "primary_verified",
+      "operatorApproved": true,
+      "publish": true
+    },
+    {
+      "id": "SHOKO-ADV-07",
+      "originalQuestionNumber": 7,
+      "difficulty": "advanced",
+      "question": "「Be Selfish」のMVで、笙古ちゃんが本当に生で食べた野菜は？",
+      "options": [
+        "ニンジン",
+        "ピーマン",
+        "セロリ",
+        "大根"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": "MVの撮影でニンジンを生で食べたと語っています。",
+      "sourceUrl": "https://townwork.net/magazine/job/workstyle/134308/",
+      "evidenceStatus": "primary_verified",
+      "operatorApproved": true,
+      "publish": true
+    },
+    {
+      "id": "SHOKO-ADV-10",
+      "originalQuestionNumber": 10,
+      "difficulty": "advanced",
+      "question": "小さい頃、笙古ちゃんが父・兄と毎年のように参加していた相模原の大会の距離は？",
+      "options": [
+        "3km",
+        "5km",
+        "10km",
+        "ハーフマラソン"
+      ],
+      "correctAnswerIndex": 1,
+      "explanation": "相模原の5kmレースに父・兄・本人の3人で参加していたと話しています。",
+      "sourceUrl": "https://store.alpen-group.jp/Page/Feature/running_260619_02.aspx",
+      "evidenceStatus": "primary_verified",
+      "operatorApproved": true,
+      "publish": true
+    },
+    {
+      "id": "SHOKO-ADV-14",
+      "originalQuestionNumber": 14,
+      "difficulty": "advanced",
+      "question": "サブ4を目指す練習で、笙古ちゃんが意外に感じたメニューは？",
+      "options": [
+        "坂道ウォーキング",
+        "スピード練習",
+        "水泳",
+        "縄跳び"
+      ],
+      "correctAnswerIndex": 1,
+      "explanation": "長距離の練習なのにスピード練習をすることが意外だったと語っています。",
+      "sourceUrl": "https://store.alpen-group.jp/Page/Feature/running_260619_02.aspx",
+      "evidenceStatus": "primary_verified",
+      "operatorApproved": true,
+      "publish": true
+    },
+    {
+      "id": "SHOKO-ADV-17",
+      "originalQuestionNumber": 17,
+      "difficulty": "advanced",
+      "question": "2025年に初めてセレモニアルピッチを務めた試合の対戦相手は？",
+      "options": [
+        "北海道日本ハム",
+        "埼玉西武",
+        "千葉ロッテ",
+        "東北楽天"
+      ],
+      "correctAnswerIndex": 1,
+      "explanation": "2025年6月18日の横浜DeNA対埼玉西武戦でセレモニアルピッチを務めました。",
+      "sourceUrl": "https://sp.baystars.co.jp/news/2025/06/0605_03.php",
+      "evidenceStatus": "primary_verified",
+      "operatorApproved": true,
+      "publish": true
+    },
+    {
+      "id": "SHOKO-ADV-18",
+      "originalQuestionNumber": 18,
+      "difficulty": "advanced",
+      "question": "2026年「BAY☆スタ」第41号で、笙古ちゃんと対談したDeNAの投手は？",
+      "options": [
+        "東克樹",
+        "石田裕太郎",
+        "大貫晋一",
+        "森原康平"
+      ],
+      "correctAnswerIndex": 1,
+      "explanation": "第41号の巻頭で石田裕太郎投手と対談しました。",
+      "sourceUrl": "https://www.sanspo-eshop.com/view/item/000000003543?category_page_id=baystar",
+      "evidenceStatus": "primary_verified",
+      "operatorApproved": true,
+      "publish": true
+    },
+    {
+      "id": "SHOKO-ADV-19",
+      "originalQuestionNumber": 19,
+      "difficulty": "advanced",
+      "question": "2023年のラジオ「Tresen」で、笙古ちゃんが食あたりを起こした原因として話したものは？",
+      "options": [
+        "賞味期限切れのヨーグルト",
+        "加熱用の牡蠣を生で食べた",
+        "生焼けのハンバーグ",
+        "常温で保存したお寿司"
+      ],
+      "correctAnswerIndex": 1,
+      "explanation": "自宅で生牡蠣を食べて体調を崩し、容器を確認すると加熱用と書かれていたそうです。",
+      "sourceUrl": "https://tresen.fmyokohama.jp/35129/",
+      "evidenceStatus": "primary_verified",
+      "operatorApproved": true,
+      "publish": true
+    },
+    {
+      "id": "SHOKO-ADV-20",
+      "originalQuestionNumber": 20,
+      "difficulty": "advanced",
+      "question": "2020年のSHOWROOM「キャンプ配信」で、笙古ちゃんが作った料理の組み合わせは？",
+      "options": [
+        "ホットドッグとビーフシチュー",
+        "タコライスとクラムチャウダー",
+        "キューバサンドとグリーンカレー",
+        "ピザとクリームシチュー"
+      ],
+      "correctAnswerIndex": 2,
+      "explanation": "本人投稿を転載したまとめにはキューバサンドとグリーンカレーと記載。本人の原投稿は直接確認できていません。",
+      "sourceUrl": "https://equallove-2017.blog.jp/archives/22532389.html",
+      "evidenceStatus": "needs_primary",
+      "operatorApproved": false,
+      "publish": false
+    },
+    {
+      "id": "SHOKO-ADV-21",
+      "originalQuestionNumber": 21,
+      "difficulty": "advanced",
+      "question": "2023年の「Tresen」で話した、父親が兄と協力して笙古ちゃんに勝とうとしたゲームは？",
+      "options": [
+        "人生ゲーム",
+        "カタン",
+        "UNO",
+        "モノポリー"
+      ],
+      "correctAnswerIndex": 1,
+      "explanation": "ファンのラジオ聴取記録では、家族で遊んだカタンで父親が兄と協力したとされています。",
+      "sourceUrl": "https://equallove-2017.blog.jp/archives/33048266.html",
+      "evidenceStatus": "needs_primary",
+      "operatorApproved": false,
+      "publish": false
+    },
+    {
+      "id": "SHOKO-ADV-22",
+      "originalQuestionNumber": 22,
+      "difficulty": "advanced",
+      "question": "2020年の「イコたいむ」で、笙古ちゃんが優勝した積み上げ対決のお菓子は？",
+      "options": [
+        "マカロン",
+        "チロルチョコ",
+        "ポッキー",
+        "ブラックサンダー"
+      ],
+      "correctAnswerIndex": 1,
+      "explanation": "当時の視聴記録にチロルチョコを12個積んで優勝したとあります。",
+      "sourceUrl": "https://equallove-2017.blog.jp/archives/21968378.html",
+      "evidenceStatus": "needs_primary",
+      "operatorApproved": false,
+      "publish": false
+    },
+    {
+      "id": "SHOKO-ADV-23",
+      "originalQuestionNumber": 23,
+      "difficulty": "advanced",
+      "question": "2022年1月2日の書き初め配信で、書き初めと一緒に作った飲み物は？",
+      "options": [
+        "レモネード",
+        "チャイ",
+        "ジンジャーエール",
+        "甘酒"
+      ],
+      "correctAnswerIndex": 2,
+      "explanation": "当時の視聴者記録に、生姜からジンジャーエールを作ったとあります。",
+      "sourceUrl": "https://equallove-2017.blog.jp/archives/28310582.html",
+      "evidenceStatus": "needs_primary",
+      "operatorApproved": false,
+      "publish": false
+    },
+    {
+      "id": "SHOKO-ADV-24",
+      "originalQuestionNumber": 24,
+      "difficulty": "advanced",
+      "question": "SHOWROOM毎日配信800日を迎えた際、笙古ちゃんが自分へのご褒美として用意したものは？",
+      "options": [
+        "たべっ子水族館",
+        "高級プリン",
+        "ショートケーキ",
+        "アイスクリーム"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": "本人Instagram投稿の転載には、UFOキャッチャーで取った「たべっ子水族館」と記載。原投稿は直接確認できていません。",
+      "sourceUrl": "https://instagrammernews.com/detail/3241627954328741736",
+      "evidenceStatus": "needs_primary",
+      "operatorApproved": false,
+      "publish": false
+    },
+    {
+      "id": "SHOKO-ADV-25",
+      "originalQuestionNumber": 25,
+      "difficulty": "advanced",
+      "question": "2020年5月のSHOWROOMで行った料理トーナメントのテーマは？",
+      "options": [
+        "お弁当に入れたいおかず",
+        "ご飯とおかずが一緒になっている料理",
+        "好きな麺料理",
+        "世界の朝ごはん"
+      ],
+      "correctAnswerIndex": 1,
+      "explanation": "2020年5月21日の視聴記録にこのテーマが記載されています。",
+      "sourceUrl": "https://equallove-2017.blog.jp/archives/23041299.html",
+      "evidenceStatus": "needs_primary",
+      "operatorApproved": false,
+      "publish": false
+    },
+    {
+      "id": "SHOKO-ADV-26",
+      "originalQuestionNumber": 26,
+      "difficulty": "advanced",
+      "question": "2022年のSHOWROOM毎日配信1周年記念で行われた企画の組み合わせは？",
+      "options": [
+        "料理配信と歌配信",
+        "書き初めと料理配信",
+        "MVクイズと「しょことおえかき」",
+        "トーナメントとゲーム配信"
+      ],
+      "correctAnswerIndex": 2,
+      "explanation": "ファンブログに両企画の言及はありますが、1周年当日に両方実施したことまでは確認できていません。",
+      "sourceUrl": "https://ameblo.jp/diamondlily-2020/entry-12760607423.html",
+      "evidenceStatus": "needs_primary",
+      "operatorApproved": false,
+      "publish": false
+    },
+    {
+      "id": "SHOKO-ADV-27",
+      "originalQuestionNumber": 27,
+      "difficulty": "advanced",
+      "question": "2025年のラジオ「Tresen」で、CS観戦に関して相川七瀬さんから受けた申し出は？",
+      "options": [
+        "一緒に球場のイベントへ出演しよう",
+        "余っているチケットで一緒に観戦しよう",
+        "始球式に一緒に登場しよう",
+        "試合後の食事会に参加しよう"
+      ],
+      "correctAnswerIndex": 1,
+      "explanation": "相川七瀬さんから余ったチケットで観戦しないかと誘われ、家族全員で行けることになったと紹介されています。",
+      "sourceUrl": "https://tresen.fmyokohama.jp/46323/",
+      "evidenceStatus": "primary_verified",
+      "operatorApproved": true,
+      "publish": true
+    },
+    {
+      "id": "SHOKO-ADV-28",
+      "originalQuestionNumber": 28,
+      "difficulty": "advanced",
+      "question": "2025年の「Tresen」で、笙古ちゃんが取ったCS第3戦のチケットが使えなくなった理由は？",
+      "options": [
+        "試合が雨天中止になった",
+        "球場が変更になった",
+        "DeNAが2連勝し、第3戦がなくなった",
+        "チケットの日付を間違えていた"
+      ],
+      "correctAnswerIndex": 2,
+      "explanation": "DeNAの2連勝で第3戦が開催されなかったため、幻のチケットになったそうです。",
+      "sourceUrl": "https://tresen.fmyokohama.jp/46323/",
+      "evidenceStatus": "primary_verified",
+      "operatorApproved": true,
+      "publish": true
+    }
+  ]
+}

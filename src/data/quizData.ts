@@ -1,4 +1,12 @@
-import { QuizQuestion, QuizDifficulty, QuizRank, RankInfo } from "@/types/quiz";
+import rawCandidates from "./shokora_advanced_candidates_19.json";
+import {
+  QuizQuestion,
+  QuizDifficulty,
+  QuizRank,
+  RankInfo,
+  CandidateQuestion,
+  isCandidatePublishable,
+} from "@/types/quiz";
 
 /**
  * =========================================================================
@@ -11,9 +19,10 @@ import { QuizQuestion, QuizDifficulty, QuizRank, RankInfo } from "@/types/quiz";
  * 運営者から提供された以下の情報は、許可なく変更しないでください：
  * - 問題文 / 4つの選択肢 / 正解 / 解説文 / 難易度 / 出典URL / 承認状態
  * 
- * 【承認状態 (isApproved)】
- * isApproved: true の問題のみがサイト上で公開・出題対象となります。
- * 承認が確認できない問題は公開用データに含めないでください。
+ * 【公開条件（3点すべて満たすこと）】
+ * 1. evidenceStatus が "primary_verified"（一次資料との照合完了）
+ * 2. operatorApproved が true（運営者による採用承認）
+ * 3. publish が true（公開設定）
  * 
  * ※過去の初期候補問題（92問）はバックアップファイル
  *   `src/data/quizQuestionsBackup.ts` に退避・保存されています。
@@ -108,26 +117,145 @@ export function getRankInfo(score: number, total: number = 10): RankInfo {
 }
 
 /**
- * 運営者承認済み問題データリスト
- * 
- * 【注意】
- * サイト運営者が直接提供・承認した問題のみをここに追加してください。
- * AIによる自動生成・独自追加は禁止されています。
+ * 運営者提供・上級採用候補問題（全19問）
+ * rawCandidates (shokora_advanced_candidates_19.json) からインポートして一元管理
  */
-export const QUIZ_QUESTIONS: QuizQuestion[] = [
-  // 現在、運営者承認待ちのため公開用リストは空です。
-  // 運営者から問題が提供・承認され次第、ここに追加されます。
-];
+const rawQuestions = ((rawCandidates as any)?.default?.questions || (rawCandidates as any)?.questions || rawCandidates) as CandidateQuestion[];
+export const ADVANCED_CANDIDATE_QUESTIONS: CandidateQuestion[] = rawQuestions;
+
+/**
+ * 運営者承認済み固定問題リスト
+ */
+export const QUIZ_QUESTIONS: QuizQuestion[] = [];
+
+/**
+ * 問題データの整合性バリデーション関数
+ * 不備がある場合は例外を投げる
+ */
+export function validateCandidateQuestions(candidates: CandidateQuestion[]): {
+  isValid: boolean;
+  errors: string[];
+} {
+  const errors: string[] = [];
+  const idSet = new Set<string>();
+
+  candidates.forEach((q, idx) => {
+    // 1. ID重複チェック
+    if (idSet.has(q.id)) {
+      errors.push(`重複する問題IDが存在します: ${q.id} (index: ${idx})`);
+    }
+    idSet.add(q.id);
+
+    // 2. 選択肢は必ず4つ
+    if (!Array.isArray(q.options) || q.options.length !== 4) {
+      errors.push(`問題ID ${q.id}: 選択肢が4つではありません (現在: ${q.options?.length})`);
+    }
+
+    // 3. 正解インデックスの範囲検証 (0〜3)
+    if (
+      typeof q.correctAnswerIndex !== "number" ||
+      q.correctAnswerIndex < 0 ||
+      q.correctAnswerIndex >= 4
+    ) {
+      errors.push(`問題ID ${q.id}: 正解インデックスが範囲外です (${q.correctAnswerIndex})`);
+    }
+
+    // 4. 正解選択肢の存在確認
+    if (q.options && q.options[q.correctAnswerIndex] === undefined) {
+      errors.push(`問題ID ${q.id}: 指定インデックスの選択肢が存在しません`);
+    }
+
+    // 5. 必須項目の確認
+    if (!q.question || q.question.trim() === "") {
+      errors.push(`問題ID ${q.id}: 問題文が空です`);
+    }
+    if (!q.sourceUrl || q.sourceUrl.trim() === "") {
+      errors.push(`問題ID ${q.id}: 出典URLが空です`);
+    }
+  });
+
+  return {
+    isValid: errors.length === 0,
+    errors,
+  };
+}
+
+/**
+ * 候補問題の検証・集計サマリーを取得
+ */
+export function getCandidateSummary(): {
+  total: number;
+  primaryVerified: number;
+  needsPrimary: number;
+  operatorApproved: number;
+  publishTrue: number;
+  publishable: number;
+} {
+  const total = ADVANCED_CANDIDATE_QUESTIONS.length;
+  let primaryVerified = 0;
+  let needsPrimary = 0;
+  let operatorApproved = 0;
+  let publishTrue = 0;
+  let publishable = 0;
+
+  ADVANCED_CANDIDATE_QUESTIONS.forEach((q) => {
+    if (q.evidenceStatus === "primary_verified") primaryVerified++;
+    if (q.evidenceStatus === "needs_primary") needsPrimary++;
+    if (q.operatorApproved === true) operatorApproved++;
+    if (q.publish === true) publishTrue++;
+    if (isCandidatePublishable(q)) publishable++;
+  });
+
+  return {
+    total,
+    primaryVerified,
+    needsPrimary,
+    operatorApproved,
+    publishTrue,
+    publishable,
+  };
+}
 
 /**
  * 承認済みの公開対象問題を取得
+ * 
+ * 公開条件3点（一次資料確認済み、運営者承認、公開フラグ）すべてを満たすもののみを抽出。
+ * 運営者承認済みの上級12問が公開対象となります。
  */
 export function getApprovedQuestions(difficulty?: QuizDifficulty): QuizQuestion[] {
-  return QUIZ_QUESTIONS.filter((q) => {
-    if (!q.isApproved) return false;
-    if (difficulty && q.difficulty !== difficulty) return false;
-    return true;
-  });
+  const publishableList: QuizQuestion[] = [];
+
+  // 1. 通常登録の承認済み問題
+  for (const q of QUIZ_QUESTIONS) {
+    if (q.isApproved) {
+      if (!difficulty || q.difficulty === difficulty) {
+        publishableList.push(q);
+      }
+    }
+  }
+
+  // 2. 上級候補問題（3つの公開条件をすべて満たすもののみ）
+  for (const c of ADVANCED_CANDIDATE_QUESTIONS) {
+    if (isCandidatePublishable(c)) {
+      if (!difficulty || difficulty === "hard") {
+        publishableList.push({
+          id: c.id,
+          difficulty: "hard",
+          category: "activity",
+          categoryLabel: "上級・活動記録",
+          question: c.question,
+          options: c.options,
+          correctAnswer: c.options[c.correctAnswerIndex],
+          explanation: c.explanation,
+          sourceUrl: c.sourceUrl,
+          isApproved: true,
+          approvedBy: "operator",
+        });
+      }
+    }
+  }
+
+  return publishableList;
 }
 
 /**

@@ -9,6 +9,41 @@ export type QuizCategory =
   | "baystars"
   | "media";
 
+export type EvidenceStatus = "primary_verified" | "needs_primary" | "unverified";
+
+export interface CandidateQuestion {
+  id: string;
+  originalQuestionNumber: number;
+  difficulty: string;
+  question: string;
+  options: string[];
+  correctAnswerIndex: number;
+  explanation: string;
+  sourceUrl: string;
+  evidenceStatus: EvidenceStatus;
+  operatorApproved: boolean;
+  publish: boolean;
+}
+
+/**
+ * 運営者厳格公開条件：
+ * 1. evidenceStatus が primary_verified
+ * 2. operatorApproved が true
+ * 3. publish が true
+ * の3点すべてを満たした場合のみ公開可能
+ */
+export function isCandidatePublishable(q: {
+  evidenceStatus: EvidenceStatus;
+  operatorApproved: boolean;
+  publish: boolean;
+}): boolean {
+  return (
+    q.evidenceStatus === "primary_verified" &&
+    q.operatorApproved === true &&
+    q.publish === true
+  );
+}
+
 export interface QuizQuestion {
   id: string;
   difficulty: QuizDifficulty;
