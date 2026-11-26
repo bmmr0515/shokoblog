@@ -34,6 +34,10 @@ export function QuizView() {
 
   const handleStartQuiz = (selectedDifficulty: QuizDifficulty) => {
     const qList = getRandomQuizQuestions(selectedDifficulty, 10);
+    if (qList.length === 0) {
+      alert("選択された難易度の承認済み問題は現在準備中です。");
+      return;
+    }
     setDifficulty(selectedDifficulty);
     setQuestions(qList);
     setScore(0);

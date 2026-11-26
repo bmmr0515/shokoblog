@@ -269,7 +269,7 @@ export function HomeView() {
 
               <p className="text-xs sm:text-sm text-[#5C4533] font-sans font-bold leading-relaxed">
                 プロフィール、マラソンサブ4、ベイスターズ愛、料理、楽曲の軌跡まで！<br className="hidden sm:inline" />
-                初級・中級・上級の3コース（全92問からランダム10問出題）。全問正解で「しょこら神」の認定証画像をGETしよう！
+                初級・中級・上級の3コース（運営者承認問題）。全問正解で「しょこら神」の認定証画像をGETしよう！
               </p>
 
               <div className="flex items-center gap-2 pt-1 flex-wrap text-[11px] font-mono font-bold text-[#8C694D]">

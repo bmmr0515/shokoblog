@@ -19,6 +19,9 @@ export interface QuizQuestion {
   correctAnswer: string;
   explanation: string;
   sourceUrl: string;
+  isApproved: boolean; // 運営者承認状態（trueのみ公開対象）
+  approvedAt?: string; // 承認日時
+  approvedBy?: string; // 承認者名
 }
 
 export type QuizRank =
