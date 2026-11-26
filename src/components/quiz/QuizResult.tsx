@@ -4,6 +4,7 @@ import React from "react";
 import Link from "next/link";
 import { QuizDifficulty, QuizQuestion, RankInfo } from "@/types/quiz";
 import { getRankInfo } from "@/data/quizData";
+import { getSafeQuizShareText, getTwitterShareUrl } from "@/lib/quizShare";
 import { Confetti } from "./Confetti";
 import { QuizCertificateCanvas } from "./QuizCertificateCanvas";
 import {
@@ -52,12 +53,13 @@ export const QuizResult: React.FC<QuizResultProps> = ({
       ? "中級"
       : "上級";
 
-  // X (Twitter) シェアテキスト
-  const shareText = `【しょこら検定 (${difficultyLabel}コース)】\n10問中【${score}問正解】で認定ランクは《${rankInfo.title}》でした！\n\n${rankInfo.message}\n\nあなたも瀧脇笙古ちゃんファン度を診断してみよう！✨\n#しょこら検定 #瀧脇笙古 #イコラブ #しょこらの部屋`;
-  const shareUrl = "https://shokoblog.vercel.app/quiz";
-  const twitterShareLink = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
-    shareText
-  )}&url=${encodeURIComponent(shareUrl)}`;
+  // X (Twitter) シェアテキスト（指定テンプレート・280重み検証済み）
+  const { shareText } = getSafeQuizShareText(
+    difficultyLabel,
+    rankInfo.title,
+    rankInfo.message
+  );
+  const twitterShareLink = getTwitterShareUrl(shareText);
 
   return (
     <div className="space-y-10 max-w-[800px] mx-auto pb-8">
