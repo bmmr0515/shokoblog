@@ -1,0 +1,688 @@
+{
+  "title": "しょこら検定 初級・中級40問",
+  "status": "operator_approved",
+  "generatedAt": "2026-11-26",
+  "policy": "AIによる問題の新規生成・加筆修正を禁止。運営者が作成・提供した問題データ。",
+  "questions": [
+    {
+      "id": "SHOKO-EASY-01",
+      "difficulty": "easy",
+      "question": "瀧脇笙古さんの誕生日は？",
+      "options": [
+        "7月7日",
+        "7月9日",
+        "8月9日",
+        "9月7日"
+      ],
+      "correctAnswerIndex": 1,
+      "explanation": "公式プロフィールでは2001年7月9日生まれ。",
+      "sourceUrl": "https://equal-love.jp/feature/takiwaki_shoko",
+      "evidenceStatus": "primary_verified",
+      "operatorApproved": true,
+      "publish": true
+    },
+    {
+      "id": "SHOKO-EASY-02",
+      "difficulty": "easy",
+      "question": "瀧脇笙古さんの出身県は？",
+      "options": [
+        "東京都",
+        "神奈川県",
+        "千葉県",
+        "埼玉県"
+      ],
+      "correctAnswerIndex": 1,
+      "explanation": "公式プロフィールに神奈川県と記載。",
+      "sourceUrl": "https://equal-love.jp/feature/takiwaki_shoko",
+      "evidenceStatus": "primary_verified",
+      "operatorApproved": true,
+      "publish": true
+    },
+    {
+      "id": "SHOKO-EASY-03",
+      "difficulty": "easy",
+      "question": "瀧脇笙古さんの血液型は？",
+      "options": [
+        "A型",
+        "B型",
+        "O型",
+        "AB型"
+      ],
+      "correctAnswerIndex": 2,
+      "explanation": "公式プロフィールにO型と記載。",
+      "sourceUrl": "https://equal-love.jp/feature/takiwaki_shoko",
+      "evidenceStatus": "primary_verified",
+      "operatorApproved": true,
+      "publish": true
+    },
+    {
+      "id": "SHOKO-EASY-04",
+      "difficulty": "easy",
+      "question": "瀧脇笙古さんの星座は？",
+      "options": [
+        "おひつじ座",
+        "かに座",
+        "しし座",
+        "おとめ座"
+      ],
+      "correctAnswerIndex": 1,
+      "explanation": "公式プロフィールにかに座と記載。",
+      "sourceUrl": "https://equal-love.jp/feature/takiwaki_shoko",
+      "evidenceStatus": "primary_verified",
+      "operatorApproved": true,
+      "publish": true
+    },
+    {
+      "id": "SHOKO-EASY-05",
+      "difficulty": "easy",
+      "question": "2026年11月時点の公式プロフィール上の身長は？",
+      "options": [
+        "154cm",
+        "156cm",
+        "158cm",
+        "160cm"
+      ],
+      "correctAnswerIndex": 2,
+      "explanation": "公式プロフィールに158cmと記載。",
+      "sourceUrl": "https://equal-love.jp/feature/takiwaki_shoko",
+      "evidenceStatus": "primary_verified",
+      "operatorApproved": true,
+      "publish": true
+    },
+    {
+      "id": "SHOKO-EASY-06",
+      "difficulty": "easy",
+      "question": "公式プロフィールにある特技は？",
+      "options": [
+        "マラソン",
+        "ピアノ",
+        "書道",
+        "バレエ"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": "公式プロフィール上の特技はマラソン。",
+      "sourceUrl": "https://equal-love.jp/feature/takiwaki_shoko",
+      "evidenceStatus": "primary_verified",
+      "operatorApproved": true,
+      "publish": true
+    },
+    {
+      "id": "SHOKO-EASY-07",
+      "difficulty": "easy",
+      "question": "公式プロフィールにある趣味はどれ？",
+      "options": [
+        "横浜散策",
+        "陶芸",
+        "登山",
+        "釣り"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": "料理、ヘアアレンジ、横浜散策、カフェ巡りが趣味として掲載。",
+      "sourceUrl": "https://equal-love.jp/feature/takiwaki_shoko",
+      "evidenceStatus": "primary_verified",
+      "operatorApproved": true,
+      "publish": true
+    },
+    {
+      "id": "SHOKO-EASY-08",
+      "difficulty": "easy",
+      "question": "公式プロフィールに「趣味」として掲載されているものは？",
+      "options": [
+        "ヘアアレンジ",
+        "英会話",
+        "乗馬",
+        "将棋"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": "ヘアアレンジは公式プロフィールの趣味の一つ。",
+      "sourceUrl": "https://equal-love.jp/feature/takiwaki_shoko",
+      "evidenceStatus": "primary_verified",
+      "operatorApproved": true,
+      "publish": true
+    },
+    {
+      "id": "SHOKO-EASY-09",
+      "difficulty": "easy",
+      "question": "瀧脇笙古さんが所属するアイドルグループは？",
+      "options": [
+        "≒JOY",
+        "＝LOVE",
+        "≠ME",
+        "乃木坂46"
+      ],
+      "correctAnswerIndex": 1,
+      "explanation": "＝LOVEのメンバーとして公式プロフィールに掲載。",
+      "sourceUrl": "https://equal-love.jp/feature/takiwaki_shoko",
+      "evidenceStatus": "primary_verified",
+      "operatorApproved": true,
+      "publish": true
+    },
+    {
+      "id": "SHOKO-EASY-10",
+      "difficulty": "easy",
+      "question": "瀧脇笙古さんの初センター曲は？",
+      "options": [
+        "BPM170の君へ",
+        "木漏れ日メゾフォルテ",
+        "しゅきぴ",
+        "ズルいよ ズルいね"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": "本人インタビューで初センター曲として紹介。",
+      "sourceUrl": "https://townwork.net/magazine/job/workstyle/134308/",
+      "evidenceStatus": "primary_verified",
+      "operatorApproved": true,
+      "publish": true
+    },
+    {
+      "id": "SHOKO-EASY-11",
+      "difficulty": "easy",
+      "question": "「BPM170の君へ」は、どのシングルに収録？",
+      "options": [
+        "The 5th",
+        "Be Selfish",
+        "青春サブリミナル",
+        "あの子コンプレックス"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": "10thシングル「The 5th」の収録曲。",
+      "sourceUrl": "https://equal-love.jp/news/detail/4834",
+      "evidenceStatus": "primary_verified",
+      "operatorApproved": true,
+      "publish": true
+    },
+    {
+      "id": "SHOKO-EASY-12",
+      "difficulty": "easy",
+      "question": "笙古ちゃんが特に応援しているプロ野球チームは？",
+      "options": [
+        "横浜DeNAベイスターズ",
+        "阪神タイガース",
+        "読売ジャイアンツ",
+        "中日ドラゴンズ"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": "本人インタビューなどでベイスターズファンと紹介。",
+      "sourceUrl": "https://townwork.net/magazine/job/workstyle/134308/",
+      "evidenceStatus": "primary_verified",
+      "operatorApproved": true,
+      "publish": true
+    },
+    {
+      "id": "SHOKO-EASY-13",
+      "difficulty": "easy",
+      "question": "2026年秋冬シーズン、スタイリングパートナーになったブランドは？",
+      "options": [
+        "FILA",
+        "PUMA",
+        "NIKE",
+        "adidas"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": "＝LOVE公式がFILAのスタイリングパートナー就任を発表。",
+      "sourceUrl": "https://equal-love.jp/news/detail/11822",
+      "evidenceStatus": "primary_verified",
+      "operatorApproved": true,
+      "publish": true
+    },
+    {
+      "id": "SHOKO-EASY-14",
+      "difficulty": "easy",
+      "question": "笙古ちゃんがコラムなどで登場するサンスポの野球特別版は？",
+      "options": [
+        "BAY☆スタ",
+        "週刊ベースボール",
+        "Sports Graphic Number",
+        "月刊タイガース"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": "＝LOVE公式に「BAY☆スタ」の掲載告知あり。",
+      "sourceUrl": "https://equal-love.jp/news/detail/11837",
+      "evidenceStatus": "primary_verified",
+      "operatorApproved": true,
+      "publish": true
+    },
+    {
+      "id": "SHOKO-EASY-15",
+      "difficulty": "easy",
+      "question": "2026年に新MC就任が発表された野球番組は？",
+      "options": [
+        "プロ野球ニュース",
+        "熱闘甲子園",
+        "サンデースポーツ",
+        "球辞苑"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": "フジテレビONE「プロ野球ニュース」のMC就任が発表。",
+      "sourceUrl": "https://equal-love.jp/news/detail/11301",
+      "evidenceStatus": "primary_verified",
+      "operatorApproved": true,
+      "publish": true
+    },
+    {
+      "id": "SHOKO-EASY-16",
+      "difficulty": "easy",
+      "question": "東京マラソン2023で笙古ちゃんが達成した目標は？",
+      "options": [
+        "サブ3",
+        "サブ3.5",
+        "サブ4",
+        "サブ5"
+      ],
+      "correctAnswerIndex": 2,
+      "explanation": "東京マラソン2023で4時間切りを達成。",
+      "sourceUrl": "https://equal-love.jp/feature/specialsite_tokyomarathon2023",
+      "evidenceStatus": "primary_verified",
+      "operatorApproved": true,
+      "publish": true
+    },
+    {
+      "id": "SHOKO-EASY-17",
+      "difficulty": "easy",
+      "question": "2018年の料理対決で作ったのはどんな料理？",
+      "options": [
+        "キーマカレー丼",
+        "肉じゃが",
+        "オムライス",
+        "ハンバーガー"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": "料理名は「疲労回復キーマカレー丼」。",
+      "sourceUrl": "https://equal-love.jp/news/detail/812",
+      "evidenceStatus": "primary_verified",
+      "operatorApproved": true,
+      "publish": true
+    },
+    {
+      "id": "SHOKO-EASY-18",
+      "difficulty": "easy",
+      "question": "＝LOVEがメジャーデビューした年は？",
+      "options": [
+        "2016年",
+        "2017年",
+        "2018年",
+        "2019年"
+      ],
+      "correctAnswerIndex": 1,
+      "explanation": "本人インタビューのプロフィールに2017年9月デビューと記載。",
+      "sourceUrl": "https://townwork.net/magazine/job/workstyle/134308/",
+      "evidenceStatus": "primary_verified",
+      "operatorApproved": true,
+      "publish": true
+    },
+    {
+      "id": "SHOKO-EASY-19",
+      "difficulty": "easy",
+      "question": "「木漏れ日メゾフォルテ」が収録されているシングルは？",
+      "options": [
+        "ラブソングに襲われる",
+        "The 5th",
+        "Be Selfish",
+        "絶対アイドル辞めないで"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": "19thシングルの収録曲。",
+      "sourceUrl": "https://equal-love.jp/schedule/detail/10611",
+      "evidenceStatus": "primary_verified",
+      "operatorApproved": true,
+      "publish": true
+    },
+    {
+      "id": "SHOKO-EASY-20",
+      "difficulty": "easy",
+      "question": "2026年春に笙古ちゃんが出場した「オールスター感謝祭」の企画は？",
+      "options": [
+        "赤坂5丁目ミニマラソン",
+        "アーチェリー",
+        "俳句対決",
+        "クイズマラソン"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": "公式出演情報に赤坂5丁目ミニマラソン出演と明記。",
+      "sourceUrl": "https://equal-love.jp/news/detail/11293",
+      "evidenceStatus": "primary_verified",
+      "operatorApproved": true,
+      "publish": true
+    },
+    {
+      "id": "SHOKO-MEDIUM-01",
+      "difficulty": "medium",
+      "question": "＝LOVEに加入した2017年、笙古ちゃんは学校のどの段階だった？",
+      "options": [
+        "中学2年",
+        "中学3年",
+        "高校1年",
+        "高校3年"
+      ],
+      "correctAnswerIndex": 2,
+      "explanation": "本人が高校入学の年に加入したと振り返っている。",
+      "sourceUrl": "https://townwork.net/magazine/job/workstyle/134308/",
+      "evidenceStatus": "primary_verified",
+      "operatorApproved": true,
+      "publish": true
+    },
+    {
+      "id": "SHOKO-MEDIUM-02",
+      "difficulty": "medium",
+      "question": "加入時点で笙古ちゃんが未経験だったものは？",
+      "options": [
+        "ダンス",
+        "料理",
+        "水泳",
+        "ランニング"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": "本人インタビューでダンス未経験からのスタートと明言。",
+      "sourceUrl": "https://townwork.net/magazine/job/workstyle/134308/",
+      "evidenceStatus": "primary_verified",
+      "operatorApproved": true,
+      "publish": true
+    },
+    {
+      "id": "SHOKO-MEDIUM-03",
+      "difficulty": "medium",
+      "question": "加入初期のライブで、ダンスが得意でない中でも心掛けたことは？",
+      "options": [
+        "小さく丁寧に踊る",
+        "誰より大きく踊り高く跳ぶ",
+        "動きを減らす",
+        "後方に下がる"
+      ],
+      "correctAnswerIndex": 1,
+      "explanation": "本人がパフォーマンスの初期の工夫として語った。",
+      "sourceUrl": "https://townwork.net/magazine/job/workstyle/134308/",
+      "evidenceStatus": "primary_verified",
+      "operatorApproved": true,
+      "publish": true
+    },
+    {
+      "id": "SHOKO-MEDIUM-04",
+      "difficulty": "medium",
+      "question": "2022年のインタビューで、本人がアイドルになる前に応援していたと話したアイドルは？",
+      "options": [
+        "矢吹奈子",
+        "生田絵梨花",
+        "松井珠理奈",
+        "柏木由紀"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": "自身も矢吹奈子さんのファンだったと語っている。",
+      "sourceUrl": "https://townwork.net/magazine/job/workstyle/134308/",
+      "evidenceStatus": "primary_verified",
+      "operatorApproved": true,
+      "publish": true
+    },
+    {
+      "id": "SHOKO-MEDIUM-05",
+      "difficulty": "medium",
+      "question": "アイドルになる前、SHOWROOMでの本人の視聴スタイルは？",
+      "options": [
+        "毎回長文コメント",
+        "ほぼ視聴のみでたまに星を投げる",
+        "自分も配信者だった",
+        "ほとんど見なかった"
+      ],
+      "correctAnswerIndex": 1,
+      "explanation": "在宅で応援する立場だったことを本人が説明。",
+      "sourceUrl": "https://townwork.net/magazine/job/workstyle/134308/",
+      "evidenceStatus": "primary_verified",
+      "operatorApproved": true,
+      "publish": true
+    },
+    {
+      "id": "SHOKO-MEDIUM-06",
+      "difficulty": "medium",
+      "question": "初センター「BPM170の君へ」は本人のどんな特技に寄せた曲？",
+      "options": [
+        "料理",
+        "マラソン",
+        "ヘアアレンジ",
+        "野球解説"
+      ],
+      "correctAnswerIndex": 1,
+      "explanation": "本人がマラソンにぴったりの曲を作ってもらったと語っている。",
+      "sourceUrl": "https://townwork.net/magazine/job/workstyle/134308/",
+      "evidenceStatus": "primary_verified",
+      "operatorApproved": true,
+      "publish": true
+    },
+    {
+      "id": "SHOKO-MEDIUM-07",
+      "difficulty": "medium",
+      "question": "2022年の本人インタビューで、モデル業についてどう話した？",
+      "options": [
+        "やりたくない",
+        "ずっとやりたかった",
+        "海外限定で希望",
+        "既に引退した"
+      ],
+      "correctAnswerIndex": 1,
+      "explanation": "将来の仕事の幅についてモデルをずっとやりたかったと話す。",
+      "sourceUrl": "https://townwork.net/magazine/job/workstyle/134308/",
+      "evidenceStatus": "primary_verified",
+      "operatorApproved": true,
+      "publish": true
+    },
+    {
+      "id": "SHOKO-MEDIUM-08",
+      "difficulty": "medium",
+      "question": "2022年のインタビューで、ファンが生誕祭に用意してくれたと話した演出は？",
+      "options": [
+        "花火",
+        "ドローンショー",
+        "パレード",
+        "ケーキタワー"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": "誕生日に花火が上がる幸せを語っている。",
+      "sourceUrl": "https://townwork.net/magazine/job/workstyle/134308/",
+      "evidenceStatus": "primary_verified",
+      "operatorApproved": true,
+      "publish": true
+    },
+    {
+      "id": "SHOKO-MEDIUM-09",
+      "difficulty": "medium",
+      "question": "2026年の「プロ野球ニュース」で交代MCを務める＝LOVEメンバーは？",
+      "options": [
+        "大場花菜",
+        "髙松瞳",
+        "山本杏奈",
+        "音嶋莉沙"
+      ],
+      "correctAnswerIndex": 2,
+      "explanation": "瀧脇笙古と山本杏奈が隔週交代制でMCを担当。",
+      "sourceUrl": "https://equal-love.jp/news/detail/11301",
+      "evidenceStatus": "primary_verified",
+      "operatorApproved": true,
+      "publish": true
+    },
+    {
+      "id": "SHOKO-MEDIUM-10",
+      "difficulty": "medium",
+      "question": "2026年の「プロ野球ニュース」でMCを担当する曜日は？",
+      "options": [
+        "火曜日",
+        "水曜日",
+        "木曜日",
+        "日曜日"
+      ],
+      "correctAnswerIndex": 2,
+      "explanation": "公式発表では毎週木曜日の新MC。",
+      "sourceUrl": "https://equal-love.jp/news/detail/11301",
+      "evidenceStatus": "primary_verified",
+      "operatorApproved": true,
+      "publish": true
+    },
+    {
+      "id": "SHOKO-MEDIUM-11",
+      "difficulty": "medium",
+      "question": "2026年「プロ野球ニュース」が放送されるチャンネルは？",
+      "options": [
+        "フジテレビONE",
+        "日テレジータス",
+        "GAORA",
+        "BS-TBS"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": "公式の出演情報に記載。",
+      "sourceUrl": "https://equal-love.jp/news/detail/11301",
+      "evidenceStatus": "primary_verified",
+      "operatorApproved": true,
+      "publish": true
+    },
+    {
+      "id": "SHOKO-MEDIUM-12",
+      "difficulty": "medium",
+      "question": "2026年7月のタイガース中継の副音声で共演したお笑いコンビは？",
+      "options": [
+        "バッテリィズ",
+        "見取り図",
+        "ロングコートダディ",
+        "マユリカ"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": "GAORA SPORTS公式出演情報の番組名に記載。",
+      "sourceUrl": "https://equal-love.jp/news/detail/11586",
+      "evidenceStatus": "primary_verified",
+      "operatorApproved": true,
+      "publish": true
+    },
+    {
+      "id": "SHOKO-MEDIUM-13",
+      "difficulty": "medium",
+      "question": "2026年7月8日にゲスト出演した野球配信はどのサービス？",
+      "options": [
+        "Netflix",
+        "FODプレミアム",
+        "ABEMA",
+        "DAZN"
+      ],
+      "correctAnswerIndex": 1,
+      "explanation": "「横浜DeNAベイスターズ L!VE 2026」に生中継ゲスト出演。",
+      "sourceUrl": "https://equal-love.jp/news/detail/11568",
+      "evidenceStatus": "primary_verified",
+      "operatorApproved": true,
+      "publish": true
+    },
+    {
+      "id": "SHOKO-MEDIUM-14",
+      "difficulty": "medium",
+      "question": "2024年、阪神対DeNA戦のビジター応援実況で出演したCSチャンネルは？",
+      "options": [
+        "スカイA",
+        "フジテレビTWO",
+        "J SPORTS 4",
+        "日テレNEWS24"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": "阪神対DeNA戦の副音声ビジター応援実況に出演。",
+      "sourceUrl": "https://equal-love.jp/news/detail/8487",
+      "evidenceStatus": "primary_verified",
+      "operatorApproved": true,
+      "publish": true
+    },
+    {
+      "id": "SHOKO-MEDIUM-15",
+      "difficulty": "medium",
+      "question": "2025年のベイスターズ春季キャンプ関連で、トークショーとともに出演が発表された体験は？",
+      "options": [
+        "シーサー絵付け",
+        "陶芸ろくろ",
+        "三線演奏",
+        "琉球ガラス制作"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": "キャンプでのトークショー・シーサー絵付け体験の出演情報。",
+      "sourceUrl": "https://equal-love.jp/news/detail/9613",
+      "evidenceStatus": "primary_verified",
+      "operatorApproved": true,
+      "publish": true
+    },
+    {
+      "id": "SHOKO-MEDIUM-16",
+      "difficulty": "medium",
+      "question": "2018年「疲労回復キーマカレー丼」に最後に添えたチーズの形は？",
+      "options": [
+        "星",
+        "花",
+        "ハート",
+        "三日月"
+      ],
+      "correctAnswerIndex": 2,
+      "explanation": "公式告知の本人コメントにハート形のチーズと記載。",
+      "sourceUrl": "https://equal-love.jp/news/detail/812",
+      "evidenceStatus": "primary_verified",
+      "operatorApproved": true,
+      "publish": true
+    },
+    {
+      "id": "SHOKO-MEDIUM-17",
+      "difficulty": "medium",
+      "question": "2018年のキーマカレー丼に食感を出すため加えたものは？",
+      "options": [
+        "砕いたナッツ",
+        "揚げ玉",
+        "クラッカー",
+        "コーンフレーク"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": "本人コメントでスクランブルエッグと砕いたナッツをポイントに挙げた。",
+      "sourceUrl": "https://equal-love.jp/news/detail/812",
+      "evidenceStatus": "primary_verified",
+      "operatorApproved": true,
+      "publish": true
+    },
+    {
+      "id": "SHOKO-MEDIUM-18",
+      "difficulty": "medium",
+      "question": "「BPM170の君へ」が収録されている「The 5th」は何枚目のシングル？",
+      "options": [
+        "8th",
+        "9th",
+        "10th",
+        "11th"
+      ],
+      "correctAnswerIndex": 2,
+      "explanation": "公式配信告知に10thシングルと記載。",
+      "sourceUrl": "https://equal-love.jp/news/detail/4834",
+      "evidenceStatus": "primary_verified",
+      "operatorApproved": true,
+      "publish": true
+    },
+    {
+      "id": "SHOKO-MEDIUM-19",
+      "difficulty": "medium",
+      "question": "2026年の「月刊スカパー！」5月号で一緒に紹介されたメンバーは？",
+      "options": [
+        "野口衣織",
+        "山本杏奈",
+        "音嶋莉沙",
+        "齋藤樹愛羅"
+      ],
+      "correctAnswerIndex": 1,
+      "explanation": "「プロ野球ニュース」紹介として2人が掲載。",
+      "sourceUrl": "https://equal-love.jp/news/detail/11339",
+      "evidenceStatus": "primary_verified",
+      "operatorApproved": true,
+      "publish": true
+    },
+    {
+      "id": "SHOKO-MEDIUM-20",
+      "difficulty": "medium",
+      "question": "2025年1月3日に放送された瀧脇笙古さん出演の駅伝番組は？",
+      "options": [
+        "芸能人対抗駅伝2025",
+        "箱根駅伝",
+        "ニューイヤー駅伝",
+        "富士山女子駅伝"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": "テレビ東京の「芸能人対抗駅伝2025」出演を公式告知。",
+      "sourceUrl": "https://equal-love.jp/news/detail/9397",
+      "evidenceStatus": "primary_verified",
+      "operatorApproved": true,
+      "publish": true
+    }
+  ]
+}

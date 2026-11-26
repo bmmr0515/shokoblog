@@ -1,7 +1,9 @@
 import rawCandidates from "./shokora_advanced_candidates_19.json";
+import rawEasyMedium from "./shokora_easy_medium_40.json";
 import {
   QuizQuestion,
   QuizDifficulty,
+  QuizCategory,
   QuizRank,
   RankInfo,
   CandidateQuestion,
@@ -117,11 +119,54 @@ export function getRankInfo(score: number, total: number = 10): RankInfo {
 }
 
 /**
- * 運営者提供・上級採用候補問題（全19問）
- * rawCandidates (shokora_advanced_candidates_19.json) からインポートして一元管理
+ * 難易度文字列の正規化関数
+ * easy -> easy
+ * normal / medium -> normal
+ * hard / advanced -> hard
  */
-const rawQuestions = ((rawCandidates as any)?.default?.questions || (rawCandidates as any)?.questions || rawCandidates) as CandidateQuestion[];
-export const ADVANCED_CANDIDATE_QUESTIONS: CandidateQuestion[] = rawQuestions;
+export function normalizeDifficulty(diff: string): QuizDifficulty {
+  if (diff === "easy") return "easy";
+  if (diff === "medium" || diff === "normal") return "normal";
+  if (diff === "hard" || diff === "advanced") return "hard";
+  return "normal";
+}
+
+/**
+ * 難易度ごとの代表カテゴリーとラベルを取得
+ */
+function getQuestionCategory(difficulty: QuizDifficulty): {
+  category: QuizCategory;
+  categoryLabel: string;
+} {
+  switch (difficulty) {
+    case "easy":
+      return { category: "profile", categoryLabel: "初級・基本プロフィール" };
+    case "normal":
+      return { category: "media", categoryLabel: "中級・メディア活動" };
+    case "hard":
+      return { category: "activity", categoryLabel: "上級・活動記録" };
+  }
+}
+
+/**
+ * 運営者提供・上級採用候補問題（全19問）
+ */
+const rawAdvancedQuestions = ((rawCandidates as any)?.default?.questions || (rawCandidates as any)?.questions || rawCandidates) as CandidateQuestion[];
+export const ADVANCED_CANDIDATE_QUESTIONS: CandidateQuestion[] = rawAdvancedQuestions;
+
+/**
+ * 運営者提供・初級および中級問題（全40問：初級20問、中級20問）
+ */
+const rawEasyMediumQuestions = ((rawEasyMedium as any)?.default?.questions || (rawEasyMedium as any)?.questions || rawEasyMedium) as CandidateQuestion[];
+export const EASY_MEDIUM_CANDIDATE_QUESTIONS: CandidateQuestion[] = rawEasyMediumQuestions;
+
+/**
+ * 運営者提供の全候補問題リスト
+ */
+export const ALL_CANDIDATE_QUESTIONS: CandidateQuestion[] = [
+  ...rawEasyMediumQuestions,
+  ...rawAdvancedQuestions,
+];
 
 /**
  * 運営者承認済み固定問題リスト
@@ -190,20 +235,32 @@ export function getCandidateSummary(): {
   operatorApproved: number;
   publishTrue: number;
   publishable: number;
+  easyCount: number;
+  normalCount: number;
+  hardCount: number;
 } {
-  const total = ADVANCED_CANDIDATE_QUESTIONS.length;
+  const total = ALL_CANDIDATE_QUESTIONS.length;
   let primaryVerified = 0;
   let needsPrimary = 0;
   let operatorApproved = 0;
   let publishTrue = 0;
   let publishable = 0;
+  let easyCount = 0;
+  let normalCount = 0;
+  let hardCount = 0;
 
-  ADVANCED_CANDIDATE_QUESTIONS.forEach((q) => {
+  ALL_CANDIDATE_QUESTIONS.forEach((q) => {
     if (q.evidenceStatus === "primary_verified") primaryVerified++;
     if (q.evidenceStatus === "needs_primary") needsPrimary++;
     if (q.operatorApproved === true) operatorApproved++;
     if (q.publish === true) publishTrue++;
-    if (isCandidatePublishable(q)) publishable++;
+    if (isCandidatePublishable(q)) {
+      publishable++;
+      const diff = normalizeDifficulty(q.difficulty);
+      if (diff === "easy") easyCount++;
+      else if (diff === "normal") normalCount++;
+      else if (diff === "hard") hardCount++;
+    }
   });
 
   return {
@@ -213,6 +270,9 @@ export function getCandidateSummary(): {
     operatorApproved,
     publishTrue,
     publishable,
+    easyCount,
+    normalCount,
+    hardCount,
   };
 }
 
@@ -220,29 +280,34 @@ export function getCandidateSummary(): {
  * 承認済みの公開対象問題を取得
  * 
  * 公開条件3点（一次資料確認済み、運営者承認、公開フラグ）すべてを満たすもののみを抽出。
- * 運営者承認済みの上級12問が公開対象となります。
+ * 運営者承認済みの初級20問、中級20問、上級12問（計52問）が公開対象となります。
  */
-export function getApprovedQuestions(difficulty?: QuizDifficulty): QuizQuestion[] {
+export function getApprovedQuestions(
+  difficulty?: QuizDifficulty | "medium" | "advanced"
+): QuizQuestion[] {
+  const targetDiff = difficulty ? normalizeDifficulty(difficulty) : undefined;
   const publishableList: QuizQuestion[] = [];
 
   // 1. 通常登録の承認済み問題
   for (const q of QUIZ_QUESTIONS) {
     if (q.isApproved) {
-      if (!difficulty || q.difficulty === difficulty) {
+      if (!targetDiff || q.difficulty === targetDiff) {
         publishableList.push(q);
       }
     }
   }
 
-  // 2. 上級候補問題（3つの公開条件をすべて満たすもののみ）
-  for (const c of ADVANCED_CANDIDATE_QUESTIONS) {
+  // 2. 運営者提供の候補問題（3つの公開条件をすべて満たすもののみ）
+  for (const c of ALL_CANDIDATE_QUESTIONS) {
     if (isCandidatePublishable(c)) {
-      if (!difficulty || difficulty === "hard") {
+      const diff = normalizeDifficulty(c.difficulty);
+      if (!targetDiff || diff === targetDiff) {
+        const catInfo = getQuestionCategory(diff);
         publishableList.push({
           id: c.id,
-          difficulty: "hard",
-          category: "activity",
-          categoryLabel: "上級・活動記録",
+          difficulty: diff,
+          category: catInfo.category,
+          categoryLabel: catInfo.categoryLabel,
           question: c.question,
           options: c.options,
           correctAnswer: c.options[c.correctAnswerIndex],

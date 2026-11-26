@@ -13,7 +13,7 @@ export type EvidenceStatus = "primary_verified" | "needs_primary" | "unverified"
 
 export interface CandidateQuestion {
   id: string;
-  originalQuestionNumber: number;
+  originalQuestionNumber?: number;
   difficulty: string;
   question: string;
   options: string[];
